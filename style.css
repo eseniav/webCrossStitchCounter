@@ -1,0 +1,21 @@
+body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+footer {
+    background-color: gray;
+    min-height: 50px;
+}
+header {
+    background-color: bisque;
+    min-height: 50px;
+}
+main {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex: 1 1 0%;
+    background-color: #f5f7ee;
+}
