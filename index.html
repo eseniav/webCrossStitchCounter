@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stitch Counter</title>
+    <link type="image/x-icon" rel="icon" href="svg/MainIcon.svg"/>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+
+    </header>
+    <main>
+        <article>
+            <div class="gallery" id="gallery">
+                <div class="card">
+                    <h2>Название</h2>
+                    <p>Описание</p>
+                    <img src="images/2248036369a45c1555a433.48884101.jpg" alt="Описание">
+                </div>
+                <div class="card"></div>
+                <div class="card"></div>
+                <div class="card"></div>
+                <div class="card"></div>
+                <div class="card"></div>
+                <div class="card"></div>
+            </div>
+        </article>        
+    </main>
+    <footer>
+
+    </footer>
+    <script>
+        const data = [
+            {
+                id: 1,
+                name: "Птичка",
+                description: "OwlForest Embroidery (ООО 'Совиный лес')",
+                image: "images/2248036369a45c1555a433.48884101.jpg",
+            },
+            {
+                id: 2,
+                name: "Лесная фея",
+                description: "Whispering Woods Collection (ООО 'Шёпоты леса')",
+                image: "images/2248036369a45c1555a433.48884101.jpg"
+            },
+            {
+                id: 3,
+                name: "Лунный кот",
+                description: "Moonlight Paws Series (ООО 'Лапы под луной')",
+                image: "images/2248036369a45c1555a433.48884101.jpg"
+            },
+            {
+                id: 4,
+                name: "Волшебный единорог",
+                description: "Rainbow Mane Magic (ООО 'Магия радужной гривы')",
+                image: "images/2248036369a45c1555a433.48884101.jpg"
+            },
+            {
+                id: 5,
+                name: "Осенний клён",
+                description: "Autumn Leaves Pattern (ООО 'Узоры осени')",
+                image: "images/2248036369a45c1555a433.48884101.jpg"
+            },
+            {
+                id: 6,
+                name: "Морской бриз",
+                description: "Ocean Breeze Stitch (ООО 'Морской стежок')",
+                image: "images/2248036369a45c1555a433.48884101.jpg"
+            },
+            {
+                id: 7,
+                name: "Звёздная ночь",
+                description: "Celestial Dreams Embroidery (ООО 'Звёздные сны')",
+                image: "images/2248036369a45c1555a433.48884101.jpg"
+            },
+            {
+                id: 8,
+                name: "Горный орёл",
+                description: "Peak Flyer Collection (ООО 'Покоритель вершин')",
+                image: "images/2248036369a45c1555a433.48884101.jpg"
+            },
+            {
+                id: 9,
+                name: "Цветочная поляна",
+                description: "Blooming Meadow Stitch (ООО 'Цветущий луг')",
+                image: "images/2248036369a45c1555a433.48884101.jpg"
+            },
+            {
+                id: 10,
+                name: "Зимний олень",
+                description: "Frost Antlers Design (ООО 'Морозные рога')",
+                image: "images/2248036369a45c1555a433.48884101.jpg"
+            },
+            {
+                id: 11,
+                name: "Солнечный котёнок",
+                description: "Sunbeam Playtime (ООО 'Игры солнечных зайчиков')",
+                image: "images/2248036369a45c1555a433.48884101.jpg"
+            }
+        ];
+            const gallery = document.getElementById("gallery");
+            gallery.innerHTML = "";
+            data.forEach((item) => {
+                const card = document.createElement("div");
+                card.className = "card";
+                card.innerHTML = `
+                    <h2>${item.name}</h2>
+                    <p>${item.description}</p>
+                    <img src="${item.image}" alt="Описание">
+                `;
+                gallery.append(card);
+            }); 
+    </script>
+</body>
+</html>
