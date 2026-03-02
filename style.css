@@ -1,10 +1,14 @@
 article {
     min-height: 100px;
     min-width: 300px;
+    width: 100%;
+    max-width: 1000px;
     background-color: white;
     margin: 20px;
     box-shadow: 0 .5rem 1rem gray;
     border-radius: 5px;
+    display: flex;
+    justify-content: center;
 }
 body {
     margin: 0;
@@ -27,4 +31,22 @@ main {
     flex: 1 1 0%;
     background-color: #f5f7ee;
     justify-content: center;
+}
+.gallery {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fill, 250px);
+    gap: 20px;
+    padding: 20px;
+    max-width: 100%;
+}
+.card {
+    height: 300px;
+    background-color: azure;
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 20px;
+}
+.card>img {
+    width: 208px;
 }
