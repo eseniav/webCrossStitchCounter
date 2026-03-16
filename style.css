@@ -71,7 +71,7 @@ main {
     flex: 1;
     padding: 10px;
 }
-.infoSection > h2 {
+.h2ProjectPage {
     margin: 0 0 5px;
     text-align: center;
     font-family: "Adventure Indiana", Georgia, 'Times New Roman', Times, serif;
@@ -89,6 +89,9 @@ main {
     width: 100%;
     border-radius: 5px;
 }
+article .progressBar {
+    margin-bottom: 15px;
+}
 .progressValue {
     background-color: blueviolet;
     height: 100%;
@@ -99,4 +102,15 @@ main {
     color: white;
     justify-content: flex-start;
     padding: 0 2px;
+}
+td {
+    border-bottom: 2px dashed lightgrey;
+    text-align: center;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+th {
+    border-bottom: 2px solid gray;
 }
