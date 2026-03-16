@@ -1,3 +1,7 @@
+@font-face {
+    font-family: "Adventure Indiana";
+    src: url(fonts/adventure_indiana.ttf);
+}
 article {
     min-height: 100px;
     min-width: 300px;
@@ -8,7 +12,9 @@ article {
     box-shadow: 0 .5rem 1rem gray;
     border-radius: 5px;
     display: flex;
-    justify-content: center;
+    justify-content: start;
+    flex-direction: column;
+    align-items: center;
 }
 body {
     margin: 0;
@@ -47,6 +53,32 @@ main {
     border-radius: 5px;
     padding: 20px;
 }
-.card>img {
+.card > img {
     width: 208px;
+}
+.imgSection {
+    text-align: right;
+}
+.imgSection > img {
+    max-width: 250px;
+}
+.projectParams {
+    display: flex;
+    flex-wrap: wrap;
+}
+.projectParams > div {
+    flex: 1;
+    padding: 10px;
+}
+.infoSection > h2 {
+    margin: 0 0 5px;
+    text-align: center;
+    font-family: "Adventure Indiana", Georgia, 'Times New Roman', Times, serif;
+}
+.infoSection > ul {
+    list-style-type: none;
+    padding: 0;
+}
+.propName {
+    color: blueviolet;
 }
