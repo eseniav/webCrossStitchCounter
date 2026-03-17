@@ -126,7 +126,7 @@
                 card.addEventListener("click", function(event){
                     console.log(event);
                     console.log(this);
-                    window.location.href = "project.html"
+                    window.location.href = `project.html?id=${item.id}`;
                 });
                 gallery.append(card);
             }); 

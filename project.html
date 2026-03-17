@@ -106,11 +106,15 @@
         <dialog id="imageModal" aria-labelledby="modalTitle" aria-describedby="modalContent">
             <button class="close-btn" aria-label="Закрыть" onclick="closeModal()">×</button>
             <img id="modalImage" alt="Полное изображение проекта">
-        </dialog>       
+        </dialog> 
     </main>
     <footer>
 
     </footer>
     <script src="modal.js"></script>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const projectId = urlParams.get("id");
+    </script>
 </body>
 </html>
