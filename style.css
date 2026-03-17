@@ -42,6 +42,8 @@ footer {
 header {
     background-color: #2A3759;
     min-height: 50px;
+    position: sticky;
+    top: 0;
 }
 main {
     width: 100%;
@@ -165,3 +167,23 @@ th {
     font-weight: bold;
     color: #431D32;
 }
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+}
+nav > ul {
+    list-style-type: none;    
+}
+nav > ul > li {
+    display: inline;
+    margin-right: 15px;
+    color: white;
+    font-family: Primus;
+    font-weight: bold;
+}
+nav > ul > li > a {
+    color: white;
+    text-decoration: none;
+}
+
