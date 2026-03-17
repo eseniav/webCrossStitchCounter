@@ -5,6 +5,7 @@ const projects = [
         description: "OwlForest Embroidery (ООО 'Совиный лес')",
         image: "images/2248036369a45c1555a433.48884101.jpg",
         author: "anna",
+        procent: 25,
     },
     {
         id: 2,
@@ -12,6 +13,7 @@ const projects = [
         description: "Whispering Woods Collection (ООО 'Шёпоты леса')",
         image: "images/2248036369a45c1555a433.48884101.jpg",
         author: "anna",
+        procent: 30,
     },
     {
         id: 3,
@@ -19,6 +21,7 @@ const projects = [
         description: "Moonlight Paws Series (ООО 'Лапы под луной')",
         image: "images/2248036369a45c1555a433.48884101.jpg",
         author: "anna",
+        procent: 35,
     },
     {
         id: 4,
@@ -26,6 +29,7 @@ const projects = [
         description: "Rainbow Mane Magic (ООО 'Магия радужной гривы')",
         image: "images/2248036369a45c1555a433.48884101.jpg",
         author: "anna",
+        procent: 37,
     },
     {
         id: 5,
@@ -33,6 +37,7 @@ const projects = [
         description: "Autumn Leaves Pattern (ООО 'Узоры осени')",
         image: "images/2248036369a45c1555a433.48884101.jpg",
         author: "anna",
+        procent: 98,
     },
     {
         id: 6,
@@ -40,6 +45,7 @@ const projects = [
         description: "Ocean Breeze Stitch (ООО 'Морской стежок')",
         image: "images/2248036369a45c1555a433.48884101.jpg",
         author: "anna",
+        procent: 99,
     },
     {
         id: 7,
@@ -47,6 +53,7 @@ const projects = [
         description: "Celestial Dreams Embroidery (ООО 'Звёздные сны')",
         image: "images/2248036369a45c1555a433.48884101.jpg",
         author: "anna",
+        procent: 1,
     },
     {
         id: 8,
@@ -54,6 +61,7 @@ const projects = [
         description: "Peak Flyer Collection (ООО 'Покоритель вершин')",
         image: "images/2248036369a45c1555a433.48884101.jpg",
         author: "anna",
+        procent: 15,
     },
     {
         id: 9,
@@ -61,6 +69,7 @@ const projects = [
         description: "Blooming Meadow Stitch (ООО 'Цветущий луг')",
         image: "images/2248036369a45c1555a433.48884101.jpg",
         author: "anna",
+        procent: 7,
     },
     {
         id: 10,
@@ -68,6 +77,7 @@ const projects = [
         description: "Frost Antlers Design (ООО 'Морозные рога')",
         image: "images/2248036369a45c1555a433.48884101.jpg",
         author: "anna",
+        procent: 5,
     },
     {
         id: 11,
@@ -75,5 +85,6 @@ const projects = [
         description: "Sunbeam Playtime (ООО 'Игры солнечных зайчиков')",
         image: "images/2248036369a45c1555a433.48884101.jpg",
         author: "anna",
+        procent: 2,
     }
 ];
