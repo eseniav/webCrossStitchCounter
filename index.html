@@ -123,6 +123,11 @@
                     <img src="${item.image}" alt="Описание">
                     <p class="cardAuthor">${item.author}</p>
                 `;
+                card.addEventListener("click", function(event){
+                    console.log(event);
+                    console.log(this);
+                    window.location.href = "project.html"
+                });
                 gallery.append(card);
             }); 
     </script>
