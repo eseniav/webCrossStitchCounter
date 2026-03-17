@@ -7,24 +7,41 @@
     <link type="image/x-icon" rel="icon" href="svg/MainIcon.svg"/>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="modal.css">
+    <script src="scripts/data.js"></script>
 </head>
 <body>
     <header>
 
     </header>
     <main>
-        <article>
-            <h1>111001 Romantic Rainy Season</h1>
+        <article>            
+        </article> 
+        <dialog id="imageModal" aria-labelledby="modalTitle" aria-describedby="modalContent">
+            <button class="close-btn" aria-label="Закрыть" onclick="closeModal()">×</button>
+            <img id="modalImage" alt="Полное изображение проекта">
+        </dialog> 
+    </main>
+    <footer>
+
+    </footer>
+    <script src="modal.js"></script>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const projectId = urlParams.get("id");
+        const project = projects.find((item) => item.id == projectId);
+        const article = document.querySelector("article");
+        article.innerHTML = `
+        <h1>${project.name}</h1>
             <div class="projectParams">
                 <div class="imgSection">
-                    <img src="images/2248036369a45c1555a433.48884101.jpg" alt="" onclick="openModal('images/2248036369a45c1555a433.48884101.jpg')">
+                    <img src=${project.image} alt="" onclick="openModal('images/2248036369a45c1555a433.48884101.jpg')">
                 </div>
                 <div class="infoSection">
                     <h2 class="h2ProjectPage">О проекте</h2>
                     <ul>
                         <li>
                             <span class="propName">Автор дизайна:</span>
-                            <span class="propValue">Dimensions</span>
+                            <span class="propValue">${project.description}</span>
                         </li>
                         <li>
                             <span class="propName">Размер:</span>
@@ -101,20 +118,8 @@
                         <td>9800</td>
                     </tr>
                 </tbody>
-            </table>
-        </article> 
-        <dialog id="imageModal" aria-labelledby="modalTitle" aria-describedby="modalContent">
-            <button class="close-btn" aria-label="Закрыть" onclick="closeModal()">×</button>
-            <img id="modalImage" alt="Полное изображение проекта">
-        </dialog> 
-    </main>
-    <footer>
-
-    </footer>
-    <script src="modal.js"></script>
-    <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        const projectId = urlParams.get("id");
+            </table>`;
+        console.log(project);
     </script>
 </body>
 </html>
