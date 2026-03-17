@@ -6,7 +6,9 @@
     <title>Кладовая крестиков</title>
     <link type="image/x-icon" rel="icon" href="svg/MainIcon.svg"/>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="modal.css">
     <script src="scripts/data.js"></script>
+    <script src="modal.js" defer></script>    
 </head>
 <body>
     <header>
@@ -28,7 +30,11 @@
                 <div class="card"></div>
                 <div class="card"></div>
             </div>
-        </article>        
+        </article>  
+        <dialog id="imageModal" aria-labelledby="modalTitle" aria-describedby="modalContent">
+            <button class="close-btn" aria-label="Закрыть" onclick="closeModal()">×</button>
+            <img id="modalImage" alt="Полное изображение проекта">
+        </dialog>       
     </main>
     <footer>
 
@@ -42,13 +48,14 @@
                 card.innerHTML = `
                     <h2>${item.name}</h2>
                     <p>${item.description}</p>
-                    <img src="${item.image}" alt="Описание">
+                    <img src="${item.image}" alt="Описание" onclick="openModal('${item.image}')">
                     <p class="cardAuthor">${item.author}</p>
                 `;
                 card.addEventListener("click", function(event){
                     console.log(event);
-                    console.log(this);
-                    window.location.href = `project.html?id=${item.id}`;
+                    console.log(this);                    
+                    if (event.target.tagName != "IMG")
+                        window.location.href = `project.html?id=${item.id}`;
                 });
                 gallery.append(card);
             }); 
