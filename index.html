@@ -56,9 +56,9 @@
                 card.className = "card";
                 card.innerHTML = `
                     <h2>${item.name}</h2>
-                    <p>${item.description}</p>
+                    <p>${item.designer}</p>
                     <img src="${item.image}" alt="Описание" onclick="openModal('${item.image}')">
-                    <p class="cardAuthor">${item.author}</p>
+                    <p class="cardAuthor">${item.user}</p>
                 `;
                 card.addEventListener("click", function(event){
                     console.log(event);

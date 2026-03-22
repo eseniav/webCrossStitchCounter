@@ -29,6 +29,14 @@ article {
     align-items: center;
     padding: 10px;
 }
+article > h1 {
+    color: #431D32;
+    font-family: "X Company";
+    font-weight: bold;
+}
+article .progressBar {
+    margin-bottom: 15px;
+}
 body {
     margin: 0;
     display: flex;
@@ -53,120 +61,6 @@ main {
     background-color: #778FD2;
     justify-content: center;
 }
-.gallery {
-    display: grid;
-    justify-content: center;
-    grid-template-columns: repeat(auto-fill, 250px);
-    gap: 20px;
-    padding: 20px;
-    max-width: 100%;
-}
-.card {
-    height: 300px;
-    background-color: #B7CB99;
-    border: 1px solid white;
-    border-radius: 5px;
-    padding: 20px;
-}
-.card > h2 {
-    color: #431D32;
-    font-family: Primus;
-    font-weight: bold;
-}
-.card > img {
-    width: 208px;
-}
-.cardDescription {
-    color: #2A3759;
-    font-family: Primus;
-    font-weight: bold;
-}
-.cardAuthor {
-    color: white;
-    font-family: Primus;
-    font-weight: bold;
-    font-size: 16px;
-}
-.imgSection {
-    text-align: right;
-}
-.imgSection > img {
-    max-width: 250px;
-}
-.projectParams {
-    display: flex;
-    flex-wrap: wrap;
-}
-.projectParams > div {
-    flex: 1;
-    padding: 10px;
-}
-.h2ProjectPage {
-    margin: 0 0 5px;
-    text-align: center;
-    font-family: "New Standard Old", Georgia, 'Times New Roman', Times, serif;
-    color: white;  
-    font-weight: bold;  
-}
-.infoSection > ul {
-    list-style-type: none;
-    padding: 0;
-}
-.propName {
-    color: #3D5220;
-    font-family: Primus;
-    font-weight: bold;
-}
-.propValue {
-    color: #2A3759;
-    font-family: Primus;
-    font-weight: bold;
-}
-.progressBar {
-    height: 20px;
-    background-color:#B7CB99;
-    width: 100%;
-    border-radius: 5px;
-    border: 1px solid #2A3759;
-}
-article .progressBar {
-    margin-bottom: 15px;
-}
-article > h1 {
-    color: #431D32;
-    font-family: "X Company";
-    font-weight: bold;
-}
-.progressValue {
-    background-color: #431D32;
-    height: 100%;
-    width: 10%;
-    display: inline-block;
-    display: inline-flex;
-    align-items: center;
-    color: white;
-    justify-content: flex-start;
-    padding: 0 2px;
-    font-family: "New Standard Old";
-    font-weight: bold;
-}
-td {
-    border-bottom: 2px dashed whitesmoke;
-    text-align: center;
-    font-family: Primus;
-    font-weight: bold;
-    color: #2A3759;
-}
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-}
-th {
-    font-family: Primus;
-    font-weight: bold;
-    color: #431D32;
-}
 nav {
     display: flex;
     justify-content: space-between;
@@ -186,4 +80,147 @@ nav > ul > li > a {
     color: white;
     text-decoration: none;
 }
-
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+td {
+    border-bottom: 2px dashed whitesmoke;
+    text-align: center;
+    font-family: Primus;
+    font-weight: bold;
+    color: #2A3759;
+}
+th {
+    font-family: Primus;
+    font-weight: bold;
+    color: #431D32;
+}
+.card {
+    height: 300px;
+    background-color: #B7CB99;
+    border: 1px solid white;
+    border-radius: 5px;
+    padding: 20px;
+}
+.card > h2 {
+    color: #431D32;
+    font-family: Primus;
+    font-weight: bold;
+}
+.card > img {
+    max-width: 208px;
+    max-height: 140px;
+    object-fit: contain;
+}
+.cardAuthor {
+    color: white;
+    font-family: Primus;
+    font-weight: bold;
+    font-size: 16px;
+}
+.cardDescription {
+    color: #2A3759;
+    font-family: Primus;
+    font-weight: bold;
+}
+.gallery {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fill, 250px);
+    gap: 20px;
+    padding: 20px;
+    max-width: 100%;
+}
+.h2ProjectPage {
+    margin: 0 0 5px;
+    text-align: center;
+    font-family: "New Standard Old", Georgia, 'Times New Roman', Times, serif;
+    color: white;  
+    font-weight: bold;  
+}
+.imgSection {
+    text-align: right;
+}
+.imgSection > img {
+    max-width: 250px;
+    max-height: 300px;
+    object-fit: contain;
+}
+.infoSection > ul {
+    list-style-type: none;
+    padding: 0;
+}
+.progressBar {
+    height: 20px;
+    background-color:#B7CB99;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid #2A3759;
+}
+.progressValue {
+    background-color: #431D32;
+    height: 100%;
+    width: 10%;
+    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    color: white;
+    justify-content: flex-start;
+    padding: 0 2px;
+    font-family: "New Standard Old";
+    font-weight: bold;
+}
+.projectMenu > ul > li > a {
+    color: #2A3759;
+    font-family: Primus;
+    font-weight: bold;
+    text-decoration: none;
+}
+.projectMenu > ul > li > a.projectPage.active {
+    color: #3D5220;
+    border: 2px dashed white;
+    padding: 4px 8px;
+    border-radius: 5px;
+  }
+.projectParams {
+    display: flex;
+    flex-wrap: wrap;
+}
+.projectParams > div {
+    flex: 1;
+    padding: 10px;
+}
+.propName {
+    color: #3D5220;
+    font-family: Primus;
+    font-weight: bold;
+}
+.propValue {
+    color: #2A3759;
+    font-family: Primus;
+    font-weight: bold;
+}
+.tag {
+    color: #431D32;
+    font-family: Primus;
+    font-weight: bold;
+}
+.tag:hover {
+    cursor: pointer;
+  }
+.tagsContainer {    
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+    max-width: 500px;
+    justify-content: flex-end
+}
+.userProjectPage {
+    color: white;
+    font-family: Primus;
+    font-weight: bold;
+    font-size: 16px;
+}
