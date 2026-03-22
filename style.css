@@ -29,6 +29,14 @@ article {
     align-items: center;
     padding: 10px;
 }
+article > h1 {
+    color: #431D32;
+    font-family: "X Company";
+    font-weight: bold;
+}
+article .progressBar {
+    margin-bottom: 15px;
+}
 body {
     margin: 0;
     display: flex;
@@ -42,6 +50,8 @@ footer {
 header {
     background-color: #2A3759;
     min-height: 50px;
+    position: sticky;
+    top: 0;
 }
 main {
     width: 100%;
@@ -51,13 +61,41 @@ main {
     background-color: #778FD2;
     justify-content: center;
 }
-.gallery {
-    display: grid;
-    justify-content: center;
-    grid-template-columns: repeat(auto-fill, 250px);
-    gap: 20px;
-    padding: 20px;
-    max-width: 100%;
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+}
+nav > ul {
+    list-style-type: none;    
+}
+nav > ul > li {
+    display: inline;
+    margin-right: 15px;
+    color: white;
+    font-family: Primus;
+    font-weight: bold;
+}
+nav > ul > li > a {
+    color: white;
+    text-decoration: none;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+td {
+    border-bottom: 2px dashed whitesmoke;
+    text-align: center;
+    font-family: Primus;
+    font-weight: bold;
+    color: #2A3759;
+}
+th {
+    font-family: Primus;
+    font-weight: bold;
+    color: #431D32;
 }
 .card {
     height: 300px;
@@ -72,12 +110,9 @@ main {
     font-weight: bold;
 }
 .card > img {
-    width: 208px;
-}
-.cardDescription {
-    color: #2A3759;
-    font-family: Primus;
-    font-weight: bold;
+    max-width: 208px;
+    max-height: 140px;
+    object-fit: contain;
 }
 .cardAuthor {
     color: white;
@@ -85,19 +120,18 @@ main {
     font-weight: bold;
     font-size: 16px;
 }
-.imgSection {
-    text-align: right;
+.cardDescription {
+    color: #2A3759;
+    font-family: Primus;
+    font-weight: bold;
 }
-.imgSection > img {
-    max-width: 250px;
-}
-.projectParams {
-    display: flex;
-    flex-wrap: wrap;
-}
-.projectParams > div {
-    flex: 1;
-    padding: 10px;
+.gallery {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fill, 250px);
+    gap: 20px;
+    padding: 20px;
+    max-width: 100%;
 }
 .h2ProjectPage {
     margin: 0 0 5px;
@@ -106,19 +140,17 @@ main {
     color: white;  
     font-weight: bold;  
 }
+.imgSection {
+    text-align: right;
+}
+.imgSection > img {
+    max-width: 250px;
+    max-height: 300px;
+    object-fit: contain;
+}
 .infoSection > ul {
     list-style-type: none;
     padding: 0;
-}
-.propName {
-    color: #3D5220;
-    font-family: Primus;
-    font-weight: bold;
-}
-.propValue {
-    color: #2A3759;
-    font-family: Primus;
-    font-weight: bold;
 }
 .progressBar {
     height: 20px;
@@ -126,14 +158,6 @@ main {
     width: 100%;
     border-radius: 5px;
     border: 1px solid #2A3759;
-}
-article .progressBar {
-    margin-bottom: 15px;
-}
-article > h1 {
-    color: #431D32;
-    font-family: "X Company";
-    font-weight: bold;
 }
 .progressValue {
     background-color: #431D32;
@@ -148,20 +172,55 @@ article > h1 {
     font-family: "New Standard Old";
     font-weight: bold;
 }
-td {
-    border-bottom: 2px dashed whitesmoke;
-    text-align: center;
-    font-family: Primus;
-    font-weight: bold;
+.projectMenu > ul > li > a {
     color: #2A3759;
-}
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-}
-th {
     font-family: Primus;
     font-weight: bold;
+    text-decoration: none;
+}
+.projectMenu > ul > li > a.projectPage.active {
+    color: #3D5220;
+    border: 2px dashed white;
+    padding: 4px 8px;
+    border-radius: 5px;
+  }
+.projectParams {
+    display: flex;
+    flex-wrap: wrap;
+}
+.projectParams > div {
+    flex: 1;
+    padding: 10px;
+}
+.propName {
+    color: #3D5220;
+    font-family: Primus;
+    font-weight: bold;
+}
+.propValue {
+    color: #2A3759;
+    font-family: Primus;
+    font-weight: bold;
+}
+.tag {
     color: #431D32;
+    font-family: Primus;
+    font-weight: bold;
+}
+.tag:hover {
+    cursor: pointer;
+  }
+.tagsContainer {    
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+    max-width: 500px;
+    justify-content: flex-end
+}
+.userProjectPage {
+    color: white;
+    font-family: Primus;
+    font-weight: bold;
+    font-size: 16px;
 }

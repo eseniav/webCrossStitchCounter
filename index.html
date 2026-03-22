@@ -6,10 +6,22 @@
     <title>Кладовая крестиков</title>
     <link type="image/x-icon" rel="icon" href="svg/MainIcon.svg"/>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="modal.css">
+    <script src="scripts/data.js"></script>
+    <script src="modal.js" defer></script>    
 </head>
 <body>
     <header>
-
+        <nav>
+            <ul>
+                <li>Главная</li>
+                <li><a href="index.html">Галерея</a></li>
+                <li>Статистика</li>
+            </ul>
+            <ul>
+                <li>Вход</li>
+            </ul>
+        </nav>
     </header>
     <main>
         <article>
@@ -27,102 +39,33 @@
                 <div class="card"></div>
                 <div class="card"></div>
             </div>
-        </article>        
+        </article>  
+        <dialog id="imageModal" aria-labelledby="modalTitle" aria-describedby="modalContent">
+            <button class="close-btn" aria-label="Закрыть" onclick="closeModal()">×</button>
+            <img id="modalImage" alt="Полное изображение проекта">
+        </dialog>       
     </main>
     <footer>
 
     </footer>
-    <script>
-        const data = [
-            {
-                id: 1,
-                name: "Птичка",
-                description: "OwlForest Embroidery (ООО 'Совиный лес')",
-                image: "images/2248036369a45c1555a433.48884101.jpg",
-                author: "anna",
-            },
-            {
-                id: 2,
-                name: "Лесная фея",
-                description: "Whispering Woods Collection (ООО 'Шёпоты леса')",
-                image: "images/2248036369a45c1555a433.48884101.jpg",
-                author: "anna",
-            },
-            {
-                id: 3,
-                name: "Лунный кот",
-                description: "Moonlight Paws Series (ООО 'Лапы под луной')",
-                image: "images/2248036369a45c1555a433.48884101.jpg",
-                author: "anna",
-            },
-            {
-                id: 4,
-                name: "Волшебный единорог",
-                description: "Rainbow Mane Magic (ООО 'Магия радужной гривы')",
-                image: "images/2248036369a45c1555a433.48884101.jpg",
-                author: "anna",
-            },
-            {
-                id: 5,
-                name: "Осенний клён",
-                description: "Autumn Leaves Pattern (ООО 'Узоры осени')",
-                image: "images/2248036369a45c1555a433.48884101.jpg",
-                author: "anna",
-            },
-            {
-                id: 6,
-                name: "Морской бриз",
-                description: "Ocean Breeze Stitch (ООО 'Морской стежок')",
-                image: "images/2248036369a45c1555a433.48884101.jpg",
-                author: "anna",
-            },
-            {
-                id: 7,
-                name: "Звёздная ночь",
-                description: "Celestial Dreams Embroidery (ООО 'Звёздные сны')",
-                image: "images/2248036369a45c1555a433.48884101.jpg",
-                author: "anna",
-            },
-            {
-                id: 8,
-                name: "Горный орёл",
-                description: "Peak Flyer Collection (ООО 'Покоритель вершин')",
-                image: "images/2248036369a45c1555a433.48884101.jpg",
-                author: "anna",
-            },
-            {
-                id: 9,
-                name: "Цветочная поляна",
-                description: "Blooming Meadow Stitch (ООО 'Цветущий луг')",
-                image: "images/2248036369a45c1555a433.48884101.jpg",
-                author: "anna",
-            },
-            {
-                id: 10,
-                name: "Зимний олень",
-                description: "Frost Antlers Design (ООО 'Морозные рога')",
-                image: "images/2248036369a45c1555a433.48884101.jpg",
-                author: "anna",
-            },
-            {
-                id: 11,
-                name: "Солнечный котёнок",
-                description: "Sunbeam Playtime (ООО 'Игры солнечных зайчиков')",
-                image: "images/2248036369a45c1555a433.48884101.jpg",
-                author: "anna",
-            }
-        ];
+    <script>        
             const gallery = document.getElementById("gallery");
             gallery.innerHTML = "";
-            data.forEach((item) => {
+            projects.forEach((item) => {
                 const card = document.createElement("div");
                 card.className = "card";
                 card.innerHTML = `
                     <h2>${item.name}</h2>
-                    <p>${item.description}</p>
-                    <img src="${item.image}" alt="Описание">
-                    <p class="cardAuthor">${item.author}</p>
+                    <p>${item.designer}</p>
+                    <img src="${item.image}" alt="Описание" onclick="openModal('${item.image}')">
+                    <p class="cardAuthor">${item.user}</p>
                 `;
+                card.addEventListener("click", function(event){
+                    console.log(event);
+                    console.log(this);                    
+                    if (event.target.tagName != "IMG")
+                        window.location.href = `project.html?id=${item.id}`;
+                });
                 gallery.append(card);
             }); 
     </script>

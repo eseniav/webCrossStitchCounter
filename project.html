@@ -7,74 +7,123 @@
     <link type="image/x-icon" rel="icon" href="svg/MainIcon.svg"/>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="modal.css">
+    <script src="scripts/data.js"></script>
 </head>
 <body>
     <header>
-
+        <nav>
+            <ul>
+                <li>Главная</li>
+                <li><a href="index.html">Галерея</a></li>
+                <li>Статистика</li>
+            </ul>
+            <ul>
+                <li>Вход</li>
+            </ul>
+        </nav>
     </header>
-    <main>
-        <article>
-            <h1>111001 Romantic Rainy Season</h1>
+    <main>        
+        <article>            
+        </article> 
+        <dialog id="imageModal" aria-labelledby="modalTitle" aria-describedby="modalContent">
+            <button class="close-btn" aria-label="Закрыть" onclick="closeModal()">×</button>
+            <img id="modalImage" alt="Полное изображение проекта">
+        </dialog> 
+    </main>
+    <footer>
+
+    </footer>
+    <script src="modal.js"></script>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const projectId = urlParams.get("id");
+        const project = projects.find((item) => item.id == projectId);
+        const article = document.querySelector("article");
+        let tagsHTML = '';
+        tagsHTML = project.tags.map(tag => `<div class="tag">${tag}</div>`).join('');
+        let progressRows = '';
+        project.progress.forEach(item => {
+      progressRows += `
+        <tr>
+          <td>${item.date}</td>
+          <td>${item.crossQuantity}</td>
+          <td>${item.done}</td>
+          <td>${item.remains}</td>
+        </tr>
+      `;
+    });
+        article.innerHTML = `
+        <h1>${project.name}</h1>
+        <nav class="projectMenu">
+            <ul>
+                <li><a class="projectPage">Проект</a></li>
+                <li><a>Комментарии</a></li>
+                <li><a>Фото</a></li>
+                <li><a>Все проекты</a></li>
+            </ul>
+        </nav>
             <div class="projectParams">
                 <div class="imgSection">
-                    <img src="images/2248036369a45c1555a433.48884101.jpg" alt="" onclick="openModal('images/2248036369a45c1555a433.48884101.jpg')">
+                    <img src=${project.image} alt="" onclick="openModal('${project.image}')">
+                    <div class="userProjectPage">${project.user}</div>
+                    <div class="tagsContainer">${tagsHTML}</div>
                 </div>
                 <div class="infoSection">
                     <h2 class="h2ProjectPage">О проекте</h2>
                     <ul>
                         <li>
                             <span class="propName">Автор дизайна:</span>
-                            <span class="propValue">Dimensions</span>
+                            <span class="propValue">${project.designer}</span>
                         </li>
                         <li>
                             <span class="propName">Размер:</span>
-                            <span class="propValue">190 × 200</span>
+                            <span class="propValue">${project.width} × ${project.height}</span>
                         </li>
                         <li>
                             <span class="propName">Всего крестиков:</span>
-                            <span class="propValue">10000</span>
+                            <span class="propValue">${project.totalCross}</span>
                         </li>
                         <li>
                             <span class="propName">Вышито до регистрации:</span>
-                            <span class="propValue">0</span>
+                            <span class="propValue">${project.stitchedCrossBeforeRegistration}</span>
                         </li>
                         <li>
                             <span class="propName">Дата начала:</span>
-                            <span class="propValue">12.02.2023</span>
+                            <span class="propValue">${project.startDate}</span>
                         </li>
                         <li>
                             <span class="propName">Планируется вышить к:</span>
-                            <span class="propValue">15.08.2027</span>
+                            <span class="propValue">${project.finishDreamDate}</span>
                         </li>
                     </ul>
                     <h2 class="h2ProjectPage">Статистика</h2>
                     <ul>
                         <li>
                             <span class="propName">Вышито:</span>
-                            <span class="propValue">1200</span>
+                            <span class="propValue">${project.stitchedVal}</span>
                         </li>
                         <li>
                             <span class="propName">Осталось:</span>
-                            <span class="propValue">8800</span>
+                            <span class="propValue">${project.remains}</span>
                         </li>
                         <li>
                             <span class="propName">Средняя скорость:</span>
-                            <span class="propValue">20 кр./день</span>
+                            <span class="propValue">${project.avgSpeedVal} кр./день</span>
                         </li>
                         <li>
                             <span class="propName">Прогноз окончания:</span>
-                            <span class="propValue">10.08.2027</span>
+                            <span class="propValue">${project.prognosisVal}</span>
                         </li>
                         <li>
                             <span class="propName">Вышито в процентах:</span>
-                            <span class="propValue">10%</span>
+                            <span class="propValue">${project.procent}%</span>
                         </li>
                     </ul>
                 </div>
             </div>
             <div class="progressBar">
-                <div class="progressValue">
-                    10%                 
+                <div class="progressValue" style="width:${project.procent}%">
+                    ${project.procent}%                 
                 </div>                                
             </div>
             <h2 class="h2ProjectPage">Прогресс</h2>
@@ -88,29 +137,25 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>12.03.24</td>
-                        <td>150</td>
-                        <td>150</td>
-                        <td>9800</td>
-                    </tr>
-                    <tr>
-                        <td>12.03.24</td>
-                        <td>150</td>
-                        <td>150</td>
-                        <td>9800</td>
-                    </tr>
+                    ${progressRows}
                 </tbody>
-            </table>
-        </article> 
-        <dialog id="imageModal" aria-labelledby="modalTitle" aria-describedby="modalContent">
-            <button class="close-btn" aria-label="Закрыть" onclick="closeModal()">×</button>
-            <img id="modalImage" alt="Полное изображение проекта">
-        </dialog>       
-    </main>
-    <footer>
+            </table>`;
+            document.querySelectorAll('.tagsContainer .tag').forEach(tag => {
+                tag.addEventListener('click', function() {
+                    window.location.href = 'index.html';
+            });
+            document.querySelector('.projectPage').addEventListener('click', function(event) {
+            window.location.href = `project.html?id=${projectId}`;
+            });
+});
+document.addEventListener('DOMContentLoaded', function() {
+  const currentPage = window.location.pathname.split('/').pop();
+  const projectLink = document.querySelector('.projectMenu .projectPage');
 
-    </footer>
-    <script src="modal.js"></script>
+  if (currentPage === 'project.html' && projectLink) {
+    projectLink.classList.add('active');
+  }
+});
+    </script>
 </body>
 </html>
