@@ -23,8 +23,14 @@
             </ul>
         </nav>
     </header>
-    <main>
+    <main>        
         <article>
+            <search>
+                <form name="searchForm">
+                    <input name="searchBox" type="search">
+                    <button>Найти</button>
+                </form>            
+            </search>
             <div class="gallery" id="gallery">
                 <div class="card">
                     <h2>Название</h2>
@@ -61,9 +67,7 @@
                         <div class="imageBox"><img src="${item.image}" alt="Описание" onclick="openModal('${item.image}')"></div>
                         <p class="cardAuthor">${item.user}</p>
                     `;
-                    card.addEventListener("click", function(event){
-                        console.log(event);
-                        console.log(this);                    
+                    card.addEventListener("click", function(event){                                   
                         if (event.target.tagName != "IMG")
                             window.location.href = `project.html?id=${item.id}`;
                     });
@@ -71,6 +75,23 @@
                 }); 
             }
             render(projects, gallery);
+            document.searchForm.addEventListener("submit", function(event) {
+                event.preventDefault();                
+                console.log(event);
+                console.log(event.target.searchBox);
+                const searchText = event.target.searchBox.value;
+                search(searchText);
+            });
+            function search(text) {
+                console.log("search: " + text);
+                const filtered = filter(text, projects);
+                console.log(filtered);
+            }
+            function filter(criteria, data) {
+                return data.filter(item => {
+                    return item.name.toLowerCase().includes(criteria.toLowerCase());
+                })
+            }
     </script>
 </body>
 </html>
