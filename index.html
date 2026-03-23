@@ -98,9 +98,7 @@
             }
             render(projects, gallery);
             document.searchForm.addEventListener("submit", function(event) {
-                event.preventDefault();                
-                console.log(event);
-                console.log(event.target.searchBox);
+                event.preventDefault(); 
                 const searchText = event.target.searchBox.value.trim();
                 search(searchText);
             });
@@ -115,10 +113,13 @@
                 } else {                    
                     event.target.form.allTagsCheckBox.checked = 
                         Array.from(target.form.tags.elements).slice(1).every(item => item.checked);
-                }               
+                }
+                const submit = new Event("submit", {cancelable: true});
+                target.form.dispatchEvent(submit);               
             })
             function search(text) {
                 const filtered = filter(text, projects);
+                console.log(filtered)
             }
             function filter(criteria, data) {
                 return data.filter(item => {
