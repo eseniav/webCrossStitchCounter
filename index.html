@@ -104,17 +104,21 @@
                 const searchText = event.target.searchBox.value.trim();
                 search(searchText);
             });
-            document.searchForm.allTagsCheckBox.addEventListener("click", event => {
-                console.log(event);
-                console.dir(event.target.form.tags);
-                Array.from(event.target.form.tags.elements).forEach(item => {
-                    item.checked = event.target.checked;
-                })
+            document.searchForm.tags.addEventListener("click", event => {
+                const target =  event.target.tagName == "LABEL" ? event.target.children[0] : event.target;
+                if (target.name == "allTagsCheckBox") {
+                    Array.from(event.currentTarget.elements).forEach(item => {
+                    item.checked = target.checked;
+                    })
+                } else if (!target.checked) {
+                    target.form.allTagsCheckBox.checked = false;
+                } else {                    
+                    event.target.form.allTagsCheckBox.checked = 
+                        Array.from(target.form.tags.elements).slice(1).every(item => item.checked);
+                }               
             })
             function search(text) {
-                console.log("search: " + text);
                 const filtered = filter(text, projects);
-                console.log(filtered);
             }
             function filter(criteria, data) {
                 return data.filter(item => {
