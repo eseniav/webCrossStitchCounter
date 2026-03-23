@@ -30,7 +30,7 @@
                     <input name="searchBox" type="search">
                     <button>Найти</button>
                 </form>            
-            </search>
+            </search>            
             <div class="gallery" id="gallery">
                 <div class="card">
                     <h2>Название</h2>
@@ -79,7 +79,7 @@
                 event.preventDefault();                
                 console.log(event);
                 console.log(event.target.searchBox);
-                const searchText = event.target.searchBox.value;
+                const searchText = event.target.searchBox.value.trim();
                 search(searchText);
             });
             function search(text) {
