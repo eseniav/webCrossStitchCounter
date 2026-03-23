@@ -43,6 +43,9 @@ body {
     flex-direction: column;
     min-height: 100vh;
 }
+fieldset {
+    border: none;
+}
 footer {
     background-color: #2A3759;
     min-height: 50px;
@@ -96,6 +99,9 @@ th {
     font-family: Primus;
     font-weight: bold;
     color: #431D32;
+}
+.allTags {
+    font-weight: bold;
 }
 .card {
     height: 300px;
@@ -220,6 +226,9 @@ th {
     margin-top: 10px;
     max-width: 500px;
     justify-content: flex-end
+}
+.textCenter {
+    text-align: center;
 }
 .userProjectPage {
     color: white;
