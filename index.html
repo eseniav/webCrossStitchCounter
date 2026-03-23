@@ -27,8 +27,30 @@
         <article>
             <search>
                 <form name="searchForm">
-                    <input name="searchBox" type="search">
-                    <button>Найти</button>
+                    <p class="textCenter">
+                        <input name="searchBox" type="search">
+                        <button>Найти</button>
+                    </p>
+                    <fieldset name="tags">
+                        <label class="allTags">
+                            <input type="checkbox" name="allTagsCheckBox"> выбрать все
+                        </label>
+                        <label>
+                            <input type="checkbox"> без тегов
+                        </label>
+                        <label>
+                            <input type="checkbox"> праздник
+                        </label>
+                        <label>
+                            <input type="checkbox"> животные
+                        </label>
+                        <label>
+                            <input type="checkbox"> природа
+                        </label>
+                        <label>
+                            <input type="checkbox"> зима
+                        </label>
+                    </fieldset>
                 </form>            
             </search>            
             <div class="gallery" id="gallery">
@@ -82,6 +104,13 @@
                 const searchText = event.target.searchBox.value.trim();
                 search(searchText);
             });
+            document.searchForm.allTagsCheckBox.addEventListener("click", event => {
+                console.log(event);
+                console.dir(event.target.form.tags);
+                Array.from(event.target.form.tags.elements).forEach(item => {
+                    item.checked = event.target.checked;
+                })
+            })
             function search(text) {
                 console.log("search: " + text);
                 const filtered = filter(text, projects);
