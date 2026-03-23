@@ -109,7 +109,7 @@ th {
     font-family: Primus;
     font-weight: bold;
 }
-.card > img {
+.card img {
     max-width: 208px;
     max-height: 140px;
     object-fit: contain;
@@ -139,6 +139,9 @@ th {
     font-family: "New Standard Old", Georgia, 'Times New Roman', Times, serif;
     color: white;  
     font-weight: bold;  
+}
+.imageBox {
+    text-align: center;
 }
 .imgSection {
     text-align: right;
