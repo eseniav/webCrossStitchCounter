@@ -19,7 +19,7 @@
                 <li>Статистика</li>
             </ul>
             <ul>
-                <li>Вход</li>
+                <li id="loginLink">Вход</li>
             </ul>
         </nav>
     </header>
@@ -28,18 +28,29 @@
             <h1 class="authH1">Авторизация</h1>
             <div class="form-group">
                 <label class="authLbl">Логин</label>
-            <input name="loginBox" class="authInput">
+                <input name="loginBox" class="authInput">
             </div>
             <div class="form-group">
                 <label class="authLbl">Пароль</label>
-            <input name="passwordBox" class="authInput" type="password" placeholder="Введите пароль">
+                <input name="passwordBox" class="authInput" type="password" placeholder="Введите пароль">
             </div>
             <button class="authBtn">Войти</button>
-            <button class="authBtn">Регистрация</button>           
+            <button class="authBtn" id="regBtn">Регистрация</button>           
         </article>         
     </main>
     <footer>
 
     </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+                const regBtn = document.getElementById('regBtn');
+                if (regBtn) {
+                    regBtn.style.cursor = 'pointer';
+                    regBtn.addEventListener('click', function() {
+                    window.location.href = 'registration.html';
+                    });
+                }
+                });
+    </script>
 </body>
 </html>
