@@ -121,7 +121,11 @@
             document.searchForm.addEventListener("submit", function(event) {
                 event.preventDefault(); 
                 const searchText = event.target.searchBox.value.trim();
-                search(searchText);
+                const searchCriteria = {
+                    text: event.target.searchBox.value.trim(),
+                };
+                const searchResult = filter(searchCriteria, projects);
+                console.log(searchResult)
             });
             document.searchForm.tags.addEventListener("click", event => {
                 const target =  event.target.tagName == "LABEL" ? event.target.children[0] : event.target;
@@ -144,7 +148,7 @@
             }
             function filter(criteria, data) {
                 return data.filter(item => {
-                    return item.name.toLowerCase().includes(criteria.toLowerCase());
+                    return item.name.toLowerCase().includes(criteria.text.toLowerCase());
                 })
             }
             document.addEventListener('DOMContentLoaded', function() {
