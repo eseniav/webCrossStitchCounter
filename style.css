@@ -14,6 +14,10 @@
     font-family: Primus;
     src: url(fonts/primus.ttf);
 }
+@font-face {
+    font-family: "Caesar Dressing";
+    src: url(fonts/caesar_dressing.ttf);
+}
 article {
     min-height: 100px;
     min-width: 300px;
@@ -42,6 +46,14 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+}
+button {
+    background-color: #778FD2;
+    color: white;
+    font-family: "Caesar Dressing";
+    font-size: 20px;
+    border: 0px solid transparent;
+    border-radius: 5px;
 }
 fieldset {
     border: none;
@@ -109,9 +121,8 @@ th {
     width: 100%;
 }
 .authLbl {
-    color: #3D5220;
-    font-family: Primus;
-    font-weight: bold;
+    color: #431D32;
+    font-family: "Caesar Dressing";
 }
 .card {
     height: 300px;
