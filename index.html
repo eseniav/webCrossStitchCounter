@@ -19,7 +19,7 @@
                 <li>Статистика</li>
             </ul>
             <ul>
-                <li>Вход</li>
+                <li id="loginLink">Вход</li>
             </ul>
         </nav>
     </header>
@@ -126,6 +126,15 @@
                     return item.name.toLowerCase().includes(criteria.toLowerCase());
                 })
             }
+            document.addEventListener('DOMContentLoaded', function() {
+                const loginLink = document.getElementById('loginLink');
+                if (loginLink) {
+                    loginLink.style.cursor = 'pointer';
+                    loginLink.addEventListener('click', function() {
+                    window.location.href = 'auth.html';
+                    });
+                }
+                });
     </script>
 </body>
 </html>

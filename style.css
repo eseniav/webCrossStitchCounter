@@ -14,6 +14,14 @@
     font-family: Primus;
     src: url(fonts/primus.ttf);
 }
+@font-face {
+    font-family: "Caesar Dressing";
+    src: url(fonts/caesar_dressing.ttf);
+}
+@font-face {
+    font-family: Unsightly;
+    src: url(fonts/unsightly.ttf);
+}
 article {
     min-height: 100px;
     min-width: 300px;
@@ -103,6 +111,29 @@ th {
 .allTags {
     font-weight: bold;
 }
+.authBtn {
+    background-color: #778FD2;
+    color: white;
+    font-family: "Caesar Dressing";
+    font-size: 20px;
+    border: 0px solid transparent;
+    border-radius: 5px;
+    width: 200px;
+    margin: 10px;
+}
+.authH1 {
+    color: white;
+    font-family: Unsightly;
+}
+.authInput {
+    border: 2px dashed whitesmoke;
+    border-radius: 5px;
+    width: 100%;
+}
+.authLbl {
+    color: #431D32;
+    font-family: "Caesar Dressing";
+}
 .card {
     height: 300px;
     background-color: #B7CB99;
@@ -131,6 +162,17 @@ th {
     font-family: Primus;
     font-weight: bold;
 }
+.form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+    width: 100%;
+    margin-bottom: 15px;
+    max-width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 .gallery {
     display: grid;
     justify-content: center;

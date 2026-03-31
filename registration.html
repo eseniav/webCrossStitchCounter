@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кладовая крестиков</title>
+    <link type="image/x-icon" rel="icon" href="svg/MainIcon.svg"/>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="modal.css">
+    <script src="scripts/data.js"></script>
+    <script src="modal.js" defer></script>    
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li>Главная</li>
+                <li><a href="index.html">Галерея</a></li>
+                <li>Статистика</li>
+            </ul>
+            <ul>
+                <li id="loginLink">Вход</li>
+            </ul>
+        </nav>
+    </header>
+    <main>        
+        <article>
+            <h1 class="authH1">Регистрация</h1>
+            <div class="form-group">
+                <label class="authLbl">Фамилия</label>
+                <input name="surnameBox" class="authInput">
+            </div>
+            <div class="form-group">
+                <label class="authLbl">Имя</label>
+                <input name="nameBox" class="authInput">
+            </div>
+            <div class="form-group">
+                <label class="authLbl">Логин</label>
+                <input name="loginBox" class="authInput">
+            </div>
+            <div class="form-group">
+                <label class="authLbl">Пароль</label>
+                <input name="passwordBox" class="authInput" type="password" placeholder="Введите пароль">
+            </div>
+            <div class="form-group">
+                <label class="authLbl">Повторите пароль</label>
+                <input name="repeatPasswordBox" class="authInput" type="password" placeholder="Введите пароль">
+            </div>
+            <div class="form-group">
+                <label class="authLbl">Телефон</label>
+                <input name="phoneBox" class="authInput">
+            </div>
+            <div class="form-group">
+                <label class="authLbl">Email</label>
+                <input name="emailBox" class="authInput">
+            </div>
+            <div class="form-group">
+                <label class="authLbl">Дата рождения</label>
+                <input name="birthBox" class="authInput">
+            </div>
+            <button class="authBtn">Зарегистрироваться</button>           
+        </article>         
+    </main>
+    <footer>
+
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+                const loginLink = document.getElementById('loginLink');
+                if (loginLink) {
+                    loginLink.style.cursor = 'pointer';
+                    loginLink.addEventListener('click', function() {
+                    window.location.href = 'auth.html';
+                    });
+                }
+                });
+    </script>
+</body>
+</html>

@@ -453,3 +453,51 @@ const projects = [
         tags: [ "животные", "люди"],
     }
 ];
+
+const users = [
+  {
+    login: "anna",
+    password: "Anna$111",
+    userName: "Анна",
+    surname: "Смирнова",
+    birthDate: "18.01.1977",
+    phone: "89993334455",
+    email: "anna@ya.ru",
+  },  
+  {
+    login: "ivan",
+    password: "Ivan#222",
+    userName: "Иван",
+    surname: "Петров",
+    birthDate: "15.03.1985",
+    phone: "89167778899",
+    email: "ivan.petrov@mail.ru"
+  },
+  {
+    login: "maria",
+    password: "Maria@333",
+    userName: "Мария",
+    surname: "Иванова",
+    birthDate: "22.07.1990",
+    phone: "89261112233",
+    email: "maria.ivanova@gmail.com"
+  },
+  {
+    login: "dmitry",
+    password: "Dmitry$444",
+    userName: "Дмитрий",
+    surname: "Сидоров",
+    birthDate: "05.11.1982",
+    phone: "89034445566",
+    email: "dmitry.sidorov@yandex.ru"
+  },
+  {
+    login: "ekaterina",
+    password: "Ekaterina%555",
+    userName: "Екатерина",
+    surname: "Николаева",
+    birthDate: "30.04.1979",
+    phone: "89128889900",
+    email: "ekaterina.nikolaeva@bk.ru"
+  }
+];
