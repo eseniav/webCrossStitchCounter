@@ -125,6 +125,7 @@
                     text: event.target.searchBox.value.trim(),
                 };
                 const searchResult = filter(searchCriteria, projects);
+                render(searchResult, gallery);
                 console.log(searchResult)
             });
             document.searchForm.tags.addEventListener("click", event => {
