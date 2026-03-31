@@ -18,6 +18,10 @@
     font-family: "Caesar Dressing";
     src: url(fonts/caesar_dressing.ttf);
 }
+@font-face {
+    font-family: Unsightly;
+    src: url(fonts/unsightly.ttf);
+}
 article {
     min-height: 100px;
     min-width: 300px;
@@ -46,14 +50,6 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-}
-button {
-    background-color: #778FD2;
-    color: white;
-    font-family: "Caesar Dressing";
-    font-size: 20px;
-    border: 0px solid transparent;
-    border-radius: 5px;
 }
 fieldset {
     border: none;
@@ -114,6 +110,20 @@ th {
 }
 .allTags {
     font-weight: bold;
+}
+.authBtn {
+    background-color: #778FD2;
+    color: white;
+    font-family: "Caesar Dressing";
+    font-size: 20px;
+    border: 0px solid transparent;
+    border-radius: 5px;
+    width: 150px;
+    margin: 10px;
+}
+.authH1 {
+    color: white;
+    font-family: Unsightly;
 }
 .authInput {
     border: 2px dashed whitesmoke;
