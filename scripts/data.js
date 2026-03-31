@@ -156,7 +156,7 @@ const projects = [
                 remains: 150
               },              
         ],
-        tags: [ "птицы", "люди"],
+        tags: [ ],
     },
     {
         id: 6,

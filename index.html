@@ -33,22 +33,43 @@
                     </p>
                     <fieldset name="tags">
                         <label class="allTags">
-                            <input type="checkbox" name="allTagsCheckBox"> выбрать все
+                            <input type="checkbox" name="allTagsCheckBox" value="all"> выбрать все
                         </label>
                         <label>
-                            <input type="checkbox"> без тегов
+                            <input type="checkbox" value="none"> без тегов
                         </label>
                         <label>
-                            <input type="checkbox"> праздник
+                            <input type="checkbox" value="праздники"> праздники
                         </label>
                         <label>
-                            <input type="checkbox"> животные
+                            <input type="checkbox" value="животные"> животные
                         </label>
                         <label>
-                            <input type="checkbox"> природа
+                            <input type="checkbox" value="природа"> природа
                         </label>
                         <label>
-                            <input type="checkbox"> зима
+                            <input type="checkbox" value="зима"> зима
+                        </label>
+                        <label>
+                            <input type="checkbox" value="люди"> люди
+                        </label>
+                        <label>
+                            <input type="checkbox" value="цветы"> цветы
+                        </label>
+                        <label>
+                            <input type="checkbox" value="новый год"> новый год
+                        </label>
+                        <label>
+                            <input type="checkbox" value="птицы"> птицы
+                        </label>
+                        <label>
+                            <input type="checkbox" value="вода"> вода
+                        </label>
+                        <label>
+                            <input type="checkbox" value="лес"> лес
+                        </label>
+                        <label>
+                            <input type="checkbox" value="осень"> осень
                         </label>
                     </fieldset>
                 </form>            
@@ -99,8 +120,19 @@
             render(projects, gallery);
             document.searchForm.addEventListener("submit", function(event) {
                 event.preventDefault(); 
-                const searchText = event.target.searchBox.value.trim();
-                search(searchText);
+                const text = event.target.searchBox.value.trim();
+                const noTags = event.target.tags.querySelector("[value='none']").checked;
+                const tags = Array.from(event.target.tags.elements).slice(2)
+                    .filter(item => item.checked)
+                    .map(item => item.value);
+                const searchCriteria = {
+                    tags,
+                    text,
+                    noTags,
+                };
+                const searchResult = filter(searchCriteria, projects);
+                render(searchResult, gallery);
+                console.log(searchResult)
             });
             document.searchForm.tags.addEventListener("click", event => {
                 const target =  event.target.tagName == "LABEL" ? event.target.children[0] : event.target;
@@ -123,7 +155,10 @@
             }
             function filter(criteria, data) {
                 return data.filter(item => {
-                    return item.name.toLowerCase().includes(criteria.toLowerCase());
+                    return (item.name.toLowerCase().includes(criteria.text.toLowerCase())
+                    || item.designer.toLowerCase().includes(criteria.text.toLowerCase()))
+                    && (criteria.tags.length == 0 && !criteria.noTags || (item.tags.some(a => criteria.tags.includes(a)) ||
+                    (item?.tags?.length == 0 && criteria.noTags)));
                 })
             }
             document.addEventListener('DOMContentLoaded', function() {
