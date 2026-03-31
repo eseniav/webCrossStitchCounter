@@ -103,6 +103,16 @@ th {
 .allTags {
     font-weight: bold;
 }
+.authInput {
+    border: 2px dashed whitesmoke;
+    border-radius: 5px;
+    width: 100%;
+}
+.authLbl {
+    color: #3D5220;
+    font-family: Primus;
+    font-weight: bold;
+}
 .card {
     height: 300px;
     background-color: #B7CB99;
@@ -131,6 +141,17 @@ th {
     font-family: Primus;
     font-weight: bold;
 }
+.form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+    width: 100%;
+    margin-bottom: 15px;
+    max-width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 .gallery {
     display: grid;
     justify-content: center;
