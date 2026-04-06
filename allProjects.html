@@ -31,96 +31,63 @@
     </footer>
     <script>
         const urlParams = new URLSearchParams(window.location.search);
-        const projectId = urlParams.get("id");
-        const project = projects.find((item) => item.id == projectId);
+        const userId = urlParams.get("id");
+        const user = users.find((item) => item.id == userId);
         const article = document.querySelector("article");
-        let tagsHTML = '';
-        tagsHTML = project.tags.map(tag => `<div class="tag">${tag}</div>`).join('');
-        let progressRows = '';
-        project.progress.forEach(item => {
-      progressRows += `
+        let currentProjects = '';
+        projects.progress.forEach(item => {
+        currentProjects += `
         <tr>
-          <td>${item.date}</td>
-          <td>${item.crossQuantity}</td>
-          <td>${item.done}</td>
-          <td>${item.remains}</td>
+          <td>${item.name}</td>
+          <td>${item.width} × ${item.height}</td>
+          <td>${item.startDate}</td>
+          <td>${item.finishDreamDate}</td>
+          <td><div class="progressBar">
+                <div class="progressValue" style="width:${project.procent}%">
+                    ${project.procent}%                 
+                </div>                                
+            </div></td>
         </tr>
       `;
     });
         article.innerHTML = `
-        <h1>${project.name}</h1>
+        <h1>Профиль ${user.login}</h1>
         <nav class="projectMenu">
             <ul>
-                <li><a class="projectPage">Проект</a></li>
-                <li><a>Комментарии</a></li>
-                <li><a>Фото</a></li>
-                <li><a>Все проекты</a></li>
+                <li><a class="projectPage">Профиль</a></li>
+                <li><a>Личная галерея</a></li>
+                <li><a>Избранное</a></li>
             </ul>
         </nav>
             <div class="projectParams">
                 <div class="imgSection">
-                    <img src=${project.image} alt="" onclick="openModal('${project.image}')">
-                    <div class="userProjectPage">${project.user}</div>
-                    <div class="tagsContainer">${tagsHTML}</div>
+                    <img src=${user.image} alt="">
                 </div>
-                <div class="infoSection">
-                    <h2 class="h2ProjectPage">О проекте</h2>
+                <div class="userSection">                    
                     <ul>
                         <li>
-                            <span class="propName">Автор дизайна:</span>
-                            <span class="propValue">${project.designer}</span>
+                            <span class="propValue">${user.login}</span>
                         </li>
                         <li>
-                            <span class="propName">Размер:</span>
-                            <span class="propValue">${project.width} × ${project.height}</span>
+                            <span class="propName">Имя:</span>
+                            <span class="propValue">${user.userName}</span>
                         </li>
                         <li>
-                            <span class="propName">Всего крестиков:</span>
-                            <span class="propValue">${project.totalCross}</span>
+                            <span class="propName">Дата регистрации:</span>
+                            <span class="propValue">${user.registrationDate}</span>
                         </li>
                         <li>
-                            <span class="propName">Вышито до регистрации:</span>
-                            <span class="propValue">${project.stitchedCrossBeforeRegistration}</span>
+                            <span class="propName">Город:</span>
+                            <span class="propValue">${user.city}, ${user.country}</span>
                         </li>
                         <li>
-                            <span class="propName">Дата начала:</span>
-                            <span class="propValue">${project.startDate}</span>
+                            <span class="propName">Возраст:</span>
+                            <span class="propValue">${user.birthDate}</span>
                         </li>
-                        <li>
-                            <span class="propName">Планируется вышить к:</span>
-                            <span class="propValue">${project.finishDreamDate}</span>
-                        </li>
-                    </ul>
-                    <h2 class="h2ProjectPage">Статистика</h2>
-                    <ul>
-                        <li>
-                            <span class="propName">Вышито:</span>
-                            <span class="propValue">${project.stitchedVal}</span>
-                        </li>
-                        <li>
-                            <span class="propName">Осталось:</span>
-                            <span class="propValue">${project.remains}</span>
-                        </li>
-                        <li>
-                            <span class="propName">Средняя скорость:</span>
-                            <span class="propValue">${project.avgSpeedVal} кр./день</span>
-                        </li>
-                        <li>
-                            <span class="propName">Прогноз окончания:</span>
-                            <span class="propValue">${project.prognosisVal}</span>
-                        </li>
-                        <li>
-                            <span class="propName">Вышито в процентах:</span>
-                            <span class="propValue">${project.procent}%</span>
-                        </li>
-                    </ul>
+                    </ul>                    
                 </div>
             </div>
-            <div class="progressBar">
-                <div class="progressValue" style="width:${project.procent}%">
-                    ${project.procent}%                 
-                </div>                                
-            </div>
+            
             <h2 class="h2ProjectPage">Прогресс</h2>
             <table>
                 <thead>
@@ -132,25 +99,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    ${progressRows}
+                    ${currentProjects}
                 </tbody>
             </table>`;
-            document.querySelectorAll('.tagsContainer .tag').forEach(tag => {
-                tag.addEventListener('click', function() {
-                    window.location.href = 'index.html';
-            });
-            document.querySelector('.projectPage').addEventListener('click', function(event) {
-            window.location.href = `project.html?id=${projectId}`;
-            });
-});
-document.addEventListener('DOMContentLoaded', function() {
-  const currentPage = window.location.pathname.split('/').pop();
-  const projectLink = document.querySelector('.projectMenu .projectPage');
-
-  if (currentPage === 'project.html' && projectLink) {
-    projectLink.classList.add('active');
-  }
-});
 document.addEventListener('DOMContentLoaded', function() {
                 const loginLink = document.getElementById('loginLink');
                 if (loginLink) {
