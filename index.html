@@ -155,10 +155,8 @@
                 const sortCriteria = {property, direction};
                 const sortResult = sort(sortCriteria, searchResult);
                 render(sortResult, gallery);
-                console.log(sortResult);
             });
             document.searchForm.tags.addEventListener("click", event => {
-                console.log(event);
                 const target =  event.target.tagName == "LABEL" ? event.target.children[0] : event.target;
                 if (target.name == "allTagsCheckBox") {
                     Array.from(event.currentTarget.elements).forEach(item => {
@@ -185,10 +183,6 @@
                         return criteria.direction == "up" ? 1 : -1;
                     return 0;
                 })
-            }
-            function search(text) {
-                const filtered = filter(text, projects);
-                console.log(filtered)
             }
             function filter(criteria, data) {
                 return data.filter(item => {

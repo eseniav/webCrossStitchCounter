@@ -33,6 +33,7 @@ article {
     border-radius: 5px;
     display: block;
     padding: 10px;
+    text-align: center;
 }
 article > h1 {
     color: #431D32;
@@ -116,7 +117,11 @@ th {
     border: 0px solid transparent;
     border-radius: 5px;
     width: 200px;
-    margin: 10px;
+    margin: 10px auto;
+    display: block;
+}
+.authForm {
+    text-align: center;
 }
 .authH1 {
     color: white;
@@ -126,6 +131,7 @@ th {
     border: 2px dashed whitesmoke;
     border-radius: 5px;
     width: 100%;
+    box-sizing: border-box;
 }
 .authLbl {
     color: #431D32;

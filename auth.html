@@ -6,9 +6,7 @@
     <title>Кладовая крестиков</title>
     <link type="image/x-icon" rel="icon" href="svg/MainIcon.svg"/>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="modal.css">
     <script src="scripts/data.js"></script>
-    <script src="modal.js" defer></script>    
 </head>
 <body>
     <header>
@@ -26,40 +24,29 @@
     <main>        
         <article>
             <h1 class="authH1">Авторизация</h1>
-            <div class="form-group">
-                <label class="authLbl">Логин</label>
-                <input name="loginBox" class="authInput">
-            </div>
-            <div class="form-group">
-                <label class="authLbl">Пароль</label>
-                <input name="passwordBox" class="authInput" type="password" placeholder="Введите пароль">
-            </div>
-            <button class="authBtn" id="enterBtn">Войти</button>
-            <button class="authBtn" id="regBtn">Регистрация</button>           
+            <form name="authForm" class="authForm">
+                <div class="form-group">
+                    <label class="authLbl">Логин</label>
+                    <input name="loginBox" class="authInput">
+                </div>
+                <div class="form-group">
+                    <label class="authLbl">Пароль</label>
+                    <input name="passwordBox" class="authInput" type="password" placeholder="Введите пароль">
+                </div>
+                <button class="authBtn" name="enterBtn">Войти</button>
+                <button class="authBtn" name="regBtn">Регистрация</button>
+            </form>
         </article>         
     </main>
     <footer>
 
     </footer>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-                const regBtn = document.getElementById('regBtn');
-                if (regBtn) {
-                    regBtn.style.cursor = 'pointer';
-                    regBtn.addEventListener('click', function() {
-                    window.location.href = 'registration.html';
-                    });
-                }
-                });
-                document.addEventListener('DOMContentLoaded', function() {
-                const enterBtn = document.getElementById('enterBtn');
-                if (enterBtn) {
-                    enterBtn.style.cursor = 'pointer';
-                    enterBtn.addEventListener('click', function() {
-                    window.location.href = 'allProjects.html';
-                    });
-                }
-                });
+        document.authForm.addEventListener("submit", function(event) {
+            event.preventDefault();
+            const button = event.submitter;
+            window.location.href = button.name == "regBtn" ? 'registration.html' : 'allProjects.html';
+        })
     </script>
 </body>
 </html>
