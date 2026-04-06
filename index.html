@@ -41,9 +41,9 @@
                             <option value="update down">по дате обновления &#8595;</option>
                         </select>
                     </p>
+                    <details>
+                        <summary>ТЕГИ</summary>
                     <fieldset name="tags">
-                        <details>
-                            <summary>ТЕГИ</summary>
                             <p><label class="allTags">
                                 <input type="checkbox" name="allTagsCheckBox" value="all"> выбрать все
                             </label>
@@ -83,8 +83,8 @@
                             <label>
                                 <input type="checkbox" value="осень"> осень
                             </label></p>
-                          </details>
                     </fieldset>
+                </details>
                 </form>            
             </search>            
             <div class="gallery" id="gallery">
@@ -152,6 +152,7 @@
                 console.log(searchResult)
             });
             document.searchForm.tags.addEventListener("click", event => {
+                console.log(event);
                 const target =  event.target.tagName == "LABEL" ? event.target.children[0] : event.target;
                 if (target.name == "allTagsCheckBox") {
                     Array.from(event.currentTarget.elements).forEach(item => {
