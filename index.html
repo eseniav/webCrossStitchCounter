@@ -31,14 +31,14 @@
                         <input name="searchBox" type="search">
                         <button>Найти</button>
                         <select name="sort" class="sort">
-                            <option value="date add up">по дате добавления &#8593;</option>
-                            <option value="date add down">по дате добавления &#8595;</option>
-                            <option value="cross up">по количеству крестиков &#8593;</option>
-                            <option value="cross down">по количеству крестиков &#8595;</option>
-                            <option value="remains up">по остатку &#8593;</option>
-                            <option value="remains down">по остатку &#8595;</option>
-                            <option value="update up">по дате обновления &#8593;</option>
-                            <option value="update down">по дате обновления &#8595;</option>
+                            <option value="dateAdd_up">по дате добавления &#8593;</option>
+                            <option value="dateAdd_down">по дате добавления &#8595;</option>
+                            <option value="totalCross_up">по количеству крестиков &#8593;</option>
+                            <option value="totalCross_down">по количеству крестиков &#8595;</option>
+                            <option value="remains_up">по остатку &#8593;</option>
+                            <option value="remains_down">по остатку &#8595;</option>
+                            <option value="update_up">по дате обновления &#8593;</option>
+                            <option value="update_down">по дате обновления &#8595;</option>
                         </select>
                     </p>
                     <details>
@@ -75,7 +75,8 @@
                                 <input type="checkbox" value="птицы"> птицы
                             </label>
                             <label>
-                                <input type="checkbox" value="вода"> вода
+                                <input type="checkbox" value="вода
+                                if(a[property] == b[property])"> вода
                             </label>
                             <label>
                                 <input type="checkbox" value="лес"> лес
@@ -148,8 +149,11 @@
                     noTags,
                 };
                 const searchResult = filter(searchCriteria, projects);
-                render(searchResult, gallery);
-                console.log(searchResult)
+                const [property, direction] = event.target.sort.value.split("_");
+                const sortCriteria = {property, direction};
+                const sortResult = sort(sortCriteria, searchResult);
+                render(sortResult, gallery);
+                console.log(sortResult);
             });
             document.searchForm.tags.addEventListener("click", event => {
                 console.log(event);
@@ -165,8 +169,21 @@
                         Array.from(target.form.tags.elements).slice(1).every(item => item.checked);
                 }
                 const submit = new Event("submit", {cancelable: true});
-                target.form.dispatchEvent(submit);               
+                target.form.dispatchEvent(submit);
             })
+            document.searchForm.sort.addEventListener("change", event => {
+                const submit = new Event("submit", {cancelable: true});
+                event.target.form.dispatchEvent(submit);
+            })
+            function sort(criteria, data) {
+                return data.sort((a, b) => {
+                    if(a[criteria.property] > b[criteria.property])
+                        return criteria.direction == "up" ? -1 : 1;
+                    if(a[criteria.property] < b[criteria.property])
+                        return criteria.direction == "up" ? 1 : -1;
+                    return 0;
+                })
+            }
             function search(text) {
                 const filtered = filter(text, projects);
                 console.log(filtered)
