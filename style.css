@@ -253,6 +253,14 @@ th {
     font-family: Primus;
     font-weight: bold;
 }
+.sort {
+    border-radius: 5px;
+    background-color: #B7CB99;
+    border: 2px dashed whitesmoke;
+    font-family: Primus;
+    font-size: 20px;
+    height: 26px;
+}
 .tag {
     color: #431D32;
     font-family: Primus;
