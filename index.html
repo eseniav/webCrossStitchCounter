@@ -30,6 +30,16 @@
                     <p class="textCenter">
                         <input name="searchBox" type="search">
                         <button>Найти</button>
+                        <select name="sort" class="sort">
+                            <option value="date add up">по дате добавления &#8593;</option>
+                            <option value="date add down">по дате добавления &#8595;</option>
+                            <option value="cross up">по количеству крестиков &#8593;</option>
+                            <option value="cross down">по количеству крестиков &#8595;</option>
+                            <option value="remains up">по остатку &#8593;</option>
+                            <option value="remains down">по остатку &#8595;</option>
+                            <option value="update up">по дате обновления &#8593;</option>
+                            <option value="update down">по дате обновления &#8595;</option>
+                        </select>
                     </p>
                     <fieldset name="tags">
                         <details>
@@ -75,16 +85,6 @@
                             </label></p>
                           </details>
                     </fieldset>
-                    <select name="sort" class="sort">
-                        <option value="date add up">по дате добавления &#8593;</option>
-                        <option value="date add down">по дате добавления &#8595;</option>
-                        <option value="cross up">по количеству крестиков &#8593;</option>
-                        <option value="cross down">по количеству крестиков &#8595;</option>
-                        <option value="remains up">по остатку &#8593;</option>
-                        <option value="remains down">по остатку &#8595;</option>
-                        <option value="update up">по дате обновления &#8593;</option>
-                        <option value="update down">по дате обновления &#8595;</option>
-                      </select>
                 </form>            
             </search>            
             <div class="gallery" id="gallery">
