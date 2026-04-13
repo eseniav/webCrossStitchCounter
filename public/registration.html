@@ -23,39 +23,41 @@
     <main>        
         <article>
             <h1 class="authH1">Регистрация</h1>
-            <div class="form-group">
-                <label class="authLbl">Фамилия</label>
-                <input name="surnameBox" class="authInput">
-            </div>
-            <div class="form-group">
-                <label class="authLbl">Имя</label>
-                <input name="nameBox" class="authInput">
-            </div>
-            <div class="form-group">
-                <label class="authLbl">Логин</label>
-                <input name="loginBox" class="authInput">
-            </div>
-            <div class="form-group">
-                <label class="authLbl">Пароль</label>
-                <input name="passwordBox" class="authInput" type="password" placeholder="Введите пароль">
-            </div>
-            <div class="form-group">
-                <label class="authLbl">Повторите пароль</label>
-                <input name="repeatPasswordBox" class="authInput" type="password" placeholder="Введите пароль">
-            </div>
-            <div class="form-group">
-                <label class="authLbl">Телефон</label>
-                <input name="phoneBox" class="authInput">
-            </div>
-            <div class="form-group">
-                <label class="authLbl">Email</label>
-                <input name="emailBox" class="authInput">
-            </div>
-            <div class="form-group">
-                <label class="authLbl">Дата рождения</label>
-                <input name="birthBox" class="authInput">
-            </div>
-            <button class="authBtn">Зарегистрироваться</button>           
+            <form action="/register" method="POST">
+                <div class="form-group">
+                    <label class="authLbl">Фамилия</label>
+                    <input name="surname" class="authInput">
+                </div>
+                <div class="form-group">
+                    <label class="authLbl">Имя</label>
+                    <input name="name" class="authInput">
+                </div>
+                <div class="form-group">
+                    <label class="authLbl">Логин</label>
+                    <input name="login" class="authInput">
+                </div>
+                <div class="form-group">
+                    <label class="authLbl">Пароль</label>
+                    <input name="password" class="authInput" type="password" placeholder="Введите пароль">
+                </div>
+                <div class="form-group">
+                    <label class="authLbl">Повторите пароль</label>
+                    <input name="repeatPassword" class="authInput" type="password" placeholder="Введите пароль">
+                </div>
+                <div class="form-group">
+                    <label class="authLbl">Телефон</label>
+                    <input name="phone" class="authInput">
+                </div>
+                <div class="form-group">
+                    <label class="authLbl">Email</label>
+                    <input name="email" class="authInput">
+                </div>
+                <div class="form-group">
+                    <label class="authLbl">Дата рождения</label>
+                    <input name="birthDate" class="authInput">
+                </div>
+                <button class="authBtn">Зарегистрироваться</button>
+            </form>
         </article>         
     </main>
     <footer>
