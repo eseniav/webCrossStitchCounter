@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/eseniav/webCrossStitchCounter/issues"
   },
-  "homepage": "https://github.com/eseniav/webCrossStitchCounter#readme"
+  "homepage": "https://github.com/eseniav/webCrossStitchCounter#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
 }
