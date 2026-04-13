@@ -1,2 +1,4 @@
-/images
-/fonts
+images/
+fonts/
+node_modules/
+/data

@@ -1,0 +1,291 @@
+@font-face {
+    font-family: "Adventure Indiana";
+    src: url(fonts/adventure_indiana.ttf);
+}
+@font-face {
+    font-family: "X Company";
+    src: url(fonts/x_company.ttf);
+}
+@font-face {
+    font-family: "New Standard Old";
+    src: url(fonts/new_standard_old.ttf);
+}
+@font-face {
+    font-family: Primus;
+    src: url(fonts/primus.ttf);
+}
+@font-face {
+    font-family: "Caesar Dressing";
+    src: url(fonts/caesar_dressing.ttf);
+}
+@font-face {
+    font-family: Unsightly;
+    src: url(fonts/unsightly.ttf);
+}
+article {
+    min-height: 100px;
+    min-width: 300px;
+    width: 100%;
+    max-width: 1000px;
+    background-color: #B7CB99;
+    margin: 20px;
+    box-shadow: 0 .5rem 1rem gray;
+    border-radius: 5px;
+    display: block;
+    padding: 10px;
+    text-align: center;
+}
+article > h1 {
+    color: #431D32;
+    font-family: "X Company";
+    font-weight: bold;
+}
+article .progressBar {
+    margin-bottom: 15px;
+}
+body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+fieldset {
+    border: none;
+}
+footer {
+    background-color: #2A3759;
+    min-height: 50px;
+}
+header {
+    background-color: #2A3759;
+    min-height: 50px;
+    position: sticky;
+    top: 0;
+}
+main {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex: 1 1 0%;
+    background-color: #778FD2;
+    justify-content: center;
+}
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+}
+nav > ul {
+    list-style-type: none;    
+}
+nav > ul > li {
+    display: inline;
+    margin-right: 15px;
+    color: white;
+    font-family: Primus;
+    font-weight: bold;
+}
+nav > ul > li > a {
+    color: white;
+    text-decoration: none;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+td {
+    border-bottom: 2px dashed whitesmoke;
+    text-align: center;
+    font-family: Primus;
+    font-weight: bold;
+    color: #2A3759;
+}
+th {
+    font-family: Primus;
+    font-weight: bold;
+    color: #431D32;
+}
+.allTags {
+    font-weight: bold;
+}
+.authBtn {
+    background-color: #778FD2;
+    color: white;
+    font-family: "Caesar Dressing";
+    font-size: 20px;
+    border: 0px solid transparent;
+    border-radius: 5px;
+    width: 200px;
+    margin: 10px auto;
+    display: block;
+}
+.authForm {
+    text-align: center;
+}
+.authH1 {
+    color: white;
+    font-family: Unsightly;
+}
+.authInput {
+    border: 2px dashed whitesmoke;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+}
+.authLbl {
+    color: #431D32;
+    font-family: "Caesar Dressing";
+}
+.card {
+    height: 300px;
+    background-color: #B7CB99;
+    border: 1px solid white;
+    border-radius: 5px;
+    padding: 20px;
+}
+.card > h2 {
+    color: #431D32;
+    font-family: Primus;
+    font-weight: bold;
+}
+.card img {
+    max-width: 208px;
+    max-height: 140px;
+    object-fit: contain;
+}
+.cardAuthor {
+    color: white;
+    font-family: Primus;
+    font-weight: bold;
+    font-size: 16px;
+}
+.cardDescription {
+    color: #2A3759;
+    font-family: Primus;
+    font-weight: bold;
+}
+.form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+    width: 100%;
+    margin-bottom: 15px;
+    max-width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+.gallery {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fill, 250px);
+    gap: 20px;
+    padding: 20px;
+    max-width: 100%;
+}
+.h2ProjectPage {
+    margin: 0 0 5px;
+    text-align: center;
+    font-family: "New Standard Old", Georgia, 'Times New Roman', Times, serif;
+    color: white;  
+    font-weight: bold;  
+}
+.imageBox {
+    text-align: center;
+}
+.imgSection {
+    text-align: right;
+}
+.imgSection > img {
+    max-width: 250px;
+    max-height: 300px;
+    object-fit: contain;
+}
+.infoSection > ul {
+    list-style-type: none;
+    padding: 0;
+}
+.progressBar {
+    height: 20px;
+    background-color:#B7CB99;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid #2A3759;
+}
+.progressValue {
+    background-color: #431D32;
+    height: 100%;
+    width: 10%;
+    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    color: white;
+    justify-content: flex-start;
+    padding: 0 2px;
+    font-family: "New Standard Old";
+    font-weight: bold;
+}
+.projectMenu > ul > li > a {
+    color: #2A3759;
+    font-family: Primus;
+    font-weight: bold;
+    text-decoration: none;
+}
+.projectMenu > ul > li > a.projectPage.active {
+    color: #3D5220;
+    border: 2px dashed white;
+    padding: 4px 8px;
+    border-radius: 5px;
+  }
+.projectParams {
+    display: flex;
+    flex-wrap: wrap;
+}
+.projectParams > div {
+    flex: 1;
+    padding: 10px;
+}
+.propName {
+    color: #3D5220;
+    font-family: Primus;
+    font-weight: bold;
+}
+.propValue {
+    color: #2A3759;
+    font-family: Primus;
+    font-weight: bold;
+}
+.sort {
+    border-radius: 5px;
+    background-color: #B7CB99;
+    border: 2px dashed whitesmoke;
+    font-family: Primus;
+    font-size: 20px;
+    height: 26px;
+}
+.tag {
+    color: #431D32;
+    font-family: Primus;
+    font-weight: bold;
+}
+.tag:hover {
+    cursor: pointer;
+  }
+.tagsContainer {    
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+    max-width: 500px;
+    justify-content: flex-end
+}
+.textCenter {
+    text-align: center;
+}
+.userProjectPage {
+    color: white;
+    font-family: Primus;
+    font-weight: bold;
+    font-size: 16px;
+}

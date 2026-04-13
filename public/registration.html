@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кладовая крестиков</title>
+    <link type="image/x-icon" rel="icon" href="svg/MainIcon.svg"/>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li>Главная</li>
+                <li><a href="index.html">Галерея</a></li>
+                <li>Статистика</li>
+            </ul>
+            <ul>
+                <li id="loginLink">Вход</li>
+            </ul>
+        </nav>
+    </header>
+    <main>        
+        <article>
+            <h1 class="authH1">Регистрация</h1>
+            <form action="/register" method="POST">
+                <div class="form-group">
+                    <label class="authLbl">Фамилия</label>
+                    <input name="surname" class="authInput">
+                </div>
+                <div class="form-group">
+                    <label class="authLbl">Имя</label>
+                    <input name="name" class="authInput">
+                </div>
+                <div class="form-group">
+                    <label class="authLbl">Логин</label>
+                    <input name="login" class="authInput">
+                </div>
+                <div class="form-group">
+                    <label class="authLbl">Пароль</label>
+                    <input name="password" class="authInput" type="password" placeholder="Введите пароль">
+                </div>
+                <div class="form-group">
+                    <label class="authLbl">Повторите пароль</label>
+                    <input name="repeatPassword" class="authInput" type="password" placeholder="Введите пароль">
+                </div>
+                <div class="form-group">
+                    <label class="authLbl">Телефон</label>
+                    <input name="phone" class="authInput">
+                </div>
+                <div class="form-group">
+                    <label class="authLbl">Email</label>
+                    <input name="email" class="authInput">
+                </div>
+                <div class="form-group">
+                    <label class="authLbl">Дата рождения</label>
+                    <input name="birthDate" class="authInput">
+                </div>
+                <button class="authBtn">Зарегистрироваться</button>
+            </form>
+        </article>         
+    </main>
+    <footer>
+
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+                const loginLink = document.getElementById('loginLink');
+                if (loginLink) {
+                    loginLink.style.cursor = 'pointer';
+                    loginLink.addEventListener('click', function() {
+                    window.location.href = 'auth.html';
+                    });
+                }
+                });
+    </script>
+</body>
+</html>
