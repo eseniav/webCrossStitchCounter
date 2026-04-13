@@ -23,14 +23,14 @@
     <main>        
         <article>
             <h1 class="authH1">Авторизация</h1>
-            <form name="authForm" class="authForm">
+            <form action="/auth" method="post" name="authForm" class="authForm">
                 <div class="form-group">
                     <label class="authLbl">Логин</label>
-                    <input name="loginBox" class="authInput">
+                    <input name="login" class="authInput">
                 </div>
                 <div class="form-group">
                     <label class="authLbl">Пароль</label>
-                    <input name="passwordBox" class="authInput" type="password" placeholder="Введите пароль">
+                    <input name="password" class="authInput" type="password" placeholder="Введите пароль">
                 </div>
                 <button class="authBtn" name="enterBtn">Войти</button>
                 <button class="authBtn" name="regBtn">Регистрация</button>
@@ -40,12 +40,5 @@
     <footer>
 
     </footer>
-    <script>
-        document.authForm.addEventListener("submit", function(event) {
-            event.preventDefault();
-            const button = event.submitter;
-            window.location.href = button.name == "regBtn" ? 'registration.html' : 'allProjects.html';
-        })
-    </script>
 </body>
 </html>

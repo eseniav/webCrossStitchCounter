@@ -39,6 +39,24 @@ app.post("/register", (req, res) => {
     res.redirect("auth.html");
 })
 
+app.post("/auth", (req, res) => {
+    const regUser = req.body;
+    if(!regUser.login || !regUser.password)
+        return res.status(400).send("Заполните поля логин и пароль");
+    let users;
+    try {
+        const data = fs.readFileSync(USERS_FILE, "utf-8");
+        users = JSON.parse(data);
+    } catch(error)
+    {
+        throw error;
+    }
+    const respond = users.find((item) => item.login == regUser.login && item.password == regUser.password);
+    if(!respond)
+        return res.status(401).send("Ошибка авторизации. Проверьте правильность заполнения полей");
+    res.redirect("gallery.html");
+})
+
 app.listen(3000, () => {
     console.log("server running on http://localhost:3000");
 })
