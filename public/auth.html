@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кладовая крестиков</title>
+    <link type="image/x-icon" rel="icon" href="svg/MainIcon.svg"/>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li>Главная</li>
+                <li><a href="index.html">Галерея</a></li>
+                <li>Статистика</li>
+            </ul>
+            <ul>
+                <li id="loginLink">Вход</li>
+            </ul>
+        </nav>
+    </header>
+    <main>        
+        <article>
+            <h1 class="authH1">Авторизация</h1>
+            <form name="authForm" class="authForm">
+                <div class="form-group">
+                    <label class="authLbl">Логин</label>
+                    <input name="loginBox" class="authInput">
+                </div>
+                <div class="form-group">
+                    <label class="authLbl">Пароль</label>
+                    <input name="passwordBox" class="authInput" type="password" placeholder="Введите пароль">
+                </div>
+                <button class="authBtn" name="enterBtn">Войти</button>
+                <button class="authBtn" name="regBtn">Регистрация</button>
+            </form>
+        </article>         
+    </main>
+    <footer>
+
+    </footer>
+    <script>
+        document.authForm.addEventListener("submit", function(event) {
+            event.preventDefault();
+            const button = event.submitter;
+            window.location.href = button.name == "regBtn" ? 'registration.html' : 'allProjects.html';
+        })
+    </script>
+</body>
+</html>
