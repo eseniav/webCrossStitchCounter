@@ -6,7 +6,7 @@ const app = express();
 app.use(express.static(path.join(__dirname, "public")));
 
 app.get("/", (req, res) => {
-    res.send("app is running");
+    res.redirect("auth.html");
 })
 
 app.listen(3000, () => {
