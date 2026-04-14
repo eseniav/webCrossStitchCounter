@@ -283,6 +283,10 @@ th {
 .textCenter {
     text-align: center;
 }
+.unmarked-list {
+    list-style-type: none;
+    padding-left: 0;
+}
 .userProjectPage {
     color: white;
     font-family: Primus;
