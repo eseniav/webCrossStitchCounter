@@ -11,27 +11,28 @@ app.get("/", (req, res) => {
     res.redirect("auth.html");
 })
 
-app.post("/register", (req, res) => {
+app.post("/register", async (req, res) => {
     const regUser = req.body;
     delete regUser.repeatPassword;
     if(!regUser.login || !regUser.password)
         return res.status(400).send("Заполните поля логин и пароль");
-    users = userService.getUsers();
-    if(userService.checkUserExist(regUser))
+    users = await userService.getUsers();
+    if(await userService.checkUserExist(regUser))
         return res.status(409).send("Пользователь с таким логином уже существует");
     
     users.push(regUser);
-    userService.setUsers(users);
+    await userService.setUsers(users);
     res.redirect("auth.html");
 })
 
-app.post("/auth", (req, res) => {
+app.post("/auth", async (req, res) => {
     const regUser = req.body;
     if(!regUser.login || !regUser.password)
         return res.status(400).send("Заполните поля логин и пароль");
-    if(userService.loginUser(regUser) == null)
+    const result = await userService.loginUser(regUser);
+    if(result == null)
         return res.status(401).send("Пользователь не найден");
-    if(!userService.loginUser(regUser))
+    if(!result)
         return res.status(401).send("Ошибка авторизации. Проверьте правильность заполнения полей");
     res.redirect("gallery.html");
 })
