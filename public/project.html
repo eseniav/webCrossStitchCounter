@@ -14,7 +14,7 @@
         <nav>
             <ul>
                 <li>Главная</li>
-                <li><a href="index.html">Галерея</a></li>
+                <li><a href="gallery.html">Галерея</a></li>
                 <li>Статистика</li>
             </ul>
             <ul>
@@ -143,7 +143,7 @@
             </table>`;
             document.querySelectorAll('.tagsContainer .tag').forEach(tag => {
                 tag.addEventListener('click', function() {
-                    window.location.href = 'index.html';
+                    window.location.href = 'gallery.html';
             });
             document.querySelector('.projectPage').addEventListener('click', function(event) {
             window.location.href = `project.html?id=${projectId}`;
