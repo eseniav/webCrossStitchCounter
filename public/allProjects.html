@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stitch Counter</title>
+    <link type="image/x-icon" rel="icon" href="svg/MainIcon.svg"/>
+    <link rel="stylesheet" href="style.css">
+    <script src="scripts/data.js"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li>Главная</li>
+                <li><a href="index.html">Галерея</a></li>
+                <li>Статистика</li>
+            </ul>
+            <ul>
+                <li id="loginLink">Вход</li>
+            </ul>
+        </nav>
+    </header>
+    <main>        
+        <article>            
+        </article>
+    </main>
+    <footer>
+
+    </footer>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const userId = 1;
+        //const userId = urlParams.get("id");
+        const user = users.find((item) => item.id == userId);
+        const article = document.querySelector("article");
+        let currentProjects = '';
+        projects.forEach(item => {
+            if(item.userId == userId) {
+                currentProjects += `
+        <tr>
+          <td>${item.name}</td>
+          <td>${item.width} × ${item.height}</td>
+          <td>${item.startDate}</td>
+          <td>${item.finishDreamDate}</td>
+          <td><div class="progressBar">
+                <div class="progressValue" style="width:${item.procent}%">
+                    ${item.procent}%                 
+                </div>                                
+            </div></td>
+        </tr>
+      `;
+            }
+    });
+        article.innerHTML = `
+        <nav class="projectMenu">
+            <ul>
+                <li><a class="projectPage">Профиль</a></li>
+                <li><a>Личная галерея</a></li>
+                <li><a>Избранное</a></li>
+            </ul>
+        </nav>
+        <h1>Профиль ${user.login}</h1>
+            <div class="projectParams">
+                <div class="userSection">                    
+                    <ul class="unmarked-list">
+                        <li>
+                            <span class="propValue">${user.login}</span>
+                        </li>
+                        <li>
+                            <span class="propName">Имя:</span>
+                            <span class="propValue">${user.userName}</span>
+                        </li>
+                        <li>
+                            <span class="propName">Дата регистрации:</span>
+                            <span class="propValue">${user.registrationDate}</span>
+                        </li>
+                        <li>
+                            <span class="propName">Город:</span>
+                            <span class="propValue">${user.city}, ${user.country}</span>
+                        </li>
+                        <li>
+                            <span class="propName">Возраст:</span>
+                            <span class="propValue">${user.birthDate}</span>
+                        </li>
+                    </ul>                    
+                </div>
+                <div class="imgSection">
+                    <img src=${user.image} alt="">
+                </div>
+            </div>
+            <h2 class="h2ProjectPage">Текущие проекты</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Название</th>
+                        <th>Размер</th>
+                        <th>Дата начала</th>
+                        <th>Планируется вышить к</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${currentProjects}
+                </tbody>
+            </table>`;
+                document.addEventListener('DOMContentLoaded', function() {
+                    const loginLink = document.getElementById('loginLink');
+                    if (loginLink) {
+                        loginLink.style.cursor = 'pointer';
+                        loginLink.addEventListener('click', function() {
+                        window.location.href = 'auth.html';
+                        });
+                    }
+                });
+                document.addEventListener('DOMContentLoaded', function() {
+                    const currentPage = window.location.pathname.split('/').pop();
+                    const projectLink = document.querySelector('.projectMenu .projectPage');
+
+                    if (currentPage === 'allProjects.html' && projectLink) {
+                        projectLink.classList.add('active');
+                    }
+                });
+    </script>
+</body>
+</html>
