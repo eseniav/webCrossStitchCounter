@@ -30,11 +30,12 @@
     </footer>
     <script>
         const urlParams = new URLSearchParams(window.location.search);
-        const userId = urlParams.get("id");
+        const userId = 1;
+        //const userId = urlParams.get("id");
         const user = users.find((item) => item.id == userId);
         const article = document.querySelector("article");
         let currentProjects = '';
-        projects.progress.forEach(item => {
+        projects.forEach(item => {
         currentProjects += `
         <tr>
           <td>${item.name}</td>
@@ -42,8 +43,8 @@
           <td>${item.startDate}</td>
           <td>${item.finishDreamDate}</td>
           <td><div class="progressBar">
-                <div class="progressValue" style="width:${project.procent}%">
-                    ${project.procent}%                 
+                <div class="progressValue" style="width:${item.procent}%">
+                    ${item.procent}%                 
                 </div>                                
             </div></td>
         </tr>
