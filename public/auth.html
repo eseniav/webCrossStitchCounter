@@ -33,12 +33,17 @@
                     <input name="password" class="authInput" type="password" placeholder="Введите пароль">
                 </div>
                 <button class="authBtn" name="enterBtn">Войти</button>
-                <button class="authBtn" name="regBtn">Регистрация</button>
+                <button class="authBtn" name="regBtn" type="button">Регистрация</button>
             </form>
         </article>         
     </main>
     <footer>
 
     </footer>
+    <script>
+        document.authForm.regBtn.addEventListener("click", function() {
+            window.location.href = 'registration.html';
+        })
+    </script>
 </body>
 </html>
