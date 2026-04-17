@@ -191,6 +191,11 @@ th {
     color: white;  
     font-weight: bold;  
 }
+.horizontal {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
 .imageBox {
     text-align: center;
 }
