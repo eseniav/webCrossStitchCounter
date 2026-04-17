@@ -11,6 +11,10 @@ app.get("/", (req, res) => {
     res.redirect("auth.html");
 })
 
+app.get(["/home", "/gallery", "/login", "/statistics"], (_, res) => {
+    res.sendFile(path.join(__dirname, "/public", "index.html"));
+})
+
 app.post("/register", async (req, res) => {
     const regUser = req.body;
     delete regUser.repeatPassword;
