@@ -22,6 +22,16 @@
     font-family: Unsightly;
     src: url(fonts/unsightly.ttf);
 }
+@media (max-width: 768px) {
+    .download-section {
+      flex-direction: column;
+      align-items: center;
+    }
+    .app-download,
+    .world-map {
+      max-width: 100%;
+    }
+  }
 article {
     min-height: 100px;
     min-width: 300px;
@@ -109,6 +119,17 @@ th {
 .allTags {
     font-weight: bold;
 }
+.app-download,
+  .world-map {
+    text-align: center;
+    max-width: 450px;
+}
+.app-download h3,
+  .world-map h3 {
+    color: #431D32;
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+}
 .authBtn {
     background-color: #778FD2;
     color: white;
@@ -170,6 +191,13 @@ th {
     font-family: Primus;
     font-weight: bold;
 }
+.download-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: center;
+    margin-top: 50px;
+}
 .features-list {
     list-style-type: none;
     padding-left: 0;
@@ -212,7 +240,7 @@ th {
     text-align: center;
     font-family: "New Standard Old", Georgia, 'Times New Roman', Times, serif;
     color: white;  
-    font-weight: bold;  
+    font-weight: bold;
 }
 .horizontal {
     display: flex;
@@ -222,6 +250,16 @@ th {
 .imageBox {
     text-align: center;
 }
+.imageStatistics {
+    max-width: 500px;
+    margin: 0 auto;
+    margin-bottom: 25px;
+}
+.imageStatistics img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
 .imgSection {
     text-align: right;
 }
@@ -284,6 +322,13 @@ th {
     font-family: Primus;
     font-weight: bold;
 }
+.qr-description,
+  .map-description {
+    color: #555;
+    font-style: italic;
+    margin-top: 10px;
+    line-height: 1.5;
+}
 .sort {
     border-radius: 5px;
     background-color: #B7CB99;
@@ -291,6 +336,46 @@ th {
     font-family: Primus;
     font-size: 20px;
     height: 26px;
+}
+.statisticsCard {
+    height: 300px;
+    background-color: #B7CB99;
+    border: 1px solid white;
+    border-radius: 5px;
+    padding: 20px;
+}
+.statisticsCard > h3 {
+    color: #431D32;
+    font-family: Primus;
+    font-weight: bold;
+    font-size: 16px;
+}
+.statisticsCard img {
+    max-width: 208px;
+    max-height: 140px;
+    object-fit: contain;
+}
+.statisticsCardAuthor {
+    color: white;
+    font-family: Primus;
+    font-weight: bold;
+    font-size: 16px;
+}
+.statisticsCardDescription {
+    color: #2A3759;
+    font-family: Primus;
+    font-weight: bold;
+}
+.statisticsGallery {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fill, 250px);
+    gap: 20px;
+    padding: 20px;
+    max-width: 100%;
+}
+.statisticsTop {
+    color: #2A3759;
 }
 .tag {
     color: #431D32;
@@ -330,44 +415,3 @@ th {
     font-size: 26px;
     text-align: center;
 }
-
-.download-section {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 40px;
-    justify-content: center;
-    margin-top: 50px;
-  }
-  
-  .app-download,
-  .world-map {
-    text-align: center;
-    max-width: 450px;
-  }
-  
-  .app-download h3,
-  .world-map h3 {
-    color: #431D32;
-    margin-bottom: 15px;
-    font-size: 1.3rem;
-  }
-  
-  .qr-description,
-  .map-description {
-    color: #555;
-    font-style: italic;
-    margin-top: 10px;
-    line-height: 1.5;
-  }
-  
-  /* Адаптивность: на маленьких экранах картинки будут друг под другом */
-  @media (max-width: 768px) {
-    .download-section {
-      flex-direction: column;
-      align-items: center;
-    }
-    .app-download,
-    .world-map {
-      max-width: 100%;
-    }
-  }
