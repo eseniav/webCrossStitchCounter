@@ -6,14 +6,15 @@
     <title>Кладовая крестиков</title>
     <link type="image/x-icon" rel="icon" href="svg/MainIcon.svg"/>
     <link rel="stylesheet" href="style.css">
+    <script src="scripts/data.js"></script>
 </head>
 <body>
     <header>
         <nav>
             <ul>
-                <li>Главная</li>
+                <li><a href="home.html">Главная</a></li>
                 <li><a href="gallery.html">Галерея</a></li>
-                <li>Статистика</li>
+                <li><a href="statistics.html">Статистика</a></li>
             </ul>
             <ul>
                 <li id="loginLink">Вход</li>
@@ -56,6 +57,12 @@
                     <label class="authLbl">Дата рождения</label>
                     <input name="birthDate" class="authInput">
                 </div>
+                <div class="form-group">
+                    <label class="authLbl">Страна</label>
+                    <select name="country" class="authInput" id="countrySelect">
+                        <option value="" disabled selected>-- не указано --</option>
+                    </select>
+                </div>
                 <button class="authBtn">Зарегистрироваться</button>
             </form>
         </article>         
@@ -65,14 +72,24 @@
     </footer>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-                const loginLink = document.getElementById('loginLink');
-                if (loginLink) {
-                    loginLink.style.cursor = 'pointer';
-                    loginLink.addEventListener('click', function() {
-                    window.location.href = 'auth.html';
-                    });
-                }
+            const loginLink = document.getElementById('loginLink');
+            if (loginLink) {
+                loginLink.style.cursor = 'pointer';
+                loginLink.addEventListener('click', function() {
+                window.location.href = 'auth.html';
                 });
+            }
+        });
+        document.addEventListener('DOMContentLoaded', function() {
+            const countrySelect = document.getElementById('countrySelect');
+            countrySelect.innerHTML = '<option value="" disabled selected>-- не указано --</option>';
+            countries.forEach(country => {
+                const option = document.createElement('option');
+                option.value = country.iso_code2;
+                option.textContent = country.name_ru;
+                countrySelect.appendChild(option);
+            });
+        });
     </script>
 </body>
 </html>
