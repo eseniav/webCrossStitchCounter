@@ -1,6 +1,7 @@
 const express = require("express");
 const path = require("path");
 const userService = require("./backend/userService");
+const data = require("./data/data");
 
 const app = express();
 
@@ -13,6 +14,13 @@ app.get("/", (req, res) => {
 
 app.get(["/home", "/gallery", "/login", "/statistics"], (_, res) => {
     res.sendFile(path.join(__dirname, "/public", "index.html"));
+})
+app.get("/projects", (_, res) => {
+    res.json(data.projects);
+})
+
+app.get("/users", (_, res) => {
+    res.json(data.users);
 })
 
 app.post("/register", async (req, res) => {

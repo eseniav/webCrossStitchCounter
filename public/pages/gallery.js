@@ -1,3 +1,4 @@
+let users = [];
 const title = "Gallery";
 const url = "/gallery";
 const content = `
@@ -84,8 +85,48 @@ const content = `
 </article>
 `;
 
-function init() {
-    console.log(title);
+async function getProjects() {
+    const res = await fetch("/projects");
+    const data = await res.json();
+    return data;
+}
+
+function getUserLoginByUserId(userId) {
+    const user = users.find(user => user.id === userId);
+    return user ? user.login : 'Неизвестный пользователь';
+}
+
+async function getUsers() {
+    const res = await fetch("/users");
+    return res.json();
+}
+
+function render(data, container) {
+    container.innerHTML = "";
+    data.forEach((item) => {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = `
+            <h2>${item.name}</h2>
+            <p>${item.designer}</p>
+            <div class="imageBox"><img src="${item.image}" alt="Описание" onclick="openModal('${item.image}')"></div>
+            <p class="cardAuthor">${getUserLoginByUserId(item.userId)}</p>
+        `;
+        card.addEventListener("click", function(event){                                   
+            if (event.target.tagName != "IMG")
+                window.location.href = `project.html?id=${item.id}`;
+        });
+        container.append(card);
+    }); 
+} 
+
+async function init() {
+    const projects = await getProjects();
+    users = await getUsers();
+    console.log(users);
+    const gallery = document.getElementById("gallery");
+    render(projects, gallery);
+    console.log(projects);
 }
 
 export default {title, content, url, init};
