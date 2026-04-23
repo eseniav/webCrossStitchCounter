@@ -1,8 +1,11 @@
+import gallery from "../pages/gallery.js";
+console.log(gallery);
+
 const main = document.getElementById("content");
 console.log(main);
 const pages = new Map([
     ["home", {title: "Home", content: "Home Page", url: "/home"}],
-    ["gallery", {title: "Gallery", content: "Gallery", url: "/gallery"}],
+    ["gallery", gallery],
     ["statistics", {title: "Statistics", content: "Statistics", url: "/statistics"}],
     ["login", {title: "Login", content: "Login", url: "/login"}],
 ]);
@@ -18,7 +21,8 @@ function initPage() {
     const pageName = url.split("/").pop() || defaultPage;
     const page = pages.get(pageName);
     render(page);
-    history.replaceState(page, page.title, page.url);
+    page.init();
+    history.replaceState(JSON.parse(JSON.stringify(page)), page.title, page.url);
 }
 
 navMenu.addEventListener('click', function(event) {
