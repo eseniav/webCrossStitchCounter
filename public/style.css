@@ -106,7 +106,6 @@ table {
 }
 td {
     border-bottom: 2px dashed whitesmoke;
-    text-align: center;
     font-family: Primus;
     font-weight: bold;
     color: #2A3759;
@@ -115,6 +114,10 @@ th {
     font-family: Primus;
     font-weight: bold;
     color: #431D32;
+}
+.add-icon {
+    vertical-align: middle;
+    height: 24px;
 }
 .allTags {
     font-weight: bold;
@@ -193,20 +196,27 @@ th {
 }
 .card-header {
     display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  margin-bottom: 15px;
-  width: 100%;
-  }
-  .card-header img {
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    width: 100%;
+}
+.card-header img {
     width: 24px;
     height: 24px;
-  }
-  .card-title {
+}
+.card-title {
     color: #431D32;
     margin: 0;
-  }
+}
+.centered-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
+}
 .download-section {
     display: flex;
     flex-wrap: wrap;
@@ -258,6 +268,9 @@ th {
     color: white;  
     font-weight: bold;
 }
+.header-row {
+    text-align: center;
+}
 .horizontal {
     display: flex;
     align-items: center;
@@ -277,7 +290,7 @@ th {
     display: block;
   }
 .imgSection {
-    text-align: right;
+    text-align: center;
 }
 .imgSection > img {
     max-width: 250px;
@@ -293,7 +306,20 @@ th {
     align-items: flex-end;
     gap: 5px;
   }
+.profile-info-container {
+    flex: 1 1 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.profile-layout {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
 .progressBar {
+    display: flex;
+    justify-content: flex-start;
     height: 20px;
     background-color:#B7CB99;
     width: 100%;
@@ -304,7 +330,6 @@ th {
     background-color: #431D32;
     height: 100%;
     width: 10%;
-    display: inline-block;
     display: inline-flex;
     align-items: center;
     color: white;
@@ -312,6 +337,9 @@ th {
     padding: 0 2px;
     font-family: "New Standard Old";
     font-weight: bold;
+}
+.project-header {
+    padding: 0;
 }
 .projectMenu > ul > li > a {
     color: #2A3759;
@@ -332,6 +360,10 @@ th {
 .projectParams > div {
     flex: 1;
     padding: 10px;
+}
+.projects-table-container {
+    flex: 1 1 0;
+    max-width: 50%;
 }
 .propName {
     color: #3D5220;
@@ -431,6 +463,9 @@ th {
     max-width: 500px;
     justify-content: flex-end
 }
+.td-center {
+    text-align: center;
+}
 .textCenter {
     display: flex;
     justify-content: center;
@@ -441,6 +476,11 @@ th {
 .unmarked-list {
     list-style-type: none;
     padding-left: 0;
+}
+.userSection {
+    padding: 10px;
+    background-color: #B7CB99;
+    border-radius: 5px;
 }
 .userProjectPage {
     color: white;
