@@ -31,7 +31,16 @@
     .world-map {
       max-width: 100%;
     }
-  }
+}
+#comment-input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-family: 'Primus', sans-serif;
+    color: #2A3759;
+    resize: vertical;
+}
 article {
     min-height: 100px;
     min-width: 300px;
@@ -221,6 +230,29 @@ th {
     width: 100%;
     gap: 10px;
 }
+.comment-bubble {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    padding: 15px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.comment-bubble p {
+    font-family: 'Primus', sans-serif;
+    color: #2A3759;
+    line-height: 1.6;
+    margin: 0;
+}
+.comments-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+.comment-form {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
 .download-section {
     display: flex;
     flex-wrap: wrap;
@@ -377,12 +409,18 @@ th {
     font-weight: bold;
     text-decoration: none;
 }
+.projectMenu > ul > li > a.commentPage.active {
+    color: #3D5220;
+    border: 2px dashed white;
+    padding: 4px 8px;
+    border-radius: 5px;
+}
 .projectMenu > ul > li > a.projectPage.active {
     color: #3D5220;
     border: 2px dashed white;
     padding: 4px 8px;
     border-radius: 5px;
-  }
+}
 .projectParams {
     display: flex;
     flex-wrap: wrap;
