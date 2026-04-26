@@ -5,9 +5,11 @@ const content = `
 <article>
     <search>
         <form name="searchForm">
-            <p class="textCenter">
-                <input name="searchBox" type="search">
-                <button>Найти</button>
+            <div class="textCenter">
+                <div class="input-btn-group">
+                    <input class="searchBox" name="searchBox" type="search" placeholder="Поиск...">
+                    <button class="searchBtn">Найти</button>
+                </div>
                 <select name="sort" class="sort">
                     <option value="dateAdd_up">по дате добавления &#8593;</option>
                     <option value="dateAdd_down">по дате добавления &#8595;</option>
@@ -20,7 +22,7 @@ const content = `
                     <option value="update_up">по дате обновления &#8593;</option>
                     <option value="update_down">по дате обновления &#8595;</option>
                 </select>
-            </p>
+            </div>
             <details>
                 <summary>ТЕГИ</summary>
             <fieldset name="tags">
@@ -107,9 +109,12 @@ function render(data, container) {
         const card = document.createElement("div");
         card.className = "card";
         card.innerHTML = `
-            <h2>${item.name}</h2>
+            <div class="card-header">
+                <h2 class="card-title">${item.name}</h2>
+                <img src="images/noFav.png" alt="Не в избранном">
+            </div>
             <p>${item.designer}</p>
-            <div class="imageBox"><img src="${item.image}" alt="Описание" onclick="openModal('${item.image}')"></div>
+            <div class="imageBox"><img src="${item.image}" alt="Изображение проекта" onclick="openModal('${item.image}')"></div>
             <p class="cardAuthor">${getUserLoginByUserId(item.userId)}</p>
         `;
         card.addEventListener("click", function(event){                                   
