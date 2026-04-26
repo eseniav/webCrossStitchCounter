@@ -94,10 +94,14 @@ nav > ul > li {
     color: white;
     font-family: Primus;
     font-weight: bold;
+    position: relative;
 }
 nav > ul > li > a {
     color: white;
     text-decoration: none;
+}
+nav > ul > li:hover .dropdown-menu {
+    display: block;
 }
 table {
     width: 100%;
@@ -223,6 +227,32 @@ th {
     gap: 40px;
     justify-content: center;
     margin-top: 50px;
+}
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: transparent;
+    min-width: 120px;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    border-radius: 5px;
+    z-index: 1000;
+    top: 100%;
+    right: 0;
+    max-width: 200px;
+    white-space: nowrap;
+    overflow: auto;
+}
+.dropdown-menu a {
+    color: white;
+    font-family: Primus;
+    font-size: 18px;
+    text-decoration: none;
+    display: block;
+}
+.dropdown-menu li {
+    padding: 8px 16px;
 }
 .features-list {
     list-style-type: none;
