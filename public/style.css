@@ -191,6 +191,22 @@ th {
     font-family: Primus;
     font-weight: bold;
 }
+.card-header {
+    display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 15px;
+  width: 100%;
+  }
+  .card-header img {
+    width: 24px;
+    height: 24px;
+  }
+  .card-title {
+    color: #431D32;
+    margin: 0;
+  }
 .download-section {
     display: flex;
     flex-wrap: wrap;
@@ -272,6 +288,11 @@ th {
     list-style-type: none;
     padding: 0;
 }
+.input-btn-group {
+    display: flex;
+    align-items: flex-end;
+    gap: 5px;
+  }
 .progressBar {
     height: 20px;
     background-color:#B7CB99;
@@ -328,6 +349,23 @@ th {
     font-style: italic;
     margin-top: 10px;
     line-height: 1.5;
+}
+.searchBox {
+    border-radius: 5px;
+    background-color: #B7CB99;
+    border: 2px dashed whitesmoke;
+    font-family: Primus;
+    font-size: 20px;
+    height: 26px;
+}
+.searchBtn {
+    background-color: #778FD2;
+    color: white;
+    font-family: "Caesar Dressing";
+    font-size: 20px;
+    border: 0px solid transparent;
+    border-radius: 5px;
+    width: 100px;
 }
 .sort {
     border-radius: 5px;
@@ -394,7 +432,11 @@ th {
     justify-content: flex-end
 }
 .textCenter {
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    margin-bottom: 10px;
 }
 .unmarked-list {
     list-style-type: none;
