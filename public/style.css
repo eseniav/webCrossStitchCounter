@@ -412,6 +412,12 @@ th {
     margin-top: 10px;
     line-height: 1.5;
 }
+.radio-group label {
+    color: #3D5220;
+    font-family: Primus;
+    font-weight: bold;
+    font-size: 18px;
+}
 .searchBox {
     border-radius: 5px;
     background-color: #B7CB99;
@@ -428,6 +434,14 @@ th {
     border: 0px solid transparent;
     border-radius: 5px;
     width: 100px;
+}
+.setting-block {
+    margin-bottom: 20px;
+}
+.settings-container {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 20px;
 }
 .sort {
     border-radius: 5px;
