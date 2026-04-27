@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кладовая крестиков</title>
+    <link type="image/x-icon" rel="icon" href="svg/MainIcon.svg"/>
+    <link rel="stylesheet" href="style.css">
+    <script src="scripts/data.js"></script>  
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="home.html">Главная</a></li>
+                <li><a href="gallery.html">Галерея</a></li>
+                <li><a href="statistics.html">Статистика</a></li>
+            </ul>
+            <ul>
+                <li id="loginLink">
+                    Вход
+                    <ul class="dropdown-menu">
+                      <li><a href="#">Настройки</a></li>
+                      <li><a href="auth.html">Выйти</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>        
+        <article>
+            <div class="settings-container">
+                <h1 class="authH1">Настройки</h1>
+                <div class="setting-block">
+                    <label class="authLbl">Тема</label>
+                    <div class="radio-group">
+                        <input type="radio" id="light" name="theme" value="light">
+                        <label for="light">Светлая</label>
+                        <input type="radio" id="dark" name="theme" value="dark">
+                        <label for="dark">Темная</label>
+                    </div>
+                </div>
+                <div class="setting-block">
+                    <label class="authLbl">Стартовая страница</label>
+                    <select id="startPage" class="sort">
+                        <option value="allProjects">Все проекты</option>
+                        <option value="allProjects">Галерея</option>
+                        <option value="allProjects">Избранное</option>
+                        <option value="allProjects">Проект</option>
+                    </select>
+                </div>
+                <div class="setting-block">
+                    <label class="authLbl">Язык</label>
+                    <select id="language" class="sort">
+                        <option value="ru">Русский</option>
+                        <option value="en">Английский</option>
+                    </select>
+                </div>
+                <button id="saveBtn" class="authBtn" name="saveBtn">Сохранить</button>
+        </article>
+    </main>
+    <footer>
+
+    </footer>
+</body>
+</html>

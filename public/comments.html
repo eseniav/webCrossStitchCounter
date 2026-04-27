@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кладовая крестиков</title>
+    <link type="image/x-icon" rel="icon" href="svg/MainIcon.svg"/>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="home.html">Главная</a></li>
+                <li><a href="gallery.html">Галерея</a></li>
+                <li><a href="statistics.html">Статистика</a></li>
+            </ul>
+            <ul>
+                <li id="loginLink">
+                    Вход
+                    <ul class="dropdown-menu">
+                      <li><a href="settings.html">Настройки</a></li>
+                      <li><a href="auth.html">Выйти</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>        
+        <article>
+            <nav class="projectMenu">
+                <ul>
+                    <li><a class="projectPage">Проект</a></li>
+                    <li><a href="comments.html" class="commentPage">Комментарии</a></li>
+                    <li><a>Фото</a></li>
+                    <li id="userProjects"><a>Профиль</a></li>
+                </ul>
+            </nav>
+            <div class="comments-container">
+                <div class="comment-bubble">
+                  <p>Отличная работа!</p>
+                </div>
+                <div class="comment-form">
+                  <textarea id="comment-input" placeholder="Напишите свой комментарий..."></textarea>
+                  <button id="submit-btn" class="authBtn">Отправить</button>
+                </div>
+              </div>
+        </article>         
+    </main>
+    <footer>
+
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPage = window.location.pathname.split('/').pop();
+            const commentLink = document.querySelector('.projectMenu .commentPage');
+            if (currentPage === 'comments.html' && commentLink) {
+                commentLink.classList.add('active');
+            }
+        });
+        document.addEventListener('DOMContentLoaded', function() {
+            const userProjects = document.getElementById('userProjects');
+            if (userProjects) {
+                userProjects.style.cursor = 'pointer';
+                userProjects.addEventListener('click', function() {
+                window.location.href = 'allProjects.html';
+                });
+            }
+        });
+    </script>   
+</body>
+</html>
