@@ -430,6 +430,12 @@ th {
     padding: 4px 8px;
     border-radius: 5px;
 }
+.projectMenu > ul > li > a.photoProgressPage.active {
+    color: #3D5220;
+    border: 2px dashed white;
+    padding: 4px 8px;
+    border-radius: 5px;
+}
 .projectMenu > ul > li > a.projectPage.active {
     color: #3D5220;
     border: 2px dashed white;
