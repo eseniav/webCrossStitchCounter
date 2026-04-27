@@ -258,15 +258,52 @@ th {
 .comment-bubble p {
     margin: 0;
 }
-.comments-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
+.comment-checkbox {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+.comment-checkbox:checked + .comment-label {
+    background-color: #431D32;
+    border-color: #431D32;
+}
+.comment-checkbox:checked + .comment-label::after {
+    content: "✓";
+    color: white;
+    font-size: 14px;
+    line-height: 16px;
 }
 .comment-form {
     display: flex;
     gap: 10px;
     margin-top: 20px;
+}
+.comment-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+.comment-label {
+    min-width: 20px;
+    min-height: 20px;
+    border: 2px solid white;
+    border-radius: 4px;
+    cursor: pointer;
+    flex-shrink: 0;
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.comment-label:hover {
+    border-color: #431D32;
+}
+.comments-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
 }
 .download-section {
     display: flex;
@@ -372,6 +409,12 @@ th {
     height: auto;
     width: auto;
 }
+.imgDel {
+    max-width: 10%;
+    max-height: 10%;
+    height: auto;
+    width: auto;
+}
 .imgSection {
     text-align: center;
 }
@@ -429,6 +472,18 @@ th {
     font-family: Primus;
     font-weight: bold;
     text-decoration: none;
+}
+.projectMenu > ul > li > a.adminPage.active {
+    color: #3D5220;
+    border: 2px dashed white;
+    padding: 4px 8px;
+    border-radius: 5px;
+}
+.projectMenu > ul > li > a.adminCommentsPage.active {
+    color: #3D5220;
+    border: 2px dashed white;
+    padding: 4px 8px;
+    border-radius: 5px;
 }
 .projectMenu > ul > li > a.commentPage.active {
     color: #3D5220;
