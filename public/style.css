@@ -366,6 +366,12 @@ th {
     height: auto;
     display: block;
   }
+.imgAddProject {
+    max-width: 25%;
+    max-height: 25%;
+    height: auto;
+    width: auto;
+}
 .imgSection {
     text-align: center;
 }
