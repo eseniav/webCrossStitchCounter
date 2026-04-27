@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кладовая крестиков</title>
+    <link type="image/x-icon" rel="icon" href="svg/MainIcon.svg"/>
+    <link rel="stylesheet" href="style.css">
+    <script src="scripts/data.js"></script>  
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="home.html">Главная</a></li>
+                <li><a href="gallery.html">Галерея</a></li>
+                <li><a href="statistics.html">Статистика</a></li>
+            </ul>
+            <ul>
+                <li id="loginLink">
+                    Вход
+                    <ul class="dropdown-menu">
+                      <li><a href="#">Настройки</a></li>
+                      <li><a href="auth.html">Выйти</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>        
+        <article>
+            <nav class="projectMenu">
+                <ul>
+                    <li><a class="adminPage" href="admin.html">Редактор</a></li>
+                    <li><a href="adminComments.html">Комментарии</a></li>
+                </ul>
+            </nav>
+            <div class="settings-container">
+                <h1 class="authH1">Редактор сайта</h1>
+                <div class="form-group">
+                    <label class="authLbl">Добавление тегов</label>
+                    <div class="horizontal">
+                        <input name="tags" class="authInput">
+                        <img src="svg/close.svg" alt="Удалить" class="imgDel">
+                    </div>
+                    <select id="startPage" class="sort">
+                        <option>Животные</option>
+                        <option>Зима</option>
+                        <option>Природа</option>
+                        <option>Праздники</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="authLbl">Удаление пользователей</label>
+                    <div class="horizontal">
+                        <input name="tags" class="authInput" value="olga">
+                        <img src="svg/close.svg" alt="Удалить" class="imgDel">
+                    </div>
+                    <select id="startPage" class="sort">
+                        <option value="" disabled selected>-- не выбрано --</option>
+                    </select>
+                </div>
+                <button id="saveBtn" class="authBtn" name="saveBtn">Сохранить</button>
+        </article>
+    </main>
+    <footer>
+
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPage = window.location.pathname.split('/').pop();
+            const adminLink = document.querySelector('.projectMenu .adminPage');
+            if (currentPage === 'admin.html' && adminLink) {
+                adminLink.classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>

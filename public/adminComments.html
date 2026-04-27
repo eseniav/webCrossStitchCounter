@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кладовая крестиков</title>
+    <link type="image/x-icon" rel="icon" href="svg/MainIcon.svg"/>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="home.html">Главная</a></li>
+                <li><a href="gallery.html">Галерея</a></li>
+                <li><a href="statistics.html">Статистика</a></li>
+            </ul>
+            <ul>
+                <li id="loginLink">
+                    Вход
+                    <ul class="dropdown-menu">
+                      <li><a href="settings.html">Настройки</a></li>
+                      <li><a href="auth.html">Выйти</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>        
+        <article>
+            <nav class="projectMenu">
+                <ul>
+                    <li><a class="adminPage" href="admin.html">Редактор</a></li>
+                    <li><a class="adminCommentsPage" href="adminComments.html">Комментарии</a></li>
+                </ul>
+            </nav>
+            <div class="comments-container">
+                <div class="comment-item">
+                  <input type="checkbox" id="comment-1" class="comment-checkbox">
+                  <label for="comment-1" class="comment-label"></label>
+                  <div class="comment-bubble">
+                    <p>Отличная работа!</p>
+                  </div>
+                </div>
+                <div class="comment-item">
+                  <input type="checkbox" id="comment-2" class="comment-checkbox">
+                  <label for="comment-2" class="comment-label"></label>
+                  <div class="comment-bubble">
+                    <p>Спасибо за старания!</p>
+                  </div>
+                </div>
+                <button class="authBtn" name="enterBtn">Удалить</button>
+        </article>         
+    </main>
+    <footer>
+
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPage = window.location.pathname.split('/').pop();
+            const adminCommentsLink = document.querySelector('.projectMenu .adminCommentsPage');
+            if (currentPage === 'adminComments.html' && adminCommentsLink) {
+                adminCommentsLink.classList.add('active');
+            }
+        });
+    </script>   
+</body>
+</html>
