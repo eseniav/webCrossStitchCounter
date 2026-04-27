@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кладовая крестиков</title>
+    <link type="image/x-icon" rel="icon" href="svg/MainIcon.svg"/>
+    <link rel="stylesheet" href="style.css">
+    <script src="scripts/data.js"></script>  
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="home.html">Главная</a></li>
+                <li><a href="gallery.html">Галерея</a></li>
+                <li><a href="statistics.html">Статистика</a></li>
+            </ul>
+            <ul>
+                <li id="loginLink">
+                    Вход
+                    <ul class="dropdown-menu">
+                      <li><a href="#">Настройки</a></li>
+                      <li><a href="auth.html">Выйти</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>        
+        <article>
+            <div class="container">
+                <div class="image-container">
+                    <img class="imgAddProject" src="svg/vyshivka.svg" alt="Дизайн вышивки">
+                </div>
+                <div class="form-container">
+                    <div class="radio-group">
+                        <input type="radio" id="future" name="status" value="future">
+                        <label for="future">Будущий</label>
+                        <input type="radio" id="current" name="status" value="current" checked>
+                        <label for="current">Текущий</label>
+                        <input type="radio" id="completed" name="status" value="completed">
+                        <label for="completed">Завершённый</label>
+                    </div>
+                    <form>
+                        <div class="form-group">
+                            <label for="name" class="authLbl">Название:</label>
+                            <input class="authInput" type="text" id="name" name="name" value="Dream">
+                        </div>
+                        <div class="form-group">
+                            <label for="designer" class="authLbl">Автор дизайна:</label>
+                            <input class="authInput" type="text" id="designer" name="designer">
+                        </div>
+                        <div class="form-group">
+                            <label for="size" class="authLbl">Размер:</label>
+                            <input class="authInput" type="number" id="width" name="width" value="200"> x
+                            <input class="authInput" type="number" id="height" name="height" value="300">
+                        </div>
+                        <div class="form-group">
+                            <label for="total_stitches" class="authLbl">Всего крестиков:</label>
+                            <input class="authInput" type="number" id="total_stitches" name="total_stitches" value="12000">
+                        </div>
+                        <div class="form-group">
+                            <label for="stitched_before" class="authLbl">Вышито до регистрации:</label>
+                            <input class="authInput" type="number" id="stitched_before" name="stitched_before">
+                        </div>
+                        <div class="form-group">
+                            <label for="start_date" class="authLbl">Дата начала:</label>
+                            <input class="authInput" type="date" id="start_date" name="start_date" value="2025-11-05">
+                        </div>
+                        <div class="form-group">
+                            <label for="planned_end" class="authLbl">Планируется вышить к:</label>
+                            <input class="authInput" type="date" id="planned_end" name="planned_end">
+                        </div>
+                        <button type="submit" class="authBtn">Сохранить</button>
+                    </form>
+                </div>
+            </div>
+        </article>
+    </main>
+    <footer>
+
+    </footer>
+</body>
+</html>
