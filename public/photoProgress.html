@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кладовая крестиков</title>
+    <link type="image/x-icon" rel="icon" href="svg/MainIcon.svg"/>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="modal.css">
+    <script src="scripts/data.js"></script>
+    <script src="modal.js" defer></script>    
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="home.html">Главная</a></li>
+                <li><a href="gallery.html">Галерея</a></li>
+                <li><a href="statistics.html">Статистика</a></li>
+            </ul>
+            <ul>
+                <li id="loginLink">
+                    Вход
+                    <ul class="dropdown-menu">
+                      <li><a href="settings.html">Настройки</a></li>
+                      <li><a href="auth.html">Выйти</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>        
+        <article>
+            <nav class="projectMenu">
+                <ul>
+                    <li><a class="projectPage">Проект</a></li>
+                    <li><a href="comments.html" class="commentsPage">Комментарии</a></li>
+                    <li><a href="photoProgress.html" class="photoProgressPage">Фото</a></li>
+                    <li id="userProjects"><a>Профиль</a></li>
+                </ul>
+            </nav>
+            <search>
+                <form name="searchForm">
+                    <div class="textCenter">
+                        <select name="sort" class="sort">
+                            <option value="dateAdd_up">по дате добавления &#8593;</option>
+                            <option value="dateAdd_down">по дате добавления &#8595;</option>
+                        </select>
+                    </div>
+                </form>            
+            </search>            
+            <div class="gallery" id="gallery">
+                <div class="card">
+                    <p class="cardDescription">23.03.2026</p>
+                    <div class="imageBox"><img src="images/IMG_2340.JPG" alt="Изображение"></div>
+                </div>
+            </div>
+        </article>  
+        <dialog id="imageModal" aria-labelledby="modalTitle" aria-describedby="modalContent">
+            <button class="close-btn" aria-label="Закрыть" onclick="closeModal()">×</button>
+            <img id="modalImage" alt="Полное изображение проекта">
+        </dialog>       
+    </main>
+    <footer>
+
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPage = window.location.pathname.split('/').pop();
+            const photoProgressLink = document.querySelector('.projectMenu .photoProgressPage');
+            if (currentPage === 'photoProgress.html' && photoProgressLink) {
+                photoProgressLink.classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>
