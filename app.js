@@ -12,7 +12,7 @@ app.get("/", (req, res) => {
     res.redirect("auth.html");
 })
 
-app.get(["/home", "/gallery", "/login", "/statistics"], (_, res) => {
+app.get(["/home", "/gallery", "/login", "/statistics", "/profile"], (_, res) => {
     res.sendFile(path.join(__dirname, "/public", "index.html"));
 })
 app.get("/projects", (_, res) => {
