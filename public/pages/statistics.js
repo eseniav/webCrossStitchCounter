@@ -116,8 +116,7 @@ function render(data, container) {
 
 
 async function init() {
-    projects = await getProjects();
-    users = await getUsers();
+    [projects, users] = await Promise.all([getProjects(), getUsers()]);
     const topQuantity = document.getElementById("topQuantity"); 
     render(projects.slice(0, 5), topQuantity);
     renderTopUsers();
