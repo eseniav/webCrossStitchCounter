@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="modal.css"> 
     <script src="scripts/routing.js" type="module"></script>
+    <script src="modal.js" defer></script>
 </head>
 <body>
     <header>
@@ -28,5 +29,9 @@
     <footer>
 
     </footer>
+    <dialog id="imageModal" aria-labelledby="modalTitle" aria-describedby="modalContent">
+        <button class="close-btn" aria-label="Закрыть" onclick="closeModal()">×</button>
+        <img id="modalImage" alt="Полное изображение проекта">
+    </dialog>
 </body>
 </html>

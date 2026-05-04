@@ -1,5 +1,6 @@
 import gallery from "../pages/gallery.js";
 import home from "../pages/home.js";
+import statistics from "../pages/statistics.js";
 console.log(gallery);
 
 const main = document.getElementById("content");
@@ -7,7 +8,7 @@ console.log(main);
 const pages = new Map([
     ["home", home],
     ["gallery", gallery],
-    ["statistics", {title: "Statistics", content: "Statistics", url: "/statistics"}],
+    ["statistics", statistics],
     ["login", {title: "Login", content: "Login", url: "/login"}],
 ]);
 const navMenu = document.getElementById("nav");
