@@ -1,10 +1,11 @@
 import gallery from "../pages/gallery.js";
+import home from "../pages/home.js";
 console.log(gallery);
 
 const main = document.getElementById("content");
 console.log(main);
 const pages = new Map([
-    ["home", {title: "Home", content: "Home Page", url: "/home"}],
+    ["home", home],
     ["gallery", gallery],
     ["statistics", {title: "Statistics", content: "Statistics", url: "/statistics"}],
     ["login", {title: "Login", content: "Login", url: "/login"}],
@@ -31,7 +32,8 @@ navMenu.addEventListener('click', function(event) {
     const pageName = url.split("/").pop();
     const page = pages.get(pageName);
     render(page);
-    history.pushState(page, event.target.textContent, event.target.href);
+    page.init();
+    history.pushState(JSON.parse(JSON.stringify(page)), event.target.textContent, event.target.href);
 });
 
 window.addEventListener("popstate", (event) => {
