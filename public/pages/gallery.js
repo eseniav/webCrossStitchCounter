@@ -104,6 +104,14 @@ async function getUsers() {
     return res.json();
 }
 
+function goToProfile(userId) {
+    document.dispatchEvent(new CustomEvent("navigation", {
+        bubbles: true,
+        cancelable: true,
+        detail: {route: "profile", path: `/profile/${userId}`}
+    }))
+}
+
 function render(data, container) {
     container.innerHTML = "";
     data.forEach((item) => {
@@ -115,16 +123,20 @@ function render(data, container) {
                 <img src="images/noFav.png" alt="Не в избранном">
             </div>
             <p>${item.designer}</p>
-            <div class="imageBox"><img src="${item.image}" alt="Изображение проекта" onclick="openModal('${item.image}')"></div>
-            <p class="cardAuthor">${getUserLoginByUserId(item.userId)}</p>
+            <div class="imageBox"><img src="${item.image}" alt="Изображение проекта" onclick="openModal('${item.image}')" data-action></div>
+            <p class="cardAuthor" data-action="profile">${getUserLoginByUserId(item.userId)}</p>
         `;
-        card.addEventListener("click", function(event){                                   
-            if (event.target.tagName != "IMG")
+        card.addEventListener("click", function(event){
+            if(event.target.dataset.action == "profile") {
+                goToProfile(item.userId);
+                return;
+            }
+            if (!event.target.hasAttribute("data-action"))
                 window.location.href = `project.html?id=${item.id}`;
         });
         container.append(card);
     }); 
-} 
+}
 
 async function init() {
     projects = await getProjects();
