@@ -1,4 +1,5 @@
 let users = [];
+let projects;
 const title = "Gallery";
 const url = "/gallery";
 const content = `
@@ -126,12 +127,70 @@ function render(data, container) {
 } 
 
 async function init() {
-    const projects = await getProjects();
+    projects = await getProjects();
     users = await getUsers();
     console.log(users);
     const gallery = document.getElementById("gallery");
     render(projects, gallery);
+    setListeners();
     console.log(projects);
 }
 
+function setListeners() {
+    document.searchForm.addEventListener("submit", function(event) {
+        event.preventDefault(); 
+        const text = event.target.searchBox.value.trim();
+        const noTags = event.target.tags.querySelector("[value='none']").checked;
+        const tags = Array.from(event.target.tags.elements).slice(2)
+            .filter(item => item.checked)
+            .map(item => item.value);
+        const searchCriteria = {
+            tags,
+            text,
+            noTags,
+        };
+        const searchResult = filter(searchCriteria, projects);
+        const [property, direction] = event.target.sort.value.split("_");
+        const sortCriteria = {property, direction};
+        const sortResult = sort(sortCriteria, searchResult);
+        render(sortResult, gallery);
+    });
+    document.searchForm.tags.addEventListener("click", event => {
+        const target =  event.target.tagName == "LABEL" ? event.target.children[0] : event.target;
+        if (target.name == "allTagsCheckBox") {
+            Array.from(event.currentTarget.elements).forEach(item => {
+            item.checked = target.checked;
+            })
+        } else if (!target.checked) {
+            target.form.allTagsCheckBox.checked = false;
+        } else {                    
+            event.target.form.allTagsCheckBox.checked = 
+                Array.from(target.form.tags.elements).slice(1).every(item => item.checked);
+        }
+        const submit = new Event("submit", {cancelable: true});
+        target.form.dispatchEvent(submit);
+    })
+    document.searchForm.sort.addEventListener("change", event => {
+        const submit = new Event("submit", {cancelable: true});
+        event.target.form.dispatchEvent(submit);
+    })
+}
+
+function sort(criteria, data) {
+    return data.sort((a, b) => {
+        if(a[criteria.property] > b[criteria.property])
+            return criteria.direction == "up" ? -1 : 1;
+        if(a[criteria.property] < b[criteria.property])
+            return criteria.direction == "up" ? 1 : -1;
+        return 0;
+    })
+}
+function filter(criteria, data) {
+    return data.filter(item => {
+        return (item.name.toLowerCase().includes(criteria.text.toLowerCase())
+        || item.designer.toLowerCase().includes(criteria.text.toLowerCase()))
+        && (criteria.tags.length == 0 && !criteria.noTags || (item.tags.some(a => criteria.tags.includes(a)) ||
+        (item?.tags?.length == 0 && criteria.noTags)));
+    })
+}
 export default {title, content, url, init};
