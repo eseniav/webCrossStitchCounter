@@ -2,6 +2,7 @@ import gallery from "../pages/gallery.js";
 import home from "../pages/home.js";
 import statistics from "../pages/statistics.js";
 import profile from "../pages/profile.js";
+import notFound from "../pages/404.js";
 
 const main = document.getElementById("content");
 const routes = [
@@ -39,7 +40,7 @@ function navigate(path, replace) {
         history.pushState(state, title, path);
 };
 function parseUrl(url) {
-    const pathname = url.split("?")[0]; // Убираем query params
+    const pathname = url.split("?")[0];
 
     for (const route of routes) {
         const pattern = route.path.replace(/:\w+/g, "(\\w+)");
@@ -57,7 +58,14 @@ function parseUrl(url) {
         }
     }
 
-    return { route: routes.find(r => r.name === defaultPage), params: {} };
+    return { route: 
+        {
+            path: null,
+            name: "notFound",
+            component: notFound
+        }, 
+        params: {}
+    };
 }
 
 document.addEventListener('navigation', (event) => {

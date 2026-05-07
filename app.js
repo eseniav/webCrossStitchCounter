@@ -12,9 +12,9 @@ app.get("/", (req, res) => {
     res.redirect("auth.html");
 })
 
-app.get(["/home", "/gallery", "/login", "/statistics", "/profile/:userId"], (_, res) => {
-    res.sendFile(path.join(__dirname, "/public", "index.html"));
-})
+// app.get(["/home", "/gallery", "/login", "/statistics", "/profile/:userId"], (_, res) => {
+//     res.sendFile(path.join(__dirname, "/public", "index.html"));
+// })
 
 app.get("/projects", (_, res) => {
     res.json(data.projects);
@@ -51,7 +51,7 @@ app.post("/auth", async (req, res) => {
 })
 
 app.use((req, res) => {
-    res.status(404).send("Страница не найдена");
+    res.sendFile(path.join(__dirname, "/public", "index.html"));
 });
 
 app.listen(3000, () => {
