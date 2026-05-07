@@ -28,10 +28,15 @@ function initPage() {
     navigate(window.location.pathname);
 }
 
-function navigate(path, replace) {
+function mountRoute(path) {
     const { route, params } = parseUrl(path);
     render(route.component);
     route.component.init(params);
+    return route;
+}
+
+function navigate(path, replace) {
+    const route = mountRoute(path);
     const state = JSON.parse(JSON.stringify(route.component));
     const title  = route.component.title;
     if(replace)
@@ -39,6 +44,7 @@ function navigate(path, replace) {
     else
         history.pushState(state, title, path);
 };
+
 function parseUrl(url) {
     const pathname = url.split("?")[0];
 
@@ -82,7 +88,8 @@ navMenu.addEventListener('click', function(event) {
 window.addEventListener("popstate", (event) => {
     if (!event.state)
         return;
-    navigate(location.pathname);
+    mountRoute(location.pathname);
+    //navigate(location.pathname);
 })
 
 initPage();
