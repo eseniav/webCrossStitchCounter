@@ -12,9 +12,10 @@ app.get("/", (req, res) => {
     res.redirect("auth.html");
 })
 
-app.get(["/home", "/gallery", "/login", "/statistics", "/profile"], (_, res) => {
-    res.sendFile(path.join(__dirname, "/public", "index.html"));
-})
+// app.get(["/home", "/gallery", "/login", "/statistics", "/profile/:userId"], (_, res) => {
+//     res.sendFile(path.join(__dirname, "/public", "index.html"));
+// })
+
 app.get("/projects", (_, res) => {
     res.json(data.projects);
 })
@@ -48,6 +49,10 @@ app.post("/auth", async (req, res) => {
         return res.status(401).send("Ошибка авторизации. Проверьте правильность заполнения полей");
     res.redirect("gallery.html");
 })
+
+app.use((req, res) => {
+    res.sendFile(path.join(__dirname, "/public", "index.html"));
+});
 
 app.listen(3000, () => {
     console.log("server running on http://localhost:3000");

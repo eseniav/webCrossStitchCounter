@@ -77,7 +77,6 @@ footer {
 }
 header {
     background-color: #2A3759;
-    min-height: 50px;
     position: sticky;
     top: 0;
 }
@@ -95,10 +94,11 @@ nav {
     padding: 0 10px;
 }
 nav > ul {
-    list-style-type: none;    
+    list-style-type: none;
+    margin-block: 0; 
 }
 nav > ul > li {
-    display: inline;
+    display: inline-block;
     margin-right: 15px;
     color: white;
     font-family: Primus;
@@ -106,8 +106,10 @@ nav > ul > li {
     position: relative;
 }
 nav > ul > li > a {
+    display: inline-block;
     color: white;
     text-decoration: none;
+    padding-block: 1em;
 }
 nav > ul > li:hover .dropdown-menu {
     display: block;
