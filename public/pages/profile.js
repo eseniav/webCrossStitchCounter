@@ -11,7 +11,7 @@ const content = `
         </nav>
     </article>
 `;
-async function init() {    
-    console.log("profile");
+async function init(params) {    
+    console.log("profile " + params.userId);
 }
 export default {title, content, url, init};
