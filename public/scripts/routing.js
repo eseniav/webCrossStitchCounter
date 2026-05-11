@@ -3,8 +3,11 @@ import home from "../pages/home.js";
 import statistics from "../pages/statistics.js";
 import profile from "../pages/profile.js";
 import notFound from "../pages/404.js";
+import profileOverview from "../pages/profile_overview.js";
+import profileGallery from "../pages/profile_gallery.js";
+import profileFavorite from "../pages/profile_favorite.js";
 
-const main = document.getElementById("content");
+const content = document.getElementById("content");
 const routes = [
     { path: "/home", name: "home", component: home },
     { path: "/gallery", name: "gallery", component: gallery },
@@ -15,13 +18,31 @@ const routes = [
         name: "profile",
         component: profile,
         params: ["userId"]
-    }
+    },
+    {
+        path: "/profile/:userId/overview",
+        name: "profileOverview",
+        component: profileOverview,
+        params: ["userId"]
+    },
+    {
+        path: "/profile/:userId/gallery",
+        name: "profileGallery",
+        component: profileGallery,
+        params: ["userId"]
+    },
+    {
+        path: "/profile/:userId/favorite",
+        name: "profileFavorite",
+        component: profileFavorite,
+        params: ["userId"]
+    },
 ];
 const navMenu = document.getElementById("nav");
 const defaultPage = "home";
 
-function render(route) {
-    main.innerHTML = route.content;
+function render(container, route) {
+    container.innerHTML = route.content;
 }
 
 function initPage() {
@@ -29,9 +50,16 @@ function initPage() {
 }
 
 function mountRoute(path) {
-    const { route, params } = parseUrl(path);
-    render(route.component);
+    const parsed = parseUrl(path);
+    const { route, params } = parsed[0];
+    render(content, route.component);
     route.component.init(params);
+    if(parsed.length > 1) {
+        const main = document.getElementById("main");
+        const subroute = parsed[1].route;
+        console.log(main);
+        render(main, subroute.component);
+    }
     return route;
 }
 
@@ -47,12 +75,13 @@ function navigate(path, replace) {
 
 function parseUrl(url) {
     const pathname = url.split("?")[0];
+    const matches = [];
 
     for (const route of routes) {
         const pattern = route.path.replace(/:\w+/g, "(\\w+)");
-        const regex = new RegExp(`^${pattern}$`);
+        const regex = new RegExp(`^${pattern}`);
         const match = pathname.match(regex);
-
+        console.log(match);
         if (match) {
             const params = {};
             if (route.params) {
@@ -60,18 +89,22 @@ function parseUrl(url) {
                     params[param] = match[index + 1];
                 });
             }
-            return { route, params };
+            matches.push({ route, params });
         }
     }
+    console.log(matches);
+    if (matches.length != 0) {
+        return matches;
+    }
 
-    return { route: 
+    return [{ route: 
         {
             path: null,
             name: "notFound",
             component: notFound
         }, 
         params: {}
-    };
+    }];
 }
 
 document.addEventListener('navigation', (event) => {
