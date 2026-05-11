@@ -3,8 +3,11 @@ import home from "../pages/home.js";
 import statistics from "../pages/statistics.js";
 import profile from "../pages/profile.js";
 import notFound from "../pages/404.js";
+import profileOverview from "../pages/profile_overview.js";
+import profileGallery from "../pages/profile_gallery.js";
+import profileFavorite from "../pages/profile_favorite.js";
 
-const main = document.getElementById("content");
+const content = document.getElementById("content");
 const routes = [
     { path: "/home", name: "home", component: home },
     { path: "/gallery", name: "gallery", component: gallery },
@@ -14,14 +17,37 @@ const routes = [
         path: "/profile/:userId",
         name: "profile",
         component: profile,
-        params: ["userId"]
-    }
+        params: ["userId"],
+        abstract: true
+    },
+    {
+        path: "/profile/:userId/overview",
+        name: "profileOverview",
+        component: profileOverview,
+        params: ["userId"],
+        parent: "profile",
+        default: true
+    },
+    {
+        path: "/profile/:userId/gallery",
+        name: "profileGallery",
+        component: profileGallery,
+        params: ["userId"],
+        parent: "profile",
+    },
+    {
+        path: "/profile/:userId/favorite",
+        name: "profileFavorite",
+        component: profileFavorite,
+        params: ["userId"],
+        parent: "profile",
+    },
 ];
 const navMenu = document.getElementById("nav");
 const defaultPage = "home";
 
-function render(route) {
-    main.innerHTML = route.content;
+function render(container, route) {
+    container.innerHTML = route.content;
 }
 
 function initPage() {
@@ -29,14 +55,34 @@ function initPage() {
 }
 
 function mountRoute(path) {
-    const { route, params } = parseUrl(path);
-    render(route.component);
+    const parsed = parseUrl(path);
+    const { route, params } = parsed[0];
+    if(parsed.length == 1 && route.abstract) {        
+        const defaultSubroute = routes.find((item) => {
+           return item?.parent == route.name && item.default;
+        })
+        
+        let subroutePath = defaultSubroute.path;
+
+        Object.keys(params).forEach(paramName => {
+            const paramValue = params[paramName];
+            subroutePath = subroutePath.replace(`:${paramName}`, paramValue);
+        });
+
+        return mountRoute(subroutePath);
+    }
+    render(content, route.component);
     route.component.init(params);
-    return route;
+    if(parsed.length > 1) {
+        const main = document.getElementById("main");
+        const subroute = parsed[1].route;
+        render(main, subroute.component);
+    }
+    return [route, path];
 }
 
-function navigate(path, replace) {
-    const route = mountRoute(path);
+function navigate(url, replace) {
+    const [route, path] = mountRoute(url);
     const state = JSON.parse(JSON.stringify(route.component));
     const title  = route.component.title;
     if(replace)
@@ -47,12 +93,12 @@ function navigate(path, replace) {
 
 function parseUrl(url) {
     const pathname = url.split("?")[0];
+    const matches = [];
 
     for (const route of routes) {
         const pattern = route.path.replace(/:\w+/g, "(\\w+)");
-        const regex = new RegExp(`^${pattern}$`);
+        const regex = new RegExp(`^${pattern}`);
         const match = pathname.match(regex);
-
         if (match) {
             const params = {};
             if (route.params) {
@@ -60,18 +106,21 @@ function parseUrl(url) {
                     params[param] = match[index + 1];
                 });
             }
-            return { route, params };
+            matches.push({ route, params });
         }
     }
+    if (matches.length != 0) {
+        return matches;
+    }
 
-    return { route: 
+    return [{ route: 
         {
             path: null,
             name: "notFound",
             component: notFound
         }, 
         params: {}
-    };
+    }];
 }
 
 document.addEventListener('navigation', (event) => {
@@ -89,7 +138,6 @@ window.addEventListener("popstate", (event) => {
     if (!event.state)
         return;
     mountRoute(location.pathname);
-    //navigate(location.pathname);
 })
 
 initPage();
