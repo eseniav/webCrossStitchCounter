@@ -20,6 +20,20 @@ function initLinks(userId) {
         const href = link.getAttribute("href");
         link.setAttribute("href", href.replace(":userId", userId));
     });
+    profileMenu.addEventListener('click', function(event) {
+        event.preventDefault();
+        const url = event.target.getAttribute("href");
+        if(!url)
+            return;
+        goToProfile(url);
+    });
+}
+function goToProfile(path) {
+    document.dispatchEvent(new CustomEvent("navigation", {
+        bubbles: true,
+        cancelable: true,
+        detail: {route: "profile", path}
+    }))
 }
 async function init(params) {    
     console.log("profile " + params.userId);

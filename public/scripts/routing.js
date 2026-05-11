@@ -17,25 +17,30 @@ const routes = [
         path: "/profile/:userId",
         name: "profile",
         component: profile,
-        params: ["userId"]
+        params: ["userId"],
+        abstract: true
     },
     {
         path: "/profile/:userId/overview",
         name: "profileOverview",
         component: profileOverview,
-        params: ["userId"]
+        params: ["userId"],
+        parent: "profile",
+        default: true
     },
     {
         path: "/profile/:userId/gallery",
         name: "profileGallery",
         component: profileGallery,
-        params: ["userId"]
+        params: ["userId"],
+        parent: "profile",
     },
     {
         path: "/profile/:userId/favorite",
         name: "profileFavorite",
         component: profileFavorite,
-        params: ["userId"]
+        params: ["userId"],
+        parent: "profile",
     },
 ];
 const navMenu = document.getElementById("nav");
@@ -52,19 +57,32 @@ function initPage() {
 function mountRoute(path) {
     const parsed = parseUrl(path);
     const { route, params } = parsed[0];
+    if(parsed.length == 1 && route.abstract) {        
+        const defaultSubroute = routes.find((item) => {
+           return item?.parent == route.name && item.default;
+        })
+        
+        let subroutePath = defaultSubroute.path;
+
+        Object.keys(params).forEach(paramName => {
+            const paramValue = params[paramName];
+            subroutePath = subroutePath.replace(`:${paramName}`, paramValue);
+        });
+
+        return mountRoute(subroutePath);
+    }
     render(content, route.component);
     route.component.init(params);
     if(parsed.length > 1) {
         const main = document.getElementById("main");
         const subroute = parsed[1].route;
-        console.log(main);
         render(main, subroute.component);
     }
-    return route;
+    return [route, path];
 }
 
-function navigate(path, replace) {
-    const route = mountRoute(path);
+function navigate(url, replace) {
+    const [route, path] = mountRoute(url);
     const state = JSON.parse(JSON.stringify(route.component));
     const title  = route.component.title;
     if(replace)
@@ -81,7 +99,6 @@ function parseUrl(url) {
         const pattern = route.path.replace(/:\w+/g, "(\\w+)");
         const regex = new RegExp(`^${pattern}`);
         const match = pathname.match(regex);
-        console.log(match);
         if (match) {
             const params = {};
             if (route.params) {
@@ -92,7 +109,6 @@ function parseUrl(url) {
             matches.push({ route, params });
         }
     }
-    console.log(matches);
     if (matches.length != 0) {
         return matches;
     }
@@ -122,7 +138,6 @@ window.addEventListener("popstate", (event) => {
     if (!event.state)
         return;
     mountRoute(location.pathname);
-    //navigate(location.pathname);
 })
 
 initPage();
