@@ -1,4 +1,3 @@
-let user;
 export default {
     title: "Обзор профиля",
     content: 
@@ -60,11 +59,11 @@ export default {
             `,
     url: "/profile/:userId/overview",
     init: async function(params) {
-        const options = new URLSearchParams({userId: params.userId});
-        const res = await fetch(`/user?${options}`);
-        const resProjects = await fetch(`/projects?${new URLSearchParams({userId: params.userId})}`);
-        user = await res.json();
-        const project = await resProjects.json();
+        const promises = await Promise.all([
+            fetch(`/user?${new URLSearchParams({userId: params.userId})}`), 
+            fetch(`/projects?${new URLSearchParams({userId: params.userId})}`)
+        ]);
+        const [user, project] = await Promise.all(promises.map(promise => promise.json()));
         const content = document.getElementById("subrouteContent");
         const table = document.getElementById("currentTable");
         populateData(content, {user});
