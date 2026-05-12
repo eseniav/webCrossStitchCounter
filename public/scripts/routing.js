@@ -77,6 +77,7 @@ function mountRoute(path) {
         const main = document.getElementById("main");
         const subroute = parsed[1].route;
         render(main, subroute.component);
+        subroute.component.init(params);
     }
     return [route, path];
 }
