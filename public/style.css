@@ -54,7 +54,7 @@ article {
     padding: 10px;
     text-align: center;
 }
-article > h1 {
+article h1 {
     color: #431D32;
     font-family: "X Company";
     font-weight: bold;

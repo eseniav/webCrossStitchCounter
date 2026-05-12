@@ -16,12 +16,20 @@ app.get("/", (req, res) => {
 //     res.sendFile(path.join(__dirname, "/public", "index.html"));
 // })
 
-app.get("/projects", (_, res) => {
-    res.json(data.projects);
+app.get("/projects", (req, res) => {
+    let projects = data.projects;
+    if(req.query.userId)
+        projects = data.projects.filter((item) => item.userId == req.query.userId)
+    res.json(projects);
 })
 
 app.get("/users", (_, res) => {
     res.json(data.users);
+})
+
+app.get("/user", (req, res) => {
+    const user = data.users.find((item) => item.id == req.query.userId);
+    res.json(user);
 })
 
 app.post("/register", async (req, res) => {
