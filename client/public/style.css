@@ -32,6 +32,12 @@
       max-width: 100%;
     }
 }
+#app {
+    min-height: 100vh;
+    display: grid;
+    grid-template-areas: "header" "main" "footer";
+    grid-template-rows: auto 1fr auto;
+}
 #comment-input {
     flex: 1;
     padding: 10px;
@@ -74,11 +80,13 @@ fieldset {
 footer {
     background-color: #2A3759;
     min-height: 50px;
+    grid-area: footer;
 }
 header {
     background-color: #2A3759;
     position: sticky;
     top: 0;
+    grid-area: header;
 }
 main {
     width: 100%;
@@ -87,6 +95,7 @@ main {
     flex: 1 1 0%;
     background-color: #778FD2;
     justify-content: center;
+    grid-area: main;
 }
 nav {
     display: flex;
