@@ -12,11 +12,11 @@
                     </p>
                 </form>
             </search>
-            <div class="statisticsGallery" id="topQuantity">
-                <div class="statisticsCard">
-                    <h3>Название</h3>
-                    <p class="statisticsCardDescription">Описание</p>
-                    <div class="statisticsImageBox"><img src="../../images/2248036369a45c1555a433.48884101.jpg" alt="Описание"></div>
+            <div class="statisticsGallery" id="topQuantity">                
+                <div class="statisticsCard" v-for="card in projects" :key="card.id">
+                    <h3>{{ card.name }}</h3>
+                    <p class="statisticsCardDescription">{{ card.designer }}</p>
+                    <div class="statisticsImageBox"><img :src="card.image" alt="Описание"></div>
                     <p class="statisticsCardAuthor">Автор</p>
                 </div>
             </div>
