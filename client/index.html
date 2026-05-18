@@ -4,10 +4,35 @@
     <meta charset="UTF-8">
     <link rel="icon" href="/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vite App</title>
+    <title>Кладовая крестиков</title>
+    <link type="image/x-icon" rel="icon" href="/svg/MainIcon.svg"/>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/modal.css">
+    <script src="/modal.js" defer></script>
   </head>
-  <body>
-    <div id="app"></div>
+  <body>    
     <script type="module" src="/src/main.js"></script>
+    <header>
+      <nav id="nav">
+          <ul>
+              <li><a href="/home">Главная</a></li>
+              <li><a href="/gallery">Галерея</a></li>
+              <li><a href="/statistics">Статистика</a></li>
+          </ul>
+          <ul>
+              <li id="loginLink"><a href="/login">Вход</a></li>
+          </ul>
+      </nav>
+  </header>
+  <main id="app">
+
+  </main>
+  <footer>
+
+  </footer>
+  <dialog id="imageModal" aria-labelledby="modalTitle" aria-describedby="modalContent">
+      <button class="close-btn" aria-label="Закрыть" onclick="closeModal()">×</button>
+      <img id="modalImage" alt="Полное изображение проекта">
+  </dialog>
   </body>
 </html>
