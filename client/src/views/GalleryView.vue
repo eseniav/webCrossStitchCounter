@@ -71,7 +71,7 @@
           <div class="card" v-for="card in projects" :key="card.id">
               <h2>{{ card.name }}</h2>
               <p class="cardDescription">{{ card.designer }}</p>
-              <div class="imageBox"><img :src="card.image" alt="Описание"></div>
+              <div class="imageBox"><img :src="card.image" alt="Описание" @click="openImage(card.image)"></div>
               <p class="cardAuthor">{{ card.userName }}</p>
           </div>          
       </div>
@@ -79,8 +79,7 @@
 </template>
 <script>
 async function getProjects() {
-    const res = await fetch("/api/projects");
-    console.log(res);
+    const res = await fetch("/api/projects");    
     const data = await res.json();
     return data;
 }
@@ -92,7 +91,9 @@ export default {
   },
 
   methods: {
-    
+    openImage(path) {
+      openModal(path);
+    }
   },
 
   async mounted() {    
