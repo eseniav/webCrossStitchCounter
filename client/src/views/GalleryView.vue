@@ -7,17 +7,8 @@
                       <input class="searchBox" name="searchBox" type="search" placeholder="Поиск...">
                       <button class="searchBtn">Найти</button>
                   </div>
-                  <select name="sort" class="sort">
-                      <option value="dateAdd_up">по дате добавления &#8593;</option>
-                      <option value="dateAdd_down">по дате добавления &#8595;</option>
-                      <option value="name_up">по имени &#8593;</option>
-                      <option value="name_down">по имени &#8595;</option>
-                      <option value="totalCross_up">по количеству крестиков &#8593;</option>
-                      <option value="totalCross_down">по количеству крестиков &#8595;</option>
-                      <option value="remains_up">по остатку &#8593;</option>
-                      <option value="remains_down">по остатку &#8595;</option>
-                      <option value="update_up">по дате обновления &#8593;</option>
-                      <option value="update_down">по дате обновления &#8595;</option>
+                  <select name="sort" class="sort" v-model="currentSort" @change="onSortingChange">
+                      <option v-for="opt in sortingOptions" :value="opt">{{ opt.value }}</option>                      
                   </select>
               </div>
               <details>
@@ -83,22 +74,68 @@ async function getProjects() {
     const data = await res.json();
     return data;
 }
+function addSortOptions(source) {
+  const target = [];
+  source.forEach(element => {
+    target.push({key: element.key, asc: true, value: element.value + ' ↑'});
+    target.push({key: element.key, asc: false, value: element.value + ' ↓'});
+  });
+  return target;
+}
+function sort(criteria, data) {
+    return data.toSorted((a, b) => {
+        if(a[criteria.key] > b[criteria.key])
+            return criteria.asc ? -1 : 1;
+        if(a[criteria.key] < b[criteria.key])
+            return criteria.asc  ? 1 : -1;
+        return 0;
+    })
+}
+const sortOptions = [
+  {key: "dateAdd", value: "по дате добавления"},
+  {key: "name", value: "по имени"},
+  {key: "totalCross", value: "по количеству крестиков"},
+  {key: "remains", value: "по остатку"},
+  {key: "update", value: "по дате обновления"},
+];
+let projects = [];
 export default {
   data() {
     return {
       projects: [],
+      sortingOptions: [],
+      currentSort: null,
     }
   },
 
   methods: {
     openImage(path) {
       openModal(path);
-    }
+    },
+    onSortingChangeParams() {      
+      this.$router.replace({
+        path: this.$route.path,
+        query: {...this.$route.query, sortKey: this.currentSort.key, sortAsc: this.currentSort.asc}
+      })
+    },
+    handleData(projects) {
+      this.projects = sort(this.currentSort, projects);
+    },
   },
 
-  async mounted() {    
-    this.projects = await getProjects();
-    console.log(this.projects);
+  async mounted() {
+    this.sortingOptions = addSortOptions(sortOptions);
+    this.currentSort = this.sortingOptions[0];
+    this.onSortingChangeParams();
+    projects = await getProjects();
+    this.handleData(projects);
+  },
+
+  watch: {
+    '$route.query'(newQuery, oldQuery) {
+      console.log(newQuery);
+      this.handleData(projects);
+    }
   }
 }
 </script>
