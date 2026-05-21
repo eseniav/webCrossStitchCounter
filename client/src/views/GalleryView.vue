@@ -60,7 +60,10 @@
       </search>
       <div class="gallery" id="gallery">
           <div class="card" v-for="card in projects" :key="card.id">
-              <h2>{{ card.name }}</h2>
+            <div class="card-header">
+                <h2 class="card-title">{{ card.name }}</h2>
+                <img src="/images/noFav.png" alt="Не в избранном">
+            </div>              
               <p class="cardDescription">{{ card.designer }}</p>
               <div class="imageBox"><img :src="card.image" alt="Описание" @click="openImage(card.image)"></div>
               <p class="cardAuthor">{{ card.userName }}</p>

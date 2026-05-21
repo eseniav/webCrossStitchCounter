@@ -14,10 +14,14 @@
             </search>
             <div class="statisticsGallery" id="topQuantity">                
                 <div class="statisticsCard" v-for="card in projects" :key="card.id">
-                    <h3>{{ card.name }}</h3>
+                  <div class="card-header">
+                    <h3 class="card-title">{{ card.name }}</h3>
+                    <img src="/images/noFav.png" alt="Не в избранном">
+                  </div>
                     <p class="statisticsCardDescription">{{ card.designer }}</p>
+                    <p class="statisticsTop">{{ card.stitchedVal }} крестиков</p>
                     <div class="statisticsImageBox"><img :src="card.image" alt="Описание"></div>
-                    <p class="statisticsCardAuthor">Автор</p>
+                    <p class="statisticsCardAuthor">{{ card.userName }}</p>
                 </div>
             </div>
             <h2 class="h2ProjectPage">Ежедневная активность сообщества</h2>
