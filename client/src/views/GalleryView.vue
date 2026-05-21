@@ -72,7 +72,7 @@
               <h2>{{ card.name }}</h2>
               <p class="cardDescription">{{ card.designer }}</p>
               <div class="imageBox"><img :src="card.image" alt="Описание"></div>
-              <p class="cardAuthor">{{ card.userId }}</p>
+              <p class="cardAuthor">{{ card.userName }}</p>
           </div>          
       </div>
   </article>
