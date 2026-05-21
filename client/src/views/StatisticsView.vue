@@ -21,7 +21,7 @@
                 </div>
             </div>
             <h2 class="h2ProjectPage">Ежедневная активность сообщества</h2>
-            <div class="imageStatistics"><img src="../../images/chart.png"></div>
+            <div class="imageStatistics"><img src="../../public/images/chart.png"></div>
             <h2 class="h2ProjectPage">Топ 5 пользователей по добавленным крестикам</h2>
             <search>
                 <form name="searchForm">

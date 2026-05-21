@@ -1,11 +1,11 @@
 const express = require("express");
 const path = require("path");
-const userService = require("./backend/userService");
-const data = require("./data/data");
+const userService = require("./userService");
+const data = require("../data/data");
 
 const app = express();
 
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "../client/dist")));
 app.use(express.urlencoded({extended: true}));
 
 app.get("/", (req, res) => {
@@ -16,23 +16,23 @@ app.get("/", (req, res) => {
 //     res.sendFile(path.join(__dirname, "/public", "index.html"));
 // })
 
-app.get("/projects", (req, res) => {
+app.get("/api/projects", (req, res) => {
     let projects = data.projects;
     if(req.query.userId)
         projects = data.projects.filter((item) => item.userId == req.query.userId)
     res.json(projects);
 })
 
-app.get("/users", (_, res) => {
+app.get("/api/users", (_, res) => {
     res.json(data.users);
 })
 
-app.get("/user", (req, res) => {
+app.get("/api/user", (req, res) => {
     const user = data.users.find((item) => item.id == req.query.userId);
     res.json(user);
 })
 
-app.post("/register", async (req, res) => {
+app.post("/api/register", async (req, res) => {
     const regUser = req.body;
     delete regUser.repeatPassword;
     if(!regUser.login || !regUser.password)
@@ -46,7 +46,7 @@ app.post("/register", async (req, res) => {
     res.redirect("auth.html");
 })
 
-app.post("/auth", async (req, res) => {
+app.post("/api/auth", async (req, res) => {
     const regUser = req.body;
     if(!regUser.login || !regUser.password)
         return res.status(400).send("Заполните поля логин и пароль");
@@ -59,7 +59,7 @@ app.post("/auth", async (req, res) => {
 })
 
 app.use((req, res) => {
-    res.sendFile(path.join(__dirname, "/public", "index.html"));
+    res.sendFile(path.join(__dirname, "../client/dist", "index.html"));
 });
 
 app.listen(3000, () => {
