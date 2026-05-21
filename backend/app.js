@@ -20,6 +20,7 @@ app.get("/api/projects", (req, res) => {
     let projects = data.projects;
     if(req.query.userId)
         projects = data.projects.filter((item) => item.userId == req.query.userId)
+    projects.forEach((item) => {item.userName = data.users.find((user) => user.id == item.userId).login});
     res.json(projects);
 })
 
