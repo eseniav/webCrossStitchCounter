@@ -217,6 +217,7 @@ th {
     color: #2A3759;
     font-family: Primus;
     font-weight: bold;
+    font-size: 14px;
 }
 .card-header {
     display: flex;
