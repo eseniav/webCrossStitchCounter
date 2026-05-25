@@ -1,13 +1,14 @@
 <template>
     <article>
       <search>
-          <form name="searchForm">
+          <form name="searchForm" @submit.prevent>
               <div class="textCenter">
                   <div class="input-btn-group">
-                      <input class="searchBox" name="searchBox" type="search" placeholder="Поиск...">
-                      <button class="searchBtn">Найти</button>
+                      <input  class="searchBox" name="searchBox" type="search" placeholder="Поиск..."
+                              v-model="searchCriteria.text" @search="handleFilterChange">
+                      <button class="searchBtn" @click="onFilterChangeParams">Найти</button>
                   </div>
-                  <select name="sort" class="sort" v-model="currentSort" @change="onSortingChange">
+                  <select name="sort" class="sort" v-model="currentSort" @change="onSortingChangeParams">
                       <option v-for="opt in sortingOptions" :value="opt">{{ opt.value }}</option>                      
                   </select>
               </div>
@@ -15,45 +16,27 @@
                   <summary>ТЕГИ</summary>
               <fieldset name="tags">
                       <p><label class="allTags">
-                          <input type="checkbox" name="allTagsCheckBox" value="all"> выбрать все
+                        <input type="checkbox"
+                              name="allTagsCheckBox"
+                              value="all"
+                              @change="handleSelectAllTags($event)">
+                        выбрать все
                       </label>
                       <label>
-                          <input type="checkbox" value="none"> без тегов
+                        <input type="checkbox"
+                            value="none"
+                            @change="handleNoTags($event)">
+                        без тегов
                       </label>
-                      <label>
-                          <input type="checkbox" value="праздники"> праздники
-                      </label>
-                      <label>
-                          <input type="checkbox" value="животные"> животные
-                      </label>
-                      <label>
-                          <input type="checkbox" value="природа"> природа
-                      </label>
-                      <label>
-                          <input type="checkbox" value="зима"> зима
-                      </label>
-                      <label>
-                          <input type="checkbox" value="люди"> люди
-                      </label>
-                      <label>
-                          <input type="checkbox" value="цветы"> цветы
-                      </label>
-                      <label>
-                          <input type="checkbox" value="новый год"> новый год
-                      </label>
-                      <label>
-                          <input type="checkbox" value="птицы"> птицы
-                      </label>
-                      <label>
-                          <input type="checkbox" value="вода
-                          if(a[property] == b[property])"> вода
-                      </label>
-                      <label>
-                          <input type="checkbox" value="лес"> лес
-                      </label>
-                      <label>
-                          <input type="checkbox" value="осень"> осень
-                      </label></p>
+                      <template v-for="tag in availableTags" :key="tag">
+                        <label>
+                          <input type="checkbox"
+                                :value="tag"
+                                v-model="searchCriteria.tags"
+                                @change="handleTagChange()">
+                          {{ tag }}
+                        </label>
+                      </template></p>
               </fieldset>
           </details>
           </form>
@@ -94,6 +77,14 @@ function sort(criteria, data) {
         return 0;
     })
 }
+function filter(criteria, data) {
+    return data.filter(item => {
+        return (item.name.toLowerCase().includes(criteria.text.toLowerCase())
+        || item.designer.toLowerCase().includes(criteria.text.toLowerCase()))
+        && (criteria.tags.length == 0 && !criteria.noTags || (item.tags.some(a => criteria.tags.includes(a)) ||
+        (item?.tags?.length == 0 && criteria.noTags)));
+    })
+}
 const sortOptions = [
   {key: "dateAdd", value: "по дате добавления"},
   {key: "name", value: "по имени"},
@@ -108,6 +99,31 @@ export default {
       projects: [],
       sortingOptions: [],
       currentSort: null,
+      searchCriteria: {
+        tags: [],
+        text: "",
+        noTags: null,
+      },
+      availableTags: [
+      'праздники', 'животные', 'природа', 'зима', 'люди',
+      'цветы', 'новый год', 'птицы', 'вода', 'лес', 'осень'
+      ]
+    }
+  },
+
+  computed: {
+    sortKey() {
+      return this.$route.query.sortKey;
+    },
+    sortAsc() {
+      try {
+        return JSON.parse(this.$route.query.sortAsc);
+      } catch {
+        this.$route.query.sortAsc = true;        
+      }      
+    },
+    searchText() {
+      return this.$route.query.filterBy ?? "";
     }
   },
 
@@ -122,21 +138,108 @@ export default {
       })
     },
     handleData(projects) {
-      this.projects = sort(this.currentSort, projects);
+      this.projects = sort(this.currentSort, filter(this.searchCriteria, projects));
     },
+    setDefaultSorting() {
+      this.currentSort = this.sortingOptions[0];
+      this.onSortingChangeParams();
+    },
+    onFilterChangeParams() {
+      this.$router.replace({
+        path: this.$route.path,
+        query: {...this.$route.query, filterBy: this.searchCriteria.text == false ? undefined : this.searchCriteria.text}
+      })
+    },
+    handleFilterChange() {
+      this.onFilterChangeParams();
+    },
+    handleTagChange() {
+      this.updateQueryParams();
+    },
+    updateQueryParams() {
+      const query = { ...this.$route.query };
+
+      // Теги в строку через запятую
+      if (this.searchCriteria.tags.length > 0) {
+        query.tags = this.searchCriteria.tags.join(',');
+      } else if (query.tags) {
+        delete query.tags;
+      }
+
+      // Флаг «без тегов»
+      if (this.searchCriteria.noTags) {
+        query.noTags = 'true';
+      } else if (query.noTags) {
+        delete query.noTags;
+      }
+
+      // Текст поиска
+      if (this.searchCriteria.text) {
+        query.filterBy = this.searchCriteria.text;
+      } else if (query.filterBy) {
+        delete query.filterBy;
+      }
+
+      this.$router.replace({ path: this.$route.path, query });
+    },
+
+    // Синхронизация с URL при загрузке
+    syncTagsFromQuery() {
+      const { tags, noTags } = this.$route.query;
+
+      if (tags) {
+        this.searchCriteria.tags = tags.split(',');
+        // Если есть теги, снимаем «без тегов»
+        this.searchCriteria.noTags = false;
+      }
+
+      if (noTags === 'true') {
+        this.searchCriteria.noTags = true;
+        // Если «без тегов», очищаем массив тегов
+        this.searchCriteria.tags = [];
+      }
+    },
+    handleSelectAllTags(event) {
+    if (event.target.checked) {
+      this.searchCriteria.tags = [...this.availableTags];
+    } else {
+      this.searchCriteria.tags = [];
+    }
+    // Автоматически снимаем «без тегов», если выбраны какие‑то теги
+    this.searchCriteria.noTags = false;
+    this.updateQueryParams();
+  },
+
+  // Обработка «без тегов»
+  handleNoTags(event) {
+    this.searchCriteria.noTags = event.target.checked;
+    // Если «без тегов» включён, снимаем все остальные теги
+    if (event.target.checked) {
+      this.searchCriteria.tags = [];
+    }
+    this.updateQueryParams();
+  },
   },
 
   async mounted() {
     this.sortingOptions = addSortOptions(sortOptions);
-    this.currentSort = this.sortingOptions[0];
-    this.onSortingChangeParams();
+    this.syncTagsFromQuery();
+    if(Object.keys(this.$route.query).length) {
+      this.currentSort = this.sortingOptions.find(item => 
+      {
+        return item.key == this.sortKey && item.asc === this.sortAsc;
+      });
+      this.searchCriteria.text = this.searchText;
+    }
+    if(!this.currentSort)
+      this.setDefaultSorting();
     projects = await getProjects();
     this.handleData(projects);
   },
 
   watch: {
     '$route.query'(newQuery, oldQuery) {
-      console.log(newQuery);
+      this.syncTagsFromQuery();
       this.handleData(projects);
     }
   }
