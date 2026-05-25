@@ -1,11 +1,11 @@
 <template>
     <article>
       <search>
-          <form name="searchForm">
+          <form name="searchForm" @submit.prevent>
               <div class="textCenter">
                   <div class="input-btn-group">
-                      <input class="searchBox" name="searchBox" type="search" placeholder="Поиск...">
-                      <button class="searchBtn">Найти</button>
+                      <input class="searchBox" name="searchBox" type="search" placeholder="Поиск..." v-model="searchCriteria.text">
+                      <button class="searchBtn" @click="onFilterChangeParams">Найти</button>
                   </div>
                   <select name="sort" class="sort" v-model="currentSort" @change="onSortingChangeParams">
                       <option v-for="opt in sortingOptions" :value="opt">{{ opt.value }}</option>                      
@@ -94,6 +94,14 @@ function sort(criteria, data) {
         return 0;
     })
 }
+function filter(criteria, data) {
+    return data.filter(item => {
+        return (item.name.toLowerCase().includes(criteria.text.toLowerCase())
+        || item.designer.toLowerCase().includes(criteria.text.toLowerCase()))
+        && (criteria.tags.length == 0 && !criteria.noTags || (item.tags.some(a => criteria.tags.includes(a)) ||
+        (item?.tags?.length == 0 && criteria.noTags)));
+    })
+}
 const sortOptions = [
   {key: "dateAdd", value: "по дате добавления"},
   {key: "name", value: "по имени"},
@@ -108,6 +116,11 @@ export default {
       projects: [],
       sortingOptions: [],
       currentSort: null,
+      searchCriteria: {
+        tags: [],
+        text: null,
+        noTags: null,
+      },
     }
   },
 
@@ -121,7 +134,7 @@ export default {
       } catch {
         this.$route.query.sortAsc = true;        
       }      
-    }
+    },
   },
 
   methods: {
@@ -135,11 +148,17 @@ export default {
       })
     },
     handleData(projects) {
-      this.projects = sort(this.currentSort, projects);
+      this.projects = sort(this.currentSort, filter(this.searchCriteria, projects));
     },
     setDefaultSorting() {
       this.currentSort = this.sortingOptions[0];
       this.onSortingChangeParams();
+    },
+    onFilterChangeParams() {
+      this.$router.replace({
+        path: this.$route.path,
+        query: {...this.$route.query, filterBy: this.searchCriteria.text}
+      })
     }
   },
 
@@ -150,9 +169,10 @@ export default {
       {
         return item.key == this.sortKey && item.asc === this.sortAsc;
       });
+      this.searchCriteria.text = this.$route.query.filterBy;
     }
     if(!this.currentSort)
-      this.setDefaultSorting(); 
+      this.setDefaultSorting();
     projects = await getProjects();
     this.handleData(projects);
   },
