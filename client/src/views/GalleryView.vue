@@ -4,7 +4,8 @@
           <form name="searchForm" @submit.prevent>
               <div class="textCenter">
                   <div class="input-btn-group">
-                      <input class="searchBox" name="searchBox" type="search" placeholder="Поиск..." v-model="searchCriteria.text">
+                      <input  class="searchBox" name="searchBox" type="search" placeholder="Поиск..."
+                              v-model="searchCriteria.text" @search="handleFilterChange">
                       <button class="searchBtn" @click="onFilterChangeParams">Найти</button>
                   </div>
                   <select name="sort" class="sort" v-model="currentSort" @change="onSortingChangeParams">
@@ -118,7 +119,7 @@ export default {
       currentSort: null,
       searchCriteria: {
         tags: [],
-        text: null,
+        text: "",
         noTags: null,
       },
     }
@@ -159,6 +160,9 @@ export default {
         path: this.$route.path,
         query: {...this.$route.query, filterBy: this.searchCriteria.text}
       })
+    },
+    handleFilterChange() {
+      this.onFilterChangeParams();
     }
   },
 
@@ -169,7 +173,8 @@ export default {
       {
         return item.key == this.sortKey && item.asc === this.sortAsc;
       });
-      this.searchCriteria.text = this.$route.query.filterBy;
+      this.searchCriteria.text = this.$route.query.filterBy ?? "";
+      console.log(this.searchCriteria.text);
     }
     if(!this.currentSort)
       this.setDefaultSorting();
