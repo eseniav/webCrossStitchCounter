@@ -7,7 +7,7 @@
                       <input class="searchBox" name="searchBox" type="search" placeholder="Поиск...">
                       <button class="searchBtn">Найти</button>
                   </div>
-                  <select name="sort" class="sort" v-model="currentSort" @change="onSortingChange">
+                  <select name="sort" class="sort" v-model="currentSort" @change="onSortingChangeParams">
                       <option v-for="opt in sortingOptions" :value="opt">{{ opt.value }}</option>                      
                   </select>
               </div>
