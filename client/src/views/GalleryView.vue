@@ -111,6 +111,19 @@ export default {
     }
   },
 
+  computed: {
+    sortKey() {
+      return this.$route.query.sortKey;
+    },
+    sortAsc() {
+      try {
+        return JSON.parse(this.$route.query.sortAsc);
+      } catch {
+        this.$route.query.sortAsc = true;        
+      }      
+    }
+  },
+
   methods: {
     openImage(path) {
       openModal(path);
@@ -135,7 +148,7 @@ export default {
     if(Object.keys(this.$route.query).length) {
       this.currentSort = this.sortingOptions.find(item => 
       {
-        return item.key == this.$route.query.sortKey && item.asc === JSON.parse(this.$route.query.sortAsc);
+        return item.key == this.sortKey && item.asc === this.sortAsc;
       });
     }
     if(!this.currentSort)
@@ -146,7 +159,6 @@ export default {
 
   watch: {
     '$route.query'(newQuery, oldQuery) {
-      console.log(newQuery);
       this.handleData(projects);
     }
   }
