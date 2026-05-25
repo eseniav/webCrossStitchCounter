@@ -136,6 +136,9 @@ export default {
         this.$route.query.sortAsc = true;        
       }      
     },
+    searchText() {
+      return this.$route.query.filterBy ?? "";
+    }
   },
 
   methods: {
@@ -158,7 +161,7 @@ export default {
     onFilterChangeParams() {
       this.$router.replace({
         path: this.$route.path,
-        query: {...this.$route.query, filterBy: this.searchCriteria.text}
+        query: {...this.$route.query, filterBy: this.searchCriteria.text == false ? undefined : this.searchCriteria.text}
       })
     },
     handleFilterChange() {
@@ -173,7 +176,7 @@ export default {
       {
         return item.key == this.sortKey && item.asc === this.sortAsc;
       });
-      this.searchCriteria.text = this.$route.query.filterBy ?? "";
+      this.searchCriteria.text = this.searchText;
       console.log(this.searchCriteria.text);
     }
     if(!this.currentSort)
