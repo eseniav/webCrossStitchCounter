@@ -16,45 +16,26 @@
                   <summary>ТЕГИ</summary>
               <fieldset name="tags">
                       <p><label class="allTags">
-                          <input type="checkbox" name="allTagsCheckBox" value="all"> выбрать все
+                        <input type="checkbox"
+                              name="allTagsCheckBox"
+                              value="all"
+                              @change="handleSelectAllTags($event)">
+                        выбрать все
                       </label>
                       <label>
-                          <input type="checkbox" value="none"> без тегов
+                        <input type="checkbox"
+                            value="none"
+                            @change="handleNoTags($event)">
+                        без тегов
                       </label>
-                      <label>
-                          <input type="checkbox" value="праздники"> праздники
-                      </label>
-                      <label>
-                          <input type="checkbox" value="животные"> животные
-                      </label>
-                      <label>
-                          <input type="checkbox" value="природа"> природа
-                      </label>
-                      <label>
-                          <input type="checkbox" value="зима"> зима
-                      </label>
-                      <label>
-                          <input type="checkbox" value="люди"> люди
-                      </label>
-                      <label>
-                          <input type="checkbox" value="цветы"> цветы
-                      </label>
-                      <label>
-                          <input type="checkbox" value="новый год"> новый год
-                      </label>
-                      <label>
-                          <input type="checkbox" value="птицы"> птицы
-                      </label>
-                      <label>
-                          <input type="checkbox" value="вода
-                          if(a[property] == b[property])"> вода
-                      </label>
-                      <label>
-                          <input type="checkbox" value="лес"> лес
-                      </label>
-                      <label>
-                          <input type="checkbox" value="осень"> осень
-                      </label></p>
+                      <template v-for="tag in availableTags" :key="tag">
+                        <label>
+                          <input type="checkbox"
+                                value="{{ tag }}"
+                                @change="handleTagChange($event, tag)">
+                          {{ tag }}
+                        </label>
+                      </template></p>
               </fieldset>
           </details>
           </form>
@@ -122,6 +103,10 @@ export default {
         text: "",
         noTags: null,
       },
+      availableTags: [
+      'праздники', 'животные', 'природа', 'зима', 'люди',
+      'цветы', 'новый год', 'птицы', 'вода', 'лес', 'осень'
+    ]
     }
   },
 
@@ -166,11 +151,83 @@ export default {
     },
     handleFilterChange() {
       this.onFilterChangeParams();
+    },
+    handleTagChange(event, tag) {
+      if (event.target.checked) {
+        this.searchCriteria.tags.push(tag);
+      } else {
+        this.searchCriteria.tags = this.searchCriteria.tags.filter(t => t !== tag);
+      }
+      this.updateQueryParams();
+    },
+    updateQueryParams() {
+      const query = { ...this.$route.query };
+
+      // Теги в строку через запятую
+      if (this.searchCriteria.tags.length > 0) {
+        query.tags = this.searchCriteria.tags.join(',');
+      } else if (query.tags) {
+        delete query.tags;
+      }
+
+      // Флаг «без тегов»
+      if (this.searchCriteria.noTags) {
+        query.noTags = 'true';
+      } else if (query.noTags) {
+        delete query.noTags;
+      }
+
+      // Текст поиска
+      if (this.searchCriteria.text) {
+        query.filterBy = this.searchCriteria.text;
+      } else if (query.filterBy) {
+        delete query.filterBy;
+      }
+
+      this.$router.replace({ path: this.$route.path, query });
+    },
+
+    // Синхронизация с URL при загрузке
+    syncTagsFromQuery() {
+      const { tags, noTags } = this.$route.query;
+
+      if (tags) {
+        this.searchCriteria.tags = tags.split(',');
+        // Если есть теги, снимаем «без тегов»
+        this.searchCriteria.noTags = false;
+      }
+
+      if (noTags === 'true') {
+        this.searchCriteria.noTags = true;
+        // Если «без тегов», очищаем массив тегов
+        this.searchCriteria.tags = [];
+      }
+    },
+    handleSelectAllTags(event) {
+    if (event.target.checked) {
+      this.searchCriteria.tags = [...this.availableTags];
+    } else {
+      this.searchCriteria.tags = [];
     }
+    // Автоматически снимаем «без тегов», если выбраны какие‑то теги
+    this.searchCriteria.noTags = false;
+    this.updateQueryParams();
+  },
+
+  // Обработка «без тегов»
+  handleNoTags(event) {
+    this.searchCriteria.noTags = event.target.checked;
+    // Если «без тегов» включён, снимаем все остальные теги
+    if (event.target.checked) {
+      this.searchCriteria.tags = [];
+    }
+    this.updateQueryParams();
+  },
   },
 
   async mounted() {
     this.sortingOptions = addSortOptions(sortOptions);
+    this.syncTagsFromQuery();
     if(Object.keys(this.$route.query).length) {
       this.currentSort = this.sortingOptions.find(item => 
       {
@@ -187,6 +244,7 @@ export default {
 
   watch: {
     '$route.query'(newQuery, oldQuery) {
+      this.syncTagsFromQuery();
       this.handleData(projects);
     }
   }
