@@ -128,8 +128,16 @@ export default {
 
   async mounted() {
     this.sortingOptions = addSortOptions(sortOptions);
-    this.currentSort = this.sortingOptions[0];
-    this.onSortingChangeParams();
+    if(!Object.keys(this.$route.query).length) {
+      this.currentSort = this.sortingOptions[0];
+      this.onSortingChangeParams();
+    } else {
+      this.currentSort = this.sortingOptions.find(item => 
+      {
+        return item.key == this.$route.query.sortKey && item.asc === JSON.parse(this.$route.query.sortAsc);
+      });
+      
+    }
     projects = await getProjects();
     this.handleData(projects);
   },
