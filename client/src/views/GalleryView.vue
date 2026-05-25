@@ -33,7 +33,7 @@
                           <input type="checkbox"
                                 :value="tag"
                                 v-model="searchCriteria.tags"
-                                @change="handleTagChange($event, tag)">
+                                @change="handleTagChange()">
                           {{ tag }}
                         </label>
                       </template></p>
@@ -153,17 +153,8 @@ export default {
     handleFilterChange() {
       this.onFilterChangeParams();
     },
-    handleTagChange(event, tag) {
-      console.log(this.searchCriteria);
-      // if (event.target.checked) {
-      //   this.searchCriteria.tags.push(tag);
-      // } else {
-      //   this.searchCriteria.tags = this.searchCriteria.tags.filter(t => t !== tag);
-      // }
-      // this.updateQueryParams();
-    },
-    handleTag() {
-      console.log(this.tags);
+    handleTagChange() {
+      this.updateQueryParams();
     },
     updateQueryParams() {
       const query = { ...this.$route.query };
@@ -239,7 +230,6 @@ export default {
         return item.key == this.sortKey && item.asc === this.sortAsc;
       });
       this.searchCriteria.text = this.searchText;
-      console.log(this.searchCriteria.text);
     }
     if(!this.currentSort)
       this.setDefaultSorting();
