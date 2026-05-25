@@ -31,7 +31,8 @@
                       <template v-for="tag in availableTags" :key="tag">
                         <label>
                           <input type="checkbox"
-                                value="{{ tag }}"
+                                :value="tag"
+                                v-model="searchCriteria.tags"
                                 @change="handleTagChange($event, tag)">
                           {{ tag }}
                         </label>
@@ -106,7 +107,7 @@ export default {
       availableTags: [
       'праздники', 'животные', 'природа', 'зима', 'люди',
       'цветы', 'новый год', 'птицы', 'вода', 'лес', 'осень'
-    ]
+      ]
     }
   },
 
@@ -153,12 +154,16 @@ export default {
       this.onFilterChangeParams();
     },
     handleTagChange(event, tag) {
-      if (event.target.checked) {
-        this.searchCriteria.tags.push(tag);
-      } else {
-        this.searchCriteria.tags = this.searchCriteria.tags.filter(t => t !== tag);
-      }
-      this.updateQueryParams();
+      console.log(this.searchCriteria);
+      // if (event.target.checked) {
+      //   this.searchCriteria.tags.push(tag);
+      // } else {
+      //   this.searchCriteria.tags = this.searchCriteria.tags.filter(t => t !== tag);
+      // }
+      // this.updateQueryParams();
+    },
+    handleTag() {
+      console.log(this.tags);
     },
     updateQueryParams() {
       const query = { ...this.$route.query };
