@@ -124,20 +124,22 @@ export default {
     handleData(projects) {
       this.projects = sort(this.currentSort, projects);
     },
+    setDefaultSorting() {
+      this.currentSort = this.sortingOptions[0];
+      this.onSortingChangeParams();
+    }
   },
 
   async mounted() {
     this.sortingOptions = addSortOptions(sortOptions);
-    if(!Object.keys(this.$route.query).length) {
-      this.currentSort = this.sortingOptions[0];
-      this.onSortingChangeParams();
-    } else {
+    if(Object.keys(this.$route.query).length) {
       this.currentSort = this.sortingOptions.find(item => 
       {
         return item.key == this.$route.query.sortKey && item.asc === JSON.parse(this.$route.query.sortAsc);
       });
-      
     }
+    if(!this.currentSort)
+      this.setDefaultSorting(); 
     projects = await getProjects();
     this.handleData(projects);
   },
