@@ -60,6 +60,11 @@ async function getProjects() {
     const data = await res.json();
     return data;
 }
+async function getTags() {
+    const res = await fetch("/api/tags");
+    const data = await res.json();
+    return data.map((item) => item.title);
+}
 function addSortOptions(source) {
   const target = [];
   source.forEach(element => {
@@ -104,10 +109,7 @@ export default {
         text: "",
         noTags: null,
       },
-      availableTags: [
-      'праздники', 'животные', 'природа', 'зима', 'люди',
-      'цветы', 'новый год', 'птицы', 'вода', 'лес', 'осень'
-      ]
+      availableTags: []
     }
   },
 
@@ -223,7 +225,6 @@ export default {
 
   async mounted() {
     this.sortingOptions = addSortOptions(sortOptions);
-    this.syncTagsFromQuery();
     if(Object.keys(this.$route.query).length) {
       this.currentSort = this.sortingOptions.find(item => 
       {
@@ -233,7 +234,8 @@ export default {
     }
     if(!this.currentSort)
       this.setDefaultSorting();
-    projects = await getProjects();
+    [this.availableTags, projects] = await Promise.all([getTags(), getProjects()]);
+    this.syncTagsFromQuery();    
     this.handleData(projects);
   },
 
