@@ -42,13 +42,13 @@
           </form>
       </search>
       <div class="gallery" id="gallery">
-          <div class="card" v-for="card in projects" :key="card.id">
+          <div class="card" v-for="card in projects" :key="card.id" @click="openProject(card.id, $event)">
             <div class="card-header">
                 <h2 class="card-title">{{ card.name }}</h2>
                 <img src="/images/noFav.png" alt="Не в избранном">
             </div>              
               <p class="cardDescription">{{ card.designer }}</p>
-              <div class="imageBox"><img :src="card.image" alt="Описание" @click="openImage(card.image)"></div>
+              <div class="imageBox"><img :src="card.image" alt="Описание" data-ignore @click="openImage(card.image)"></div>
               <p class="cardAuthor">{{ card.userName }}</p>
           </div>          
       </div>
@@ -221,6 +221,11 @@ export default {
     }
     this.updateQueryParams();
   },
+  openProject(projectId, event) {
+    if(event.target.dataset.ignore)
+      return;
+    this.$router.push({name: "project", params: {projectId}});
+  }
   },
 
   async mounted() {
