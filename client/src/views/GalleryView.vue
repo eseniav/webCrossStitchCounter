@@ -225,8 +225,6 @@ export default {
 
   async mounted() {
     this.sortingOptions = addSortOptions(sortOptions);
-    this.availableTags = await getTags();
-    this.syncTagsFromQuery();
     if(Object.keys(this.$route.query).length) {
       this.currentSort = this.sortingOptions.find(item => 
       {
@@ -236,7 +234,8 @@ export default {
     }
     if(!this.currentSort)
       this.setDefaultSorting();
-    projects = await getProjects();
+    [this.availableTags, projects] = await Promise.all([getTags(), getProjects()]);
+    this.syncTagsFromQuery();    
     this.handleData(projects);
   },
 
