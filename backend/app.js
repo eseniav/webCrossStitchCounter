@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path");
 const userService = require("./userService");
 const data = require("../data/data");
+const dataService = require("./dataService");
 
 const app = express();
 
@@ -31,6 +32,10 @@ app.get("/api/users", (_, res) => {
 app.get("/api/user", (req, res) => {
     const user = data.users.find((item) => item.id == req.query.userId);
     res.json(user);
+})
+
+app.get("/api/tags", async (_, res) => {
+    res.json(await dataService.getTags());
 })
 
 app.post("/api/register", async (req, res) => {
