@@ -14,9 +14,12 @@ const routes = [
   { path: '/statistics', name: 'statistics', component: StatisticsView },
   { path: '/login', name: 'login', component: { template: '<div><h1>Страница входа</h1></div>' } },
   {
-    path: '/project',
+    path: '/project/:projectId',
     name: 'project',
     component: ProjectMenuView,
+    redirect: {
+      name: 'project-main'
+    },
     children: [
       {
         path: '',

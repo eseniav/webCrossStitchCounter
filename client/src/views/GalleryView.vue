@@ -224,7 +224,7 @@ export default {
   openProject(projectId, event) {
     if(event.target.dataset.ignore)
       return;
-    this.$router.push('/project');
+    this.$router.push({name: "project", params: {projectId}});
   }
   },
 
