@@ -25,6 +25,12 @@ app.get("/api/projects", (req, res) => {
     res.json(projects);
 })
 
+app.get("/api/project/:id", async (req, res) => {
+    const project = await dataService.getProject(req.params.id);
+    if(!project)
+        return res.status(404).send(`Запрашиваемый проект ${req.params.id} не найден`);
+    res.json(project);
+})
 app.get("/api/users", (_, res) => {
     res.json(data.users);
 })
