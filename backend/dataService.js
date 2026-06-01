@@ -6,6 +6,7 @@ class DataService {
     static PROJECT_FILE = path.join(__dirname, "../data", "projects.json");
     static USERS_FILE = path.join(__dirname, "../data", "users.json");
     static IMAGES_PATH = '/images/';
+    static COMMENTS_FILE = path.join(__dirname, "../data", "comments.json");
     static async getTags() {
         try {
                 let data = await fs.readFile(DataService.TAGS_FILE, "utf-8");
@@ -35,6 +36,11 @@ class DataService {
         let data = await fs.readFile(DataService.USERS_FILE, "utf-8");
         let users = JSON.parse(data);
         return users.find((item) => item.id == userId);
+    }
+    static async getComments(projectId) {
+        let data = await fs.readFile(DataService.COMMENTS_FILE, "utf-8");
+        let comments = JSON.parse(data);
+        return comments.filter((comment) => comment.projectId == projectId);
     }
 }
 
