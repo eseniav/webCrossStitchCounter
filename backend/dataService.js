@@ -4,6 +4,8 @@ const path = require("path");
 class DataService {
     static TAGS_FILE = path.join(__dirname, "../data", "tags.json");
     static PROJECT_FILE = path.join(__dirname, "../data", "projects.json");
+    static USERS_FILE = path.join(__dirname, "../data", "users.json");
+    static IMAGES_PATH = '/images/';
     static async getTags() {
         try {
                 let data = await fs.readFile(DataService.TAGS_FILE, "utf-8");
@@ -18,17 +20,21 @@ class DataService {
             }
     }
     static async getProject(projectId) {
-        try {
-            let data = await fs.readFile(DataService.PROJECT_FILE, "utf-8");
-            let projects = JSON.parse(data);
-            return projects.find((item) => item.id == projectId);
-        } catch(error)
-        {
-            if(error.code === "ENOENT")
-                return [];
-            else
-                throw error;
-        }
+        let data = await fs.readFile(DataService.PROJECT_FILE, "utf-8");
+        let projects = JSON.parse(data);
+        const project = projects.find((item) => item.id == projectId);
+        const [tags, user] = await Promise.all([DataService.getTags(), DataService.getUser(project.userId)]);
+        project.tags = project.tagId.map((tagId) => {
+           return tags.find((tag) => tag.id == tagId)?.title;
+        })
+        project.login = user.login;
+        project.imagePath = DataService.IMAGES_PATH + project.image;
+        return project;
+    }
+    static async getUser(userId) {
+        let data = await fs.readFile(DataService.USERS_FILE, "utf-8");
+        let users = JSON.parse(data);
+        return users.find((item) => item.id == userId);
     }
 }
 

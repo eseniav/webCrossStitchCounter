@@ -2,58 +2,63 @@
   <div>
     <div class="projectParams">
                 <div class="imgSection">
-                    <img :src="project.image" alt="" @click="openImage(project.image)">
-                    <div class="userProjectPage">{{project.userName}}</div>
-                    <div class="tagsContainer">{{project.tagId}}</div>
+                    <img :src="project.imagePath" alt="Изображение проекта" @click="openImage(project.imagePath)">
+                    <div class="userProjectPage">{{project.login}}</div>
+                    <div class="tagsContainer">
+                      <router-link class="tag" v-for="tag in project.tags" :key="tag"
+                        :to="{name: 'gallery', query: {tags: tag}}">
+                        {{tag}}
+                      </router-link>
+                    </div>
                 </div>
                 <div class="infoSection">
                     <h2 class="h2ProjectPage">О проекте</h2>
                     <ul>
                         <li>
-                            <span class="propName">Автор дизайна:</span>
+                            <span class="propName">Автор дизайна: </span>
                             <span class="propValue">{{project.designer}}</span>
                         </li>
                         <li>
-                            <span class="propName">Размер:</span>
+                            <span class="propName">Размер: </span>
                             <span class="propValue">{{project.width}} × {{project.height}}</span>
                         </li>
                         <li>
-                            <span class="propName">Всего крестиков:</span>
+                            <span class="propName">Всего крестиков: </span>
                             <span class="propValue">{{project.totalCross}}</span>
                         </li>
                         <li>
-                            <span class="propName">Вышито до регистрации:</span>
+                            <span class="propName">Вышито до регистрации: </span>
                             <span class="propValue">{{project.stitchedCrossBeforeRegistration}}</span>
                         </li>
                         <li>
-                            <span class="propName">Дата начала:</span>
+                            <span class="propName">Дата начала: </span>
                             <span class="propValue">{{project.startDate}}</span>
                         </li>
                         <li>
-                            <span class="propName">Планируется вышить к:</span>
+                            <span class="propName">Планируется вышить к: </span>
                             <span class="propValue">{{project.finishDreamDate}}</span>
                         </li>
                     </ul>
                     <h2 class="h2ProjectPage">Статистика</h2>
                     <ul>
                         <li>
-                            <span class="propName">Вышито:</span>
+                            <span class="propName">Вышито: </span>
                             <span class="propValue">{{project.stitchedVal}}</span>
                         </li>
                         <li>
-                            <span class="propName">Осталось:</span>
+                            <span class="propName">Осталось: </span>
                             <span class="propValue">{{project.remains}}</span>
                         </li>
                         <li>
-                            <span class="propName">Средняя скорость:</span>
+                            <span class="propName">Средняя скорость: </span>
                             <span class="propValue">{{project.avgSpeedVal}} кр./день</span>
                         </li>
                         <li>
-                            <span class="propName">Прогноз окончания:</span>
+                            <span class="propName">Прогноз окончания: </span>
                             <span class="propValue">{{project.prognosisVal}}</span>
                         </li>
                         <li>
-                            <span class="propName">Вышито в процентах:</span>
+                            <span class="propName">Вышито в процентах: </span>
                             <span class="propValue">{{project.procent}}%</span>
                         </li>
                     </ul>
@@ -83,7 +88,7 @@
                   </tr>
                 </tbody>
             </table>
-  </div>
+          </div>
 </template>
 
 <script>
@@ -115,7 +120,6 @@ async function getUsers() {
 
   async mounted() {
     this.project = await getProject(this.projectId);
-    console.log(this.project);
   }
 }
 </script>

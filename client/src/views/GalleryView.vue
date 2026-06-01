@@ -48,7 +48,7 @@
                 <img src="/images/noFav.png" alt="Не в избранном">
             </div>              
               <p class="cardDescription">{{ card.designer }}</p>
-              <div class="imageBox"><img :src="card.image" alt="Описание" data-ignore @click="openImage(card.image)"></div>
+              <div class="imageBox"><img :src="card.image" alt="Описание" ignore @click="openImage(card.image)"></div>
               <p class="cardAuthor">{{ card.userName }}</p>
           </div>          
       </div>
@@ -222,7 +222,7 @@ export default {
     this.updateQueryParams();
   },
   openProject(projectId, event) {
-    if(event.target.dataset.ignore)
+    if(event.target.hasAttribute("ignore"))
       return;
     this.$router.push({name: "project", params: {projectId}});
   }

@@ -440,6 +440,9 @@ th {
     max-height: 300px;
     object-fit: contain;
 }
+.infoSection {
+    text-align: left;
+}
 .infoSection > ul {
     list-style-type: none;
     padding: 0;
@@ -484,41 +487,21 @@ th {
 .project-header {
     padding: 0;
 }
-.projectMenu > ul > li > a {
+.projectMenu a {
     color: #2A3759;
     font-family: Primus;
     font-weight: bold;
     text-decoration: none;
-}
-.projectMenu > ul > li > a.adminPage.active {
-    color: #3D5220;
-    border: 2px dashed white;
     padding: 4px 8px;
     border-radius: 5px;
+    border: 2px dashed transparent;
 }
-.projectMenu > ul > li > a.adminCommentsPage.active {
+.projectMenu a.router-link-exact-active {
     color: #3D5220;
-    border: 2px dashed white;
-    padding: 4px 8px;
-    border-radius: 5px;
+    border-color: white;
 }
-.projectMenu > ul > li > a.commentPage.active {
-    color: #3D5220;
-    border: 2px dashed white;
-    padding: 4px 8px;
-    border-radius: 5px;
-}
-.projectMenu > ul > li > a.photoProgressPage.active {
-    color: #3D5220;
-    border: 2px dashed white;
-    padding: 4px 8px;
-    border-radius: 5px;
-}
-.projectMenu > ul > li > a.projectPage.active {
-    color: #3D5220;
-    border: 2px dashed white;
-    padding: 4px 8px;
-    border-radius: 5px;
+.projectMenu li {
+    margin-inline: 0;
 }
 .projectParams {
     display: flex;
@@ -642,7 +625,7 @@ th {
     gap: 8px;
     margin-top: 10px;
     max-width: 500px;
-    justify-content: flex-end
+    justify-content: center
 }
 .td-center {
     text-align: center;
