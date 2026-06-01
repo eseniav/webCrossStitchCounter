@@ -44,6 +44,9 @@ app.get("/api/tags", async (_, res) => {
     res.json(await dataService.getTags());
 })
 
+app.get("/api/comments/:projectId", async (req, res) => {
+    return res.json(await dataService.getComments(req.params.projectId));
+})
 app.post("/api/register", async (req, res) => {
     const regUser = req.body;
     delete regUser.repeatPassword;
