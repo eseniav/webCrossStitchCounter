@@ -1,5 +1,5 @@
 <template>
-  <div class="project-container">
+  <article class="project-container">
     <nav class="projectMenu">
       <ul>
         <li>
@@ -37,7 +37,7 @@
       :project-id="projectId"
       class="project-content"
     />
-  </div>
+  </article>
 </template>
 
 <script setup>
