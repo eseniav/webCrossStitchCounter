@@ -2,7 +2,7 @@
   <div>
     <div class="projectParams">
                 <div class="imgSection">
-                    <img :src="project.image" alt="" @click="openImage(project.image)">
+                    <img :src="project.imagePath" alt="Изображение проекта" @click="openImage(project.imagePath)">
                     <div class="userProjectPage">{{project.login}}</div>
                     <div class="tagsContainer">
                       <router-link class="tag" v-for="tag in project.tags" :key="tag"

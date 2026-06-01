@@ -5,6 +5,7 @@ class DataService {
     static TAGS_FILE = path.join(__dirname, "../data", "tags.json");
     static PROJECT_FILE = path.join(__dirname, "../data", "projects.json");
     static USERS_FILE = path.join(__dirname, "../data", "users.json");
+    static IMAGES_PATH = '/images/';
     static async getTags() {
         try {
                 let data = await fs.readFile(DataService.TAGS_FILE, "utf-8");
@@ -27,6 +28,7 @@ class DataService {
            return tags.find((tag) => tag.id == tagId)?.title;
         })
         project.login = user.login;
+        project.imagePath = DataService.IMAGES_PATH + project.image;
         return project;
     }
     static async getUser(userId) {
