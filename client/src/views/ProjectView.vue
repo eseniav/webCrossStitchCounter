@@ -5,9 +5,10 @@
                     <img :src="project.image" alt="" @click="openImage(project.image)">
                     <div class="userProjectPage">{{project.login}}</div>
                     <div class="tagsContainer">
-                      <div class="tag" v-for="tag in project.tags" :key="tag">
+                      <router-link class="tag" v-for="tag in project.tags" :key="tag"
+                        :to="{name: 'gallery', query: {tags: tag}}">
                         {{tag}}
-                      </div>
+                      </router-link>
                     </div>
                 </div>
                 <div class="infoSection">
@@ -119,7 +120,6 @@ async function getUsers() {
 
   async mounted() {
     this.project = await getProject(this.projectId);
-    console.log(this.project);
   }
 }
 </script>
