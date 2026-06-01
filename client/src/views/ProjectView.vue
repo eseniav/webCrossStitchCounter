@@ -3,7 +3,7 @@
     <div class="projectParams">
                 <div class="imgSection">
                     <img :src="project.image" alt="" @click="openImage(project.image)">
-                    <div class="userProjectPage">{{project.userName}}</div>
+                    <div class="userProjectPage">{{project.login}}</div>
                     <div class="tagsContainer">{{project.tagId}}</div>
                 </div>
                 <div class="infoSection">
