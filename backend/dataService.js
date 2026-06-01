@@ -22,8 +22,12 @@ class DataService {
         let data = await fs.readFile(DataService.PROJECT_FILE, "utf-8");
         let projects = JSON.parse(data);
         const project = projects.find((item) => item.id == projectId);
-        const user = await DataService.getUser(project.userId);
-        return { ...project, login: user.login };
+        const [tags, user] = await Promise.all([DataService.getTags(), DataService.getUser(project.userId)]);
+        project.tags = project.tagId.map((tagId) => {
+           return tags.find((tag) => tag.id == tagId)?.title;
+        })
+        project.login = user.login;
+        return project;
     }
     static async getUser(userId) {
         let data = await fs.readFile(DataService.USERS_FILE, "utf-8");

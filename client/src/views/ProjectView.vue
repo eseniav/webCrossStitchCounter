@@ -4,7 +4,11 @@
                 <div class="imgSection">
                     <img :src="project.image" alt="" @click="openImage(project.image)">
                     <div class="userProjectPage">{{project.login}}</div>
-                    <div class="tagsContainer">{{project.tagId}}</div>
+                    <div class="tagsContainer">
+                      <div class="tag" v-for="tag in project.tags" :key="tag">
+                        {{tag}}
+                      </div>
+                    </div>
                 </div>
                 <div class="infoSection">
                     <h2 class="h2ProjectPage">О проекте</h2>
